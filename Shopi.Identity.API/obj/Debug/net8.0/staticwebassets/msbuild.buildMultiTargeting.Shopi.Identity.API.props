@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Shopi.Identity.API.props" />
+</Project>

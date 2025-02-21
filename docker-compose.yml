@@ -1,0 +1,48 @@
+﻿services:
+  database:
+    image: postgres:latest
+    container_name: shopi-postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=shopi
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - shopi-network
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "shopi-rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+#
+#  shopi.identity.api:
+#    image: shopi.identity.api
+#    build:
+#      context: .
+#      dockerfile: Shopi.Identity.API/Dockerfile
+#    networks:
+#      shopi-network
+#
+#  shopi.bff:
+#    image: shopi.bff
+#    build:
+#      context: .
+#      dockerfile: Shopi.BFF/Dockerfile
+#    networks:
+#      shopi-network
+#
+networks:
+  shopi-network:
+
+volumes:
+  postgres_data:

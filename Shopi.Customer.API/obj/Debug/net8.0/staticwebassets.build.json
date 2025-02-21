@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "3BS6c1rCmoUN5JBvvej7yA/W/joVQfkKVrBlsVzfEtY=",
+  "Source": "Shopi.Customer.API",
+  "BasePath": "_content/Shopi.Customer.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\studies\\csharp\\Shopi\\Shopi.Core\\Shopi.Core.csproj",
+      "Version": 2,
+      "Source": "Shopi.Core",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

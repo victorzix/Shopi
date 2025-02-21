@@ -1,0 +1,7 @@
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.csproj.AssemblyReference.cache
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.AssemblyInfoInputs.cache
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.AssemblyInfo.cs
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.csproj.CoreCompileInputs.cache
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.MvcApplicationPartsAssemblyInfo.cs
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.MvcApplicationPartsAssemblyInfo.cache

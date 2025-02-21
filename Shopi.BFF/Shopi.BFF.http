@@ -1,0 +1,6 @@
+@Shopi.BFF_HostAddress = http://localhost:5200
+
+GET {{Shopi.BFF_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
