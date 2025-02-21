@@ -24,8 +24,8 @@ public class IdentityController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpPost("register-client")]
-    public async Task<IActionResult> CreateClient([FromBody] CreateUserDto dto)
+    [HttpPost("register-customer")]
+    public async Task<IActionResult> CreateCustomer([FromBody] CreateUserDto dto)
     {
         var user = await _mediator.Send(_mapper.Map<CreateUserCommand>(dto));
         if (!user.Success)
@@ -33,22 +33,26 @@ public class IdentityController : ControllerBase
             return BadRequest(user.Errors);
         }
 
-
-        return Ok(dto);
-        // var clientResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.CustomerApiUrl, "", user.Data);
-        // var content = await clientResponse.Content.ReadAsStringAsync();
-        // var deserializedContent = JsonConvert.DeserializeObject<CreateClientDto>(content);
-        //
-        // return Created(string.Empty, deserializedContent);
-    }
+        var customerResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.CustomerApiUrl, "create", user.Data);
+        if (!customerResponse.IsSuccessStatusCode)
+        {
+            var errorContent = await customerResponse.Content.ReadAsStringAsync();
+            var deserializedErrorContent = JsonConvert.DeserializeObject<ErrorModel>(errorContent);
+            return StatusCode(deserializedErrorContent.Status, deserializedErrorContent);
+        }
+        var content = await customerResponse.Content.ReadAsStringAsync();
+        var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
+        Console.WriteLine(deserializedContent);
+        
+        return Created(string.Empty, deserializedContent);
+    }   
 
     [HttpPost("login")]
-    public async Task<IActionResult> LoginClient([FromBody] LoginUserDto dto)
+    public async Task<IActionResult> LoginCustomer([FromBody] LoginUserDto dto)
     {
         var user = await _mediator.Send(_mapper.Map<LoginUserCommand>(dto));
         if (!user.Success)
         {
-            Console.WriteLine(user.Errors);
             return BadRequest(user.Errors);
         }
 

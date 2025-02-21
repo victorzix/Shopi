@@ -26,8 +26,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
     {
         var userData = await _identityJwtService.Register(_mapper.Map<RegisterUser>(request));
         
-        var clientDto = _mapper.Map<CreateCustomerDto>(request);
-        clientDto.UserId = userData.Data.UserId;
-        return new ApiResponses<CreateCustomerDto> { Data = clientDto, Success = true};
+        var customerDto = _mapper.Map<CreateCustomerDto>(request);
+        customerDto.UserId = userData.Data.UserId;
+        return new ApiResponses<CreateCustomerDto> { Data = customerDto, Success = true};
     }
 }

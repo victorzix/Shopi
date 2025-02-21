@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yBlo1ZwGg0vnH0p/meaR8CFdA+mjRGHYymmsiOIjpNI=",
+  "Hash": "t1r8zaaX64X8dTuiBSdw/gP1kNW6Nm8vomy6XXXF8IY=",
   "Source": "Shopi.BFF",
   "BasePath": "_content/Shopi.BFF",
   "Mode": "Default",
@@ -10,17 +10,6 @@
       "Identity": "D:\\studies\\csharp\\Shopi\\Shopi.Core\\Shopi.Core.csproj",
       "Version": 2,
       "Source": "Shopi.Core",
-      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
-      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
-    },
-    {
-      "Identity": "D:\\studies\\csharp\\Shopi\\Shopi.Identity.API\\Shopi.Identity.API.csproj",
-      "Version": 2,
-      "Source": "Shopi.Identity.API",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",

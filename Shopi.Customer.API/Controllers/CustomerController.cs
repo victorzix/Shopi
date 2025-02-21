@@ -22,7 +22,7 @@ public class CustomerController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] CreateCustomerDto dto)
     {
         var customer = await _mediator.Send(_mapper.Map<CreateCustomerCommand>(dto));
@@ -31,7 +31,7 @@ public class CustomerController : ControllerBase
             return BadRequest(customer.Errors);
         }
 
-        return Created(string.Empty, customer);
+        return Created(string.Empty, customer.Data);
     }
 
     // [HttpGet("{id}")]

@@ -151,3 +151,4 @@ D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\refint\Shopi.Custome
 D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\Shopi.Customer.API.pdb
 D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\Shopi.Customer.API.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\ref\Shopi.Customer.API.dll
+D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\Shopi.Customer.API.sourcelink.json

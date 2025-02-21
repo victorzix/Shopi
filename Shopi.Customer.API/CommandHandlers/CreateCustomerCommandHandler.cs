@@ -27,7 +27,7 @@ public class
     public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(CreateCustomerCommand request,
         CancellationToken cancellationToken)
     {
-        CheckEmailAndDocument(request);
+        await CheckEmailAndDocument(request);
 
         var validator = new CreateCustomerValidator();
         var validateCreateCustomer = validator.Validate(request);
@@ -38,14 +38,14 @@ public class
                 validateCreateCustomer.Errors.Select(e => e.ErrorMessage).ToList());
         }
 
-        var customer = _repository.Create(_mapper.Map<AppCustomer>(request));
+        var customer = await _repository.Create(_mapper.Map<AppCustomer>(request));
         return new ApiResponses<CreateCustomerResponseDto>
             { Success = true, Data = _mapper.Map<CreateCustomerResponseDto>(customer) };
     }
 
-    private void CheckEmailAndDocument(CreateCustomerCommand request)
+    private async Task CheckEmailAndDocument(CreateCustomerCommand request)
     {
-        var emailInUse = _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
+        var emailInUse = await _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
         {
             Email = request.Email
         });
@@ -55,7 +55,7 @@ public class
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já em uso");
         }
 
-        var documentInUse = _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
+        var documentInUse = await _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
         {
             Email = request.Document
         });

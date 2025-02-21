@@ -15,35 +15,35 @@ public class CustomerRepository
         _dbContext = dbContext;
     }
 
-    public AppCustomer Create(AppCustomer appCustomerData)
+    public async Task<AppCustomer> Create(AppCustomer appCustomerData)
     {
-        var customer= _dbContext.Add(appCustomerData);
-        _dbContext.SaveChanges();
+        var customer = await _dbContext.AddAsync(appCustomerData);
+        await _dbContext.SaveChangesAsync();
         return customer.Entity;
     }
-    
-    public AppCustomer? GetByEmailOrDocument(GetByEmailOrDocumentQuery query)
+
+    public async Task<AppCustomer?> GetByEmailOrDocument(GetByEmailOrDocumentQuery query)
     {
-        return _dbContext.AppCustomer
-            .FirstOrDefault(c => c.Email == query.Email || c.Document == query.Document);
-    }
-    
-    public AppCustomer? GetById(Guid id)
-    {
-        return _dbContext.AppCustomer
-            .FirstOrDefault(c => c.Id == id || c.UserId == id);
+        return await _dbContext.AppCustomer
+            .FirstOrDefaultAsync(c => c.Email == query.Email || c.Document == query.Document);
     }
 
-    public AppCustomer Update(AppCustomer customerData)
+    public async Task<AppCustomer?> GetById(Guid id)
+    {
+        return await _dbContext.AppCustomer
+            .FirstOrDefaultAsync(c => c.Id == id || c.UserId == id);
+    }
+
+    public async Task<AppCustomer?> Update(AppCustomer? customerData)
     {
         var customer = _dbContext.AppCustomer.Update(customerData);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         return customer.Entity;
     }
 
-    public void Delete(AppCustomer customer)
+    public async void Delete(AppCustomer? customer)
     {
         _dbContext.AppCustomer.Remove(customer);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
 }

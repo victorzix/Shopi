@@ -163,3 +163,4 @@ D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\RabbitMQ.Client.dll
 D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Shopi.Core.dll
 D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Shopi.Core.pdb
 D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\studies\csharp\Shopi\Shopi.Identity.API\obj\Debug\net8.0\Shopi.Identity.API.sourcelink.json
