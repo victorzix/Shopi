@@ -61,18 +61,16 @@ public class IdentityJwtService
             Email = registerUser.Email,
             UserName = registerUser.Email
         };
-
-
+        
         var result = await _userManager.CreateAsync(user, registerUser.Password);
-
-
-        await _userManager.AddToRoleAsync(user, registerUser.Role);
 
         if (!result.Succeeded)
         {
             throw new CustomApiException("Erro ao realizar o cadastro", StatusCodes.Status400BadRequest,
-                result.Errors.Select(e => e.Description));
+                result.Errors.Select(e => e.Description).ToList());
         }
+
+        await _userManager.AddToRoleAsync(user, registerUser.Role);
 
         return new ApiResponses<RegisterUserResponseDto>
         {
@@ -107,18 +105,12 @@ public class IdentityJwtService
         }
 
         return new ApiResponses<LoginUserResponseDto>
-            { Data = new LoginUserResponseDto { Token = await GenerateJwt(user.Email) } };
+            { Data = new LoginUserResponseDto { Token = await GenerateJwt(user) } };
     }
 
 
-    public async Task<string> GenerateJwt(string email)
+    public async Task<string> GenerateJwt(IdentityUser user)
     {
-        var user = await _userManager.FindByEmailAsync(email);
-        if (user == null)
-        {
-            throw new CustomApiException("Dados inválidos", StatusCodes.Status401Unauthorized);
-        }
-
         var claims = await _userManager.GetClaimsAsync(user);
         var userRoles = await _userManager.GetRolesAsync(user);
 
