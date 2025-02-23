@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -23,13 +24,15 @@ public class IdentityJwtService
     private readonly JwtSettings _jwtSettings;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IMapper _mapper;
 
     public IdentityJwtService(UserManager<IdentityUser> userManager, IOptions<JwtSettings> jwtSettings,
-        SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+        SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, IMapper mapper)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _roleManager = roleManager;
+        _mapper = mapper;
         _jwtSettings = jwtSettings.Value;
     }
 
@@ -61,7 +64,7 @@ public class IdentityJwtService
             Email = registerUser.Email,
             UserName = registerUser.Email
         };
-        
+
         var result = await _userManager.CreateAsync(user, registerUser.Password);
 
         if (!result.Succeeded)
@@ -108,8 +111,64 @@ public class IdentityJwtService
             { Data = new LoginUserResponseDto { Token = await GenerateJwt(user) } };
     }
 
+    public async Task DeleteUser(Guid id)
+    {
+        var user = await _userManager.FindByIdAsync(id.ToString());
+        if (user != null)
+        {
+            await _userManager.DeleteAsync(user);
+        }
+    }
 
-    public async Task<string> GenerateJwt(IdentityUser user)
+    public async Task UpdateUser(UpdateUserDto dto)
+    {
+        var userToUpdate = await _userManager.FindByIdAsync(dto.Id.ToString());
+        if (userToUpdate == null)
+        {
+            throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status404NotFound,
+                "Usuário não encontrado");
+        }
+        
+        if (!string.IsNullOrEmpty(dto.Email) && dto.Email != userToUpdate.Email)
+        {
+            var emailInUse = await _userManager.FindByEmailAsync(dto.Email);
+            if (emailInUse != null)
+            {
+                throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status400BadRequest,
+                    "Email já em uso");
+            }
+
+            var setUserNameResult = await _userManager.SetUserNameAsync(userToUpdate, dto.Email);
+            if (!setUserNameResult.Succeeded)
+            {
+                throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status400BadRequest,
+                    setUserNameResult.Errors.Select(e => e.Description));
+            }
+        }
+        
+        _mapper.Map(dto, userToUpdate);
+
+        var updateResult = await _userManager.UpdateAsync(userToUpdate);
+        if (!updateResult.Succeeded)
+        {
+            throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status400BadRequest,
+                updateResult.Errors.Select(e => e.Description));
+        }
+
+        if (!string.IsNullOrEmpty(dto.Password))
+        {
+            var token = await _userManager.GeneratePasswordResetTokenAsync(userToUpdate);
+            var passwordResult = await _userManager.ResetPasswordAsync(userToUpdate, token, dto.Password);
+
+            if (!passwordResult.Succeeded)
+            {
+                throw new CustomApiException("Erro ao atualizar senha", StatusCodes.Status400BadRequest,
+                    passwordResult.Errors.Select(e => e.Description));
+            }
+        }
+    }
+
+    private async Task<string> GenerateJwt(IdentityUser user)
     {
         var claims = await _userManager.GetClaimsAsync(user);
         var userRoles = await _userManager.GetRolesAsync(user);

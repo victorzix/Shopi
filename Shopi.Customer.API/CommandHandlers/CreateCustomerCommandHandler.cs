@@ -23,7 +23,6 @@ public class
         _mapper = mapper;
     }
 
-
     public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(CreateCustomerCommand request,
         CancellationToken cancellationToken)
     {
@@ -57,7 +56,7 @@ public class
 
         var documentInUse = await _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
         {
-            Email = request.Document
+            Document = request.Document
         });
 
         if (documentInUse != null)

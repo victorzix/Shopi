@@ -6,7 +6,7 @@ public class Address
     public Guid CustomerId { get; set; }
     public AppCustomer AppCustomer { get; set; }
 
-    public string Name { get; set; }
+    public string Title { get; set; }
     public string Street { get; set; }
     public string? District { get; set; }
     public int? Number { get; set; }

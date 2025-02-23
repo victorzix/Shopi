@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Shopi.Core.Services;
 using Shopi.Core.Utils;
+using Shopi.Identity.API.CommandHandlers;
 using Shopi.Identity.API.Commands;
 using Shopi.Identity.API.DTOs;
 
@@ -13,13 +14,11 @@ namespace Shopi.Identity.API.Controllers;
 [ApiController]
 public class IdentityController : ControllerBase
 {
-    private readonly BffHttpClient _httpClient;
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
 
-    public IdentityController(BffHttpClient httpClient, IMediator mediator, IMapper mapper)
+    public IdentityController(IMediator mediator, IMapper mapper)
     {
-        _httpClient = httpClient;
         _mediator = mediator;
         _mapper = mapper;
     }
@@ -28,24 +27,22 @@ public class IdentityController : ControllerBase
     public async Task<IActionResult> CreateCustomer([FromBody] CreateUserDto dto)
     {
         var user = await _mediator.Send(_mapper.Map<CreateUserCommand>(dto));
-        if (!user.Success)
-        {
-            return BadRequest(user.Errors);
-        }
+        return Created(string.Empty, user.Data);
+    }
 
-        var customerResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.CustomerApiUrl, "create", user.Data);
-        if (!customerResponse.IsSuccessStatusCode)
-        {
-            var errorContent = await customerResponse.Content.ReadAsStringAsync();
-            var deserializedErrorContent = JsonConvert.DeserializeObject<ErrorModel>(errorContent);
-            return StatusCode(deserializedErrorContent.Status, deserializedErrorContent);
-        }
-        var content = await customerResponse.Content.ReadAsStringAsync();
-        var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
-        Console.WriteLine(deserializedContent);
-        
-        return Created(string.Empty, deserializedContent);
-    }   
+    [HttpPatch("update")]
+    public async Task<IActionResult> UpdateCustomer([FromBody] UpdateUserDto dto)
+    {
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine(dto.Id);
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        var user = await _mediator.Send(_mapper.Map<UpdateUserCommand>(dto));
+        return NoContent();
+    }
 
     [HttpPost("login")]
     public async Task<IActionResult> LoginCustomer([FromBody] LoginUserDto dto)

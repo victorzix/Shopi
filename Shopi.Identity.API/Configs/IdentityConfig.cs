@@ -17,8 +17,8 @@ public static class IdentityConfig
                 options.Password.RequiredUniqueChars = 0;
             })
             .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<AppIdentityDbContext>();
-
+            .AddEntityFrameworkStores<AppIdentityDbContext>()
+            .AddDefaultTokenProviders();
         services.AddAuthorizationBuilder()
             .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator"))
             .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator"));

@@ -26,12 +26,14 @@ public class CustomerController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateCustomerDto dto)
     {
         var customer = await _mediator.Send(_mapper.Map<CreateCustomerCommand>(dto));
-        if (!customer.Success)
-        {
-            return BadRequest(customer.Errors);
-        }
-
         return Created(string.Empty, customer.Data);
+    }
+
+    [HttpPatch("update")]
+    public async Task<IActionResult> Update([FromBody] UpdateCustomerDto dto)
+    {
+        var customer = await _mediator.Send(_mapper.Map<UpdateCustomerCommand>(dto));
+        return Ok(customer.Data);
     }
 
     // [HttpGet("{id}")]

@@ -34,7 +34,7 @@ public class CustomerRepository
             .FirstOrDefaultAsync(c => c.Id == id || c.UserId == id);
     }
 
-    public async Task<AppCustomer?> Update(AppCustomer? customerData)
+    public async Task<AppCustomer?> Update(AppCustomer customerData)
     {
         var customer = _dbContext.AppCustomer.Update(customerData);
         await _dbContext.SaveChangesAsync();

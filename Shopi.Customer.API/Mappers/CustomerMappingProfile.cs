@@ -12,8 +12,15 @@ public class CustomerMappingProfile : Profile
         CreateMap<CreateCustomerDto, CreateCustomerCommand>();
         CreateMap<CreateCustomerDto, AppCustomer>();
         CreateMap<CreateCustomerCommand, AppCustomer>();
-        CreateMap<UpdateCustomerDto, AppCustomer>().ForAllMembers(o =>
-            o.Condition((src, dest, value) => value != null));
+        CreateMap<UpdateCustomerDto, UpdateCustomerCommand>();
+        CreateMap<UpdateCustomerCommand, UpdateUserDto>().ForAllMembers(
+            o =>
+                o.Condition((src, dest, value) => value != null));;
+        CreateMap<UpdateCustomerCommand, AppCustomer>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForAllMembers(
+                o =>
+                    o.Condition((src, dest, value) => value != null));
         CreateMap<AppCustomer, CreateCustomerResponseDto>();
     }
 }
