@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
-using FluentValidation;
-using FluentValidation.Results;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Moq;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
+using Shopi.Identity.API.DTOs;
 using Shopi.Identity.API.Models;
 using Shopi.Identity.API.Services;
 
@@ -18,6 +18,7 @@ public class IdentityJwtServiceTests
     private readonly Mock<SignInManager<IdentityUser>> _signInManagerMock;
     private readonly Mock<RoleManager<IdentityRole>> _roleManagerMock;
     private readonly IdentityJwtService _identityJwtService;
+    private readonly IMapper _mapper;
 
     public IdentityJwtServiceTests()
     {
@@ -41,8 +42,10 @@ public class IdentityJwtServiceTests
             Audit = "shopi"
         });
 
+        _mapper = new Mock<IMapper>().Object;
+
         _identityJwtService = new IdentityJwtService(
-            _userManagerMock.Object, jwtSettings, _signInManagerMock.Object, _roleManagerMock.Object);
+            _userManagerMock.Object, jwtSettings, _signInManagerMock.Object, _roleManagerMock.Object, _mapper);
     }
 
     [Fact]
@@ -169,7 +172,6 @@ public class IdentityJwtServiceTests
         Assert.Contains("Usuário ou senha inválidos", errors[0]);
     }
 
-
     [Fact]
     public async Task Login_ShouldReturnError_WhenSignInAsyncFails()
     {
@@ -207,5 +209,154 @@ public class IdentityJwtServiceTests
 
         Assert.NotNull(result);
         Assert.IsType<string>(result.Data.Token);
+    }
+
+    [Fact]
+    public async Task Delete_ShouldReturnAnError_WhenUserNotFound()
+    {
+        _userManagerMock.Setup(x => x.FindByIdAsync(Guid.NewGuid().ToString())).ReturnsAsync((IdentityUser)null);
+
+        var exception =
+            await Assert.ThrowsAsync<CustomApiException>(() => _identityJwtService.DeleteUser(Guid.NewGuid()));
+        var errors = (List<string>)exception.Errors;
+
+        Assert.Equal("Erro de validação", exception.Message);
+        Assert.Equal(404, exception.StatusCode);
+        Assert.Contains("Usuário não encontrado", errors[0]);
+    }
+
+    [Fact]
+    public async Task Delete_ShouldReturnVoid_WhenUserIsDeleted()
+    {
+        var userId = Guid.NewGuid().ToString();
+        var user = new IdentityUser { Id = userId, UserName = "testuser" };
+
+        _userManagerMock.Setup(x => x.FindByIdAsync(userId)).ReturnsAsync(user);
+        _userManagerMock.Setup(x => x.DeleteAsync(user)).ReturnsAsync(IdentityResult.Success);
+
+        await _identityJwtService.DeleteUser(Guid.Parse(userId));
+        _userManagerMock.Verify(x => x.DeleteAsync(user), Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdateUser_ShouldReturnAnError_WhenUserNotFound()
+    {
+        var dto = new UpdateUserDto { Email = "alo@alo.com" };
+        _userManagerMock.Setup(x =>
+            x.FindByIdAsync(Guid.NewGuid().ToString())).ReturnsAsync((IdentityUser)null);
+
+        var exception = await Assert.ThrowsAsync<CustomApiException>(() => _identityJwtService.UpdateUser(dto));
+        var errors = (List<string>)exception.Errors;
+
+        Assert.Equal(404, exception.StatusCode);
+        Assert.Contains("Erro ao atualizar usuário", exception.Message);
+        Assert.Equal("Usuário não encontrado", errors[0]);
+    }
+
+    [Fact]
+    public async Task UpdateUser_ShouldReturnAnError_WhenNewEmailIsInUse()
+    {
+        var dto = new UpdateUserDto { Id = Guid.NewGuid(), Email = "alo@alo.com" };
+        var user = new IdentityUser { Id = dto.Id.ToString(), Email = "dto@email.com" };
+
+        _userManagerMock.Setup(x =>
+            x.FindByIdAsync(dto.Id.ToString())).ReturnsAsync(user);
+
+        _userManagerMock.Setup(x =>
+            x.FindByEmailAsync(dto.Email)).ReturnsAsync(new IdentityUser
+            { Id = Guid.NewGuid().ToString(), Email = "alo@alo.com" });
+
+        var exception = await Assert.ThrowsAsync<CustomApiException>(() => _identityJwtService.UpdateUser(dto));
+        var errors = (List<string>)exception.Errors;
+
+        Assert.Equal(400, exception.StatusCode);
+        Assert.Contains("Erro ao atualizar usuário", exception.Message);
+        Assert.Equal("Email já em uso", errors[0]);
+    }
+
+    [Fact]
+    public async Task UpdateUser_ShouldReturnAnError_WhenUpdateAsyncFail()
+    {
+        var dto = new UpdateUserDto { Id = Guid.NewGuid(), Email = "alo@alo.com" };
+        var user = new IdentityUser { Id = dto.Id.ToString(), Email = "dto@email.com" };
+
+        _userManagerMock.Setup(x =>
+            x.FindByIdAsync(dto.Id.ToString())).ReturnsAsync(user);
+
+        _userManagerMock.Setup(x =>
+            x.FindByEmailAsync(dto.Email)).ReturnsAsync((IdentityUser)null);
+
+        var identityErrors = new List<IdentityError>
+        {
+            new IdentityError { Code = "UserUpdateFailed", Description = "Falha inesperada ao atualizar o usuário" }
+        };
+
+        _userManagerMock.Setup(x =>
+            x.UpdateAsync(user)).ReturnsAsync(IdentityResult.Failed(identityErrors.ToArray()));
+
+        var exception = await Assert.ThrowsAsync<CustomApiException>(() => _identityJwtService.UpdateUser(dto));
+        var errors = (List<string>)exception.Errors;
+
+        Assert.Equal(400, exception.StatusCode);
+        Assert.Equal("Erro ao atualizar usuário", exception.Message);
+        Assert.Contains("Falha", errors[0]);
+    }
+
+    [Fact]
+    public async Task UpdateUser_ShouldReturnAnError_WhenResetPasswordAsyncFail()
+    {
+        var dto = new UpdateUserDto { Id = Guid.NewGuid(), Password = "1234ad" };
+        var user = new IdentityUser { Id = dto.Id.ToString(), Email = "dto@email.com" };
+        string token = "token1";
+
+        _userManagerMock.Setup(x =>
+            x.FindByIdAsync(dto.Id.ToString())).ReturnsAsync(user);
+
+        _userManagerMock.Setup(x =>
+            x.FindByEmailAsync(dto.Email)).ReturnsAsync((IdentityUser)null);
+
+
+        var identityErrors = new List<IdentityError>
+        {
+            new IdentityError { Code = "PasswordResetFailed", Description = "Falha inesperada ao atualizar o usuário" }
+        };
+
+        _userManagerMock.Setup(x =>
+            x.UpdateAsync(user)).ReturnsAsync(IdentityResult.Success);
+
+        _userManagerMock.Setup(x => x.GeneratePasswordResetTokenAsync(user)).ReturnsAsync(token);
+        _userManagerMock.Setup(x => x.ResetPasswordAsync(user, token, dto.Password))
+            .ReturnsAsync(IdentityResult.Failed(identityErrors.ToArray()));
+
+        var exception = await Assert.ThrowsAsync<CustomApiException>(() => _identityJwtService.UpdateUser(dto));
+        var errors = (List<string>)exception.Errors;
+
+        Assert.Equal(400, exception.StatusCode);
+        Assert.Equal("Erro ao atualizar usuário", exception.Message);
+        Assert.Contains("Falha", errors[0]);
+    }
+
+    [Fact]
+    public async Task UpdateUser_ShouldReturnVoid_WhenUpdateSucceed()
+    {
+        var dto = new UpdateUserDto { Id = Guid.NewGuid(), Email = "alo@alo.com", Password = "1234" };
+        var user = new IdentityUser { Id = dto.Id.ToString(), Email = "dto@email.com" };
+
+        _userManagerMock.Setup(x =>
+            x.FindByIdAsync(dto.Id.ToString())).ReturnsAsync(user);
+
+        _userManagerMock.Setup(x =>
+            x.FindByEmailAsync(dto.Email)).ReturnsAsync((IdentityUser)null);
+
+        _userManagerMock.Setup(x =>
+            x.UpdateAsync(user)).ReturnsAsync(IdentityResult.Success);
+
+        _userManagerMock.Setup(x => x.GeneratePasswordResetTokenAsync(user)).ReturnsAsync("token");
+        _userManagerMock.Setup(x => x.ResetPasswordAsync(user, "token", dto.Password))
+            .ReturnsAsync(IdentityResult.Success);
+
+        await _identityJwtService.UpdateUser(dto);
+
+        _userManagerMock.Verify(x => x.UpdateAsync(user), Times.Once);
     }
 }
