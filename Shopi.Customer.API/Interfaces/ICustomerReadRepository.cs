@@ -5,6 +5,5 @@ namespace Shopi.Customer.API.Interfaces;
 
 public interface ICustomerReadRepository
 {
-    Task<AppCustomer?> GetByEmailOrDocument(GetByEmailOrDocumentQuery query);
-    Task<AppCustomer?> GetById(Guid id);
+    Task<AppCustomer?> FilterClient(FilterCustomerQuery query);
 }

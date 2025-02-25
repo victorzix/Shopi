@@ -48,18 +48,19 @@ public class
 
     private async Task CheckEmailAndDocument(CreateCustomerCommand request)
     {
-        var emailInUse = await _readRepository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery(
+        var emailInUse = await _readRepository.FilterClient(new FilterCustomerQuery(
             request.Email,
-            null));
+            null, null));
 
         if (emailInUse != null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já em uso");
         }
 
-        var documentInUse = await _readRepository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery(
+        var documentInUse = await _readRepository.FilterClient(new FilterCustomerQuery(
             null,
-            request.Document));
+            request.Document,
+            null));
 
         if (documentInUse != null)
         {

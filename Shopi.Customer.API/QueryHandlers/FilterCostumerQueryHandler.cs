@@ -8,26 +8,26 @@ using Shopi.Customer.API.Queries;
 
 namespace Shopi.Customer.API.QueryHandlers;
 
-public class GetByEmailOrDocumentQueryHandler : IRequestHandler<GetByEmailOrDocumentQuery, ApiResponses<AppCustomer>>
+public class FilterCostumerQueryHandler : IRequestHandler<FilterCustomerQuery, ApiResponses<AppCustomer>>
 {
     private readonly ICustomerReadRepository _readRepository;
     private readonly IMapper _mapper;
 
-    public GetByEmailOrDocumentQueryHandler(IMapper mapper, ICustomerReadRepository readRepository)
+    public FilterCostumerQueryHandler(IMapper mapper, ICustomerReadRepository readRepository)
     {
         _mapper = mapper;
-        _readRepository = readRepository;
+        _readRepository = readRepository; 
     }
 
-    public async Task<ApiResponses<AppCustomer>> Handle(GetByEmailOrDocumentQuery request,
+    public async Task<ApiResponses<AppCustomer>> Handle(FilterCustomerQuery request,
         CancellationToken cancellationToken)
     {
-        var customer = await _readRepository.GetByEmailOrDocument(request);
+        var customer = await _readRepository.FilterClient(request);
         if (customer == null)
         {
             throw new CustomApiException("Erro de pesquisa", StatusCodes.Status404NotFound, "Cliente não encontrado");
         }
-        
+
         return new ApiResponses<AppCustomer>
             { Success = true, Data = customer };
     }

@@ -8,6 +8,7 @@ using Shopi.Customer.API.Commands;
 using Shopi.Customer.API.DTOs;
 using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Models;
+using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Repository;
 using Shopi.Customer.API.Validators;
 
@@ -41,7 +42,7 @@ public class
                 validate.Errors.Select(e => e.ErrorMessage));
         }
 
-        var customerToUpdate = await _readRepository.GetById(request.Id);
+        var customerToUpdate = await _readRepository.FilterClient(new FilterCustomerQuery(null, null, request.Id));
         if (customerToUpdate == null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status404NotFound, "Usuário não encontrado");

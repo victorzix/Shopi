@@ -16,15 +16,11 @@ public class CustomerReadRepository : ICustomerReadRepository
         _dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
     }
 
-    public async Task<AppCustomer?> GetByEmailOrDocument(GetByEmailOrDocumentQuery query)
+    public async Task<AppCustomer?> FilterClient(FilterCustomerQuery query)
     {
-        string sql = "SELECT * FROM \"AppCustomer\" WHERE \"Email\" = @Email OR \"Document\" = @Document";
-        return await _dbConnection.QueryFirstOrDefaultAsync<AppCustomer>(sql, new { query.Email, query.Document });
-    }
-
-    public async Task<AppCustomer?> GetById(Guid id)
-    {
-        string sql = "SELECT * FROM \"AppCustomer\" WHERE \"Id\" = @Id OR \"UserId\" = @UserId";
-        return await _dbConnection.QueryFirstOrDefaultAsync<AppCustomer>(sql, new { Id = id });
+        const string sql =
+            "SELECT * FROM \"AppCustomer\" WHERE \"Email\" = @Email OR \"Document\" = @Document OR \"Id\" = @Id OR \"UserId\" = @UserId";
+        return await _dbConnection.QueryFirstOrDefaultAsync<AppCustomer>(sql,
+            new { query.Email, query.Document, query.Id, UserId = query.Id });
     }
 }

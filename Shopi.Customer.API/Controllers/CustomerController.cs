@@ -37,26 +37,11 @@ public class CustomerController : ControllerBase
         return Ok(customer.Data);
     }
 
-    [HttpGet("get-by-email-or-document")]
-    public async Task<IActionResult> GetByEmailOrDocument([FromQuery] GetByEmailOrDocumentQuery dto)
+    [HttpGet("get-customer")]
+    public async Task<IActionResult> GetUser([FromQuery] FilterCustomerQuery dto)
     {
         var customer = await _mediator.Send(dto);
         return Ok(customer.Data);
     }
-
-    // [HttpGet("{id}")]
-    // public IActionResult GetUserById([FromRoute] Guid id)
-    // {
-    //     var customer = _repository.GetById(id);
-    //     return Ok(customer);
-    // }
-    //
-    // [HttpPatch]
-    // public IActionResult Update([FromBody] UpdateCustomerDto dto)
-    // {
-    //     var customerToUpdate = _repository.GetById(Guid.Parse("96265e8e-6f76-4355-a13c-57225d0a6353"));
-    //     var mappedDto = _mapper.Map<UpdateCustomerDto, AppCustomer>(dto, customerToUpdate);
-    //     var customer = _repository.Update(mappedDto);
-    //     return Ok(customer);
-    // }
+    
 }
