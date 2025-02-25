@@ -4,6 +4,7 @@ using Shopi.Core.Exceptions;
 using Shopi.Core.Services;
 using Shopi.Customer.API.Configs;
 using Shopi.Customer.API.Data;
+using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Mappers;
 using Shopi.Customer.API.Repository;
 
@@ -21,6 +22,9 @@ builder.Services.AddAutoMapper(typeof(CustomerMappingProfile));
 builder.Services.AddDbContext<AppCustomerDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+builder.Services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
 builder.Services.AddMediatR(config =>
@@ -30,7 +34,7 @@ builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator"))
     .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator"));
 
-builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddScoped<CustomerWriteRepository>();
 
 builder.Services.AddCors(options =>
 {

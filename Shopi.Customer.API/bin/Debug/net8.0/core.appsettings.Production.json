@@ -7,7 +7,7 @@
   },
   "AllowedHosts": "*",
   "Microservices": {
-    "AuthApi": "http://database:5143/auth/",
-    "CustomerApi": "http://database:5118/customer/"
+    "AuthApi": "http://shopi.identity.api:8082/auth/",
+    "CustomerApi": "http://shopi.customer.api:8081/customer/"
   }
 }

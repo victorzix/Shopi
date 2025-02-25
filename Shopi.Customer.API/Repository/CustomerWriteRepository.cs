@@ -1,16 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Npgsql;
 using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Data;
+using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Models;
 
 namespace Shopi.Customer.API.Repository;
 
-public class CustomerRepository
+public class CustomerWriteRepository : ICustomerWriteRepository
 {
     private readonly AppCustomerDbContext _dbContext;
 
-    public CustomerRepository(AppCustomerDbContext dbContext)
+    public CustomerWriteRepository(AppCustomerDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -22,18 +25,6 @@ public class CustomerRepository
         return customer.Entity;
     }
 
-    public async Task<AppCustomer?> GetByEmailOrDocument(GetByEmailOrDocumentQuery query)
-    {
-        return await _dbContext.AppCustomer
-            .FirstOrDefaultAsync(c => c.Email == query.Email || c.Document == query.Document);
-    }
-
-    public async Task<AppCustomer?> GetById(Guid id)
-    {
-        return await _dbContext.AppCustomer
-            .FirstOrDefaultAsync(c => c.Id == id || c.UserId == id);
-    }
-
     public async Task<AppCustomer?> Update(AppCustomer customerData)
     {
         var customer = _dbContext.AppCustomer.Update(customerData);
@@ -41,7 +32,7 @@ public class CustomerRepository
         return customer.Entity;
     }
 
-    public async void Delete(AppCustomer? customer)
+    public async Task Delete(AppCustomer customer)
     {
         _dbContext.AppCustomer.Remove(customer);
         await _dbContext.SaveChangesAsync();

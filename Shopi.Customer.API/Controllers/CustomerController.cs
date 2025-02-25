@@ -5,6 +5,7 @@ using Shopi.Core.Exceptions;
 using Shopi.Customer.API.Commands;
 using Shopi.Customer.API.DTOs;
 using Shopi.Customer.API.Models;
+using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Repository;
 
 namespace Shopi.Customer.API.Controllers;
@@ -33,6 +34,13 @@ public class CustomerController : ControllerBase
     public async Task<IActionResult> Update([FromBody] UpdateCustomerDto dto)
     {
         var customer = await _mediator.Send(_mapper.Map<UpdateCustomerCommand>(dto));
+        return Ok(customer.Data);
+    }
+
+    [HttpGet("get-by-email-or-document")]
+    public async Task<IActionResult> GetByEmailOrDocument([FromQuery] GetByEmailOrDocumentQuery dto)
+    {
+        var customer = await _mediator.Send(dto);
         return Ok(customer.Data);
     }
 

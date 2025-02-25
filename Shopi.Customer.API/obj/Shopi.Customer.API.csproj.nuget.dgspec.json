@@ -112,6 +112,10 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.66, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.11.0, )"

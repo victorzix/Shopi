@@ -6,6 +6,7 @@ using Shopi.Core.Services;
 using Shopi.Core.Utils;
 using Shopi.Customer.API.Commands;
 using Shopi.Customer.API.DTOs;
+using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Models;
 using Shopi.Customer.API.Repository;
 using Shopi.Customer.API.Validators;
@@ -15,15 +16,18 @@ namespace Shopi.Customer.API.CommandHandlers;
 public class
     UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, ApiResponses<CreateCustomerResponseDto>>
 {
-    private readonly CustomerRepository _repository;
+    private readonly ICustomerReadRepository _readRepository;
+    private readonly ICustomerWriteRepository _writeRepository;
     private readonly IMapper _mapper;
     private readonly BffHttpClient _httpClient;
 
-    public UpdateCustomerCommandHandler(CustomerRepository repository, IMapper mapper, BffHttpClient httpClient)
+    public UpdateCustomerCommandHandler(ICustomerWriteRepository writeRepository, IMapper mapper,
+        BffHttpClient httpClient, ICustomerReadRepository readRepository)
     {
-        _repository = repository;
+        _writeRepository = writeRepository;
         _mapper = mapper;
         _httpClient = httpClient;
+        _readRepository = readRepository;
     }
 
     public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(UpdateCustomerCommand request,
@@ -37,18 +41,12 @@ public class
                 validate.Errors.Select(e => e.ErrorMessage));
         }
 
-        var customerToUpdate = await _repository.GetById(request.Id);
+        var customerToUpdate = await _readRepository.GetById(request.Id);
         if (customerToUpdate == null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status404NotFound, "Usuário não encontrado");
         }
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine(_mapper.Map<UpdateUserDto>(request));
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
+
         var userResponse = await _httpClient.PatchJsonAsync(MicroServicesUrls.AuthApiUrl, "update",
             _mapper.Map<UpdateUserDto>(request));
 
@@ -61,7 +59,7 @@ public class
         }
 
         var mappedCustomer = _mapper.Map<UpdateCustomerCommand, AppCustomer>(request, customerToUpdate);
-        var updatedCustomer = await _repository.Update(mappedCustomer);
+        var updatedCustomer = await _writeRepository.Update(mappedCustomer);
 
         return new ApiResponses<CreateCustomerResponseDto>
         {
