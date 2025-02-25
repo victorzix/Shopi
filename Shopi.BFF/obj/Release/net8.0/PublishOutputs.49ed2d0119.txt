@@ -1,0 +1,17 @@
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.Core.exe
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.BFF.exe
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.Core.deps.json
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.Core.runtimeconfig.json
+D:\studies\csharp\Shopi\Shopi.BFF\publish\appsettings.Development.json
+D:\studies\csharp\Shopi\Shopi.BFF\publish\appsettings.json
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.BFF.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.BFF.deps.json
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.BFF.runtimeconfig.json
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.BFF.pdb
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Microsoft.OpenApi.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Newtonsoft.Json.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Swashbuckle.AspNetCore.Swagger.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.Core.dll
+D:\studies\csharp\Shopi\Shopi.BFF\publish\Shopi.Core.pdb

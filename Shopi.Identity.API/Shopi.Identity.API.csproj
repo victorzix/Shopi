@@ -5,7 +5,10 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <AssemblyName>Shopi.Identity.API</AssemblyName>
         <RootNamespace>Shopi.Identity.API</RootNamespace>
+        <Company>Shopi.Identity.API</Company>
+        <Product>Shopi.Identity.API</Product>
     </PropertyGroup>
 
     <ItemGroup>

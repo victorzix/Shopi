@@ -29,7 +29,20 @@ builder.Services.AddJwtConfiguration(builder.Configuration);
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins(["http://shopi.bff:8080", "http://shopi.customer.api:8081"])
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
+
+await IdentityConfig.InitializeRoles(app);
 
 app.UseExceptionHandler(builder =>
 {
@@ -53,16 +66,14 @@ app.UseExceptionHandler(builder =>
     });
 });
 
-await IdentityConfig.InitializeRoles(app);
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigins");
 
 app.UseAuthentication();
 app.UseAuthorization();

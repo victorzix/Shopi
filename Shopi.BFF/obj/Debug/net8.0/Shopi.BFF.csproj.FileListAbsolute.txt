@@ -37,3 +37,14 @@ D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\Shopi.Core.dll
 D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\Shopi.Core.pdb
 D:\studies\csharp\Shopi\Shopi.BFF\obj\Debug\net8.0\Shopi.BFF.sourcelink.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\core.appsettings.Development.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\core.appsettings.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\core.appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\web.config
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\appsettings.Development.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\appsettings.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\Shopi.BFF.deps.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\Shopi.BFF.runtimeconfig.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\Shopi.Core.deps.json
+D:\studies\csharp\Shopi\Shopi.BFF\bin\Debug\net8.0\publish\Shopi.Core.runtimeconfig.json
