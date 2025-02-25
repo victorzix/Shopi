@@ -41,6 +41,9 @@ namespace Shopi.Customer.API.Migrations
                     b.Property<string>("District")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("boolean");
+
                     b.Property<int?>("Number")
                         .HasColumnType("integer");
 
@@ -56,8 +59,9 @@ namespace Shopi.Customer.API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("integer");
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

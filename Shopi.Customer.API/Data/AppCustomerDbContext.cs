@@ -9,7 +9,7 @@ public class AppCustomerDbContext : DbContext
     {
     }
 
-    public DbSet<AppCustomer?> AppCustomer { get; set; }
+    public DbSet<AppCustomer> AppCustomer { get; set; }
     public DbSet<Address> Addresses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

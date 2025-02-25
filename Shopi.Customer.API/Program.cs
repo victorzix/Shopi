@@ -34,7 +34,7 @@ builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator"))
     .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator"));
 
-builder.Services.AddScoped<CustomerWriteRepository>();
+builder.Services.AddRepositories();
 
 builder.Services.AddCors(options =>
 {

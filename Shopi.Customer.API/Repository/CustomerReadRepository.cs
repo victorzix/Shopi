@@ -23,4 +23,9 @@ public class CustomerReadRepository : ICustomerReadRepository
         return await _dbConnection.QueryFirstOrDefaultAsync<AppCustomer>(sql,
             new { query.Email, query.Document, query.Id, UserId = query.Id });
     }
+
+    // public async Task<IReadOnlyCollection<AppCustomer?>> ListCustomers()
+    // {
+    //     
+    // }
 }
