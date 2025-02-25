@@ -7,7 +7,6 @@ namespace Shopi.Customer.API.Commands;
 public class CreateAddressCommand : IRequest<ApiResponses<CreateAddressResponse>>
 {
     public Guid CustomerId { get; set; }
-
     public string Title { get; set; }
     public string Street { get; set; }
     public string? District { get; set; }
@@ -16,6 +15,8 @@ public class CreateAddressCommand : IRequest<ApiResponses<CreateAddressResponse>
     public string City { get; set; }
     public string State { get; set; }
     public string? Complement { get; set; }
+
+    public CreateAddressCommand() {}
 
     public CreateAddressCommand(Guid customerId, string title, string street, string? district, int? number,
         string zipCode, string city, string state, string? complement)

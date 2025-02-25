@@ -18,6 +18,7 @@ builder.Services.AddSwaggerConfigs();
 
 builder.Services.AddHttpClient<BffHttpClient>();
 builder.Services.AddAutoMapper(typeof(CustomerMappingProfile));
+builder.Services.AddAutoMapper(typeof(AddressMappingProfile));
 
 builder.Services.AddDbContext<AppCustomerDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));

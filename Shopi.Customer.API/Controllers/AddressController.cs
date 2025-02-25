@@ -26,9 +26,19 @@ public class AddressController : ControllerBase
         var command = _mapper.Map<CreateAddressCommand>(dto);
         command.CustomerId = customerId;
         var address = await _mediator.Send(command);
-        return Ok("Haha");
+        return Created(string.Empty, address);
     }
-    
+
+    [HttpPatch("{customerId}/{id}")]
+    public async Task<IActionResult> UpdateAddress(Guid customerId, Guid id, [FromBody] UpdateAddressDto dto)
+    {
+        var command = _mapper.Map<UpdateAddressCommand>(dto);
+        command.CustomerId = customerId;
+        command.Id = id;
+
+        var address = await _mediator.Send(command);
+        return Ok(address.Data);
+    } 
     
     [HttpGet("{customerId}")]
     public async Task<IActionResult> ListAddresses(Guid customerId)

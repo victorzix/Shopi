@@ -2,6 +2,7 @@
 
 public class CreateAddressResponse
 {
+    public Guid Id { get; set; }
     public string Title { get; set; }
     public string Street { get; set; }
     public string? District { get; set; }
