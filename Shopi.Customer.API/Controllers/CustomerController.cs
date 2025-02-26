@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopi.Core.Exceptions;
 using Shopi.Customer.API.Commands;
@@ -30,16 +32,25 @@ public class CustomerController : ControllerBase
         return Created(string.Empty, customer.Data);
     }
 
+    
+    [Authorize("CustomerRights")]
     [HttpPatch("update")]
     public async Task<IActionResult> Update([FromBody] UpdateCustomerDto dto)
     {
-        var customer = await _mediator.Send(_mapper.Map<UpdateCustomerCommand>(dto));
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        var command = _mapper.Map<UpdateCustomerCommand>(dto);
+        command.Id = Guid.Parse(userId);
+        var customer = await _mediator.Send(command);
+        
         return Ok(customer.Data);
     }
 
+    [Authorize("CustomerRights")]
     [HttpGet("get-customer")]
     public async Task<IActionResult> GetUser([FromQuery] FilterCustomerQuery dto)
     {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        dto.Id = Guid.Parse(userId);
         var customer = await _mediator.Send(dto);
         return Ok(customer.Data);
     }

@@ -27,6 +27,8 @@ public class ListAddressesQueryHandler : IRequestHandler<ListAddressesQuery, Api
             throw new CustomApiException("Erro de validação", StatusCodes.Status404NotFound, "Usuário não encontrado");
         }
 
+        request.CustomerId = customer.Id;
+        
         return new ApiResponses<IEnumerable<Address?>> { Data = await _repository.List(request), Success = true };
     }
 }

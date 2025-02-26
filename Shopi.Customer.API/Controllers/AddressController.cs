@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopi.Customer.API.Commands;
 using Shopi.Customer.API.DTOs;
@@ -20,38 +22,48 @@ public class AddressController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("{customerId}/add")]
-    public async Task<IActionResult> AddAddress(Guid customerId, [FromBody] CreateAddressDto dto)
+    [Authorize("CustomerRights")]
+    [HttpPost("add-address")]
+    public async Task<IActionResult> AddAddress([FromBody] CreateAddressDto dto)
     {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
         var command = _mapper.Map<CreateAddressCommand>(dto);
-        command.CustomerId = customerId;
+        command.CustomerId = Guid.Parse(userId);
         var address = await _mediator.Send(command);
         return Created(string.Empty, address);
     }
 
-    [HttpPatch("{customerId}/{id}")]
-    public async Task<IActionResult> UpdateAddress(Guid customerId, Guid id, [FromBody] UpdateAddressDto dto)
+    [Authorize("CustomerRights")]
+    [HttpPatch("update/{id}")]
+    public async Task<IActionResult> UpdateAddress(Guid id, [FromBody] UpdateAddressDto dto)
     {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
         var command = _mapper.Map<UpdateAddressCommand>(dto);
-        command.CustomerId = customerId;
+        command.CustomerId = Guid.Parse(userId);
         command.Id = id;
 
         var address = await _mediator.Send(command);
         return Ok(address.Data);
-    } 
-    
-    [HttpGet("{customerId}")]
-    public async Task<IActionResult> ListAddresses(Guid customerId)
-    {
-        var address = await _mediator.Send(new ListAddressesQuery(customerId));
-        return Ok(address);
     }
-    
-    
-    [HttpGet("{customerId}/{id}")]
-    public async Task<IActionResult> GetAddress(Guid customerId, Guid id)
+
+    [Authorize("CustomerRights")]
+    [HttpGet("list-address")]
+    public async Task<IActionResult> ListAddresses()
     {
-        var address = await _mediator.Send(new GetAddressQuery(id, customerId));
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        var address = await _mediator.Send(new ListAddressesQuery(Guid.Parse(userId)));
+        return Ok(address.Data);
+    }
+
+
+    [Authorize("CustomerRights")]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetAddress(Guid id)
+    {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        var address = await _mediator.Send(new GetAddressQuery(id, Guid.Parse(userId)));
         return Ok(address);
     }
 }

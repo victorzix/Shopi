@@ -6,6 +6,7 @@ using Shopi.Customer.API.Configs;
 using Shopi.Customer.API.Data;
 using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Mappers;
+using Shopi.Customer.API.Middlewares;
 using Shopi.Customer.API.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,8 +33,8 @@ builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator"))
-    .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator"));
+    .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator").RequireAuthenticatedUser())
+    .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator").RequireAuthenticatedUser());
 
 builder.Services.AddRepositories();
 
@@ -71,6 +72,8 @@ app.UseExceptionHandler(builder =>
         }
     });
 });
+
+app.UseMiddleware<UnauthorizedMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();
