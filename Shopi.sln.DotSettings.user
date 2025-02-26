@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\lekvi\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_Shopi.834894340\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3ca48667_002D7e5a_002D40cd_002D91f5_002Dc06d43b7efd5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Register_ShouldReturnError_WhenEmailAlreadyExists" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A::net8.0::Shopi.Identity.API.UnitTests.Services.IdentityJwtServiceTests.Register_ShouldReturnError_WhenEmailAlreadyExists&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=caaba9e7_002Dea81_002D45b8_002Db76d_002D1ed66e05c8b3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;tests&amp;gt;\&amp;lt;ShopiIdentityApiTests&amp;gt;\&amp;lt;Shopi.Identity.API.UnitTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="D:\studies\csharp\Shopi\Shopi.Identity.API.UnitTests" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;ShopiIdentityApiTests&amp;gt;\&amp;lt;Shopi.Identity.API.UnitTests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

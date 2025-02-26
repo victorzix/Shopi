@@ -16,9 +16,9 @@
         <Link>.dockerignore</Link>
       </Content>
     </ItemGroup>
-
+    
     <ItemGroup>
-      <ProjectReference Include="..\Shopi.Identity.API\Shopi.Identity.API.csproj" />
+      <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
     </ItemGroup>
 
 </Project>

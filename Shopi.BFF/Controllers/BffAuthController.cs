@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Shopi.BFF.Models;
+using Shopi.BFF.DTOs.User;
 using Shopi.Core.Services;
 using Shopi.Core.Utils;
-using Shopi.Identity.API.DTOs;
 
 namespace Shopi.BFF.Controllers;
 

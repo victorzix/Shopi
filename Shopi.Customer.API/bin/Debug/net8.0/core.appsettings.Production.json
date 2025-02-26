@@ -1,0 +1,13 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Microservices": {
+    "AuthApi": "http://shopi.identity.api:8082/auth/",
+    "CustomerApi": "http://shopi.customer.api:8081/customer/"
+  }
+}

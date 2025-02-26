@@ -11,7 +11,12 @@ public class CustomApiException : Exception
         : base(message)
     {
         StatusCode = statusCode;
-        Errors = errors;
+        Errors = errors switch
+        {
+            string errorString => new List<string> { errorString },
+            IEnumerable<string> errorList => errorList.ToList(),
+            _ => new List<string>()
+        };
     }
 
     public ProblemDetails ToProblemDetails()

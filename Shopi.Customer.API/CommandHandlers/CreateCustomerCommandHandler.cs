@@ -4,6 +4,7 @@ using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
 using Shopi.Customer.API.Commands;
 using Shopi.Customer.API.DTOs;
+using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Models;
 using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Repository;
@@ -14,21 +15,21 @@ namespace Shopi.Customer.API.CommandHandlers;
 public class
     CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, ApiResponses<CreateCustomerResponseDto>>
 {
-    private readonly CustomerRepository _repository;
+    private readonly ICustomerReadRepository _readRepository;
+    private readonly ICustomerWriteRepository _writeRepository;
     private readonly IMapper _mapper;
 
-    public CreateCustomerCommandHandler(CustomerRepository repository, IMapper mapper)
+    public CreateCustomerCommandHandler(ICustomerWriteRepository writeRepository, IMapper mapper,
+        ICustomerReadRepository readRepository)
     {
-        _repository = repository;
+        _writeRepository = writeRepository;
         _mapper = mapper;
+        _readRepository = readRepository;
     }
-
 
     public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(CreateCustomerCommand request,
         CancellationToken cancellationToken)
     {
-        CheckEmailAndDocument(request);
-
         var validator = new CreateCustomerValidator();
         var validateCreateCustomer = validator.Validate(request);
 
@@ -38,27 +39,28 @@ public class
                 validateCreateCustomer.Errors.Select(e => e.ErrorMessage).ToList());
         }
 
-        var customer = _repository.Create(_mapper.Map<AppCustomer>(request));
+        await CheckEmailAndDocument(request);
+
+        var customer = await _writeRepository.Create(_mapper.Map<AppCustomer>(request));
         return new ApiResponses<CreateCustomerResponseDto>
             { Success = true, Data = _mapper.Map<CreateCustomerResponseDto>(customer) };
     }
 
-    private void CheckEmailAndDocument(CreateCustomerCommand request)
+    private async Task CheckEmailAndDocument(CreateCustomerCommand request)
     {
-        var emailInUse = _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
-        {
-            Email = request.Email
-        });
+        var emailInUse = await _readRepository.FilterClient(new FilterCustomerQuery(
+            request.Email,
+            null, null));
 
         if (emailInUse != null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já em uso");
         }
 
-        var documentInUse = _repository.GetByEmailOrDocument(new GetByEmailOrDocumentQuery
-        {
-            Email = request.Document
-        });
+        var documentInUse = await _readRepository.FilterClient(new FilterCustomerQuery(
+            null,
+            request.Document,
+            null));
 
         if (documentInUse != null)
         {

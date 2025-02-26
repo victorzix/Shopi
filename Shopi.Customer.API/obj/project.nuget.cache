@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7vi7sZA76JwlkEWi7KgveAIIM3bZ/VScLiAiohJj4+TNkrQ1vZe0Qe1TZ6QepXcI9lD2Q0qCkCqnwdTBq9OTnA==",
+  "dgSpecHash": "yAhoGwP0Y5CXCdzn4b1YANp+20HFwWD3ihZwkA2n8sT1Y5wSKcP2FJvB2F4c6CauAj9jwzHccatHV3Zmbbpv0g==",
   "success": true,
   "projectFilePath": "D:\\studies\\csharp\\Shopi\\Shopi.Customer.API\\Shopi.Customer.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lekvi\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
+    "C:\\Users\\lekvi\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
     "C:\\Users\\lekvi\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "C:\\Users\\lekvi\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\lekvi\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",

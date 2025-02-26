@@ -24,23 +24,55 @@
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - shopi-network
+
+  shopi.identity.api:
+    image: shopi.identity.api
+    build:
+      context: .
+      dockerfile: Shopi.Identity.API/Dockerfile
+    ports:
+      - "5143:8082"
+    networks:
+      - shopi-network
+    depends_on:
+      - database
+
+  shopi.bff:
+    image: shopi.bff
+    build:
+      context: .
+      dockerfile: Shopi.BFF/Dockerfile
+    ports:
+      - "5200:8080"
+    networks:
+      - shopi-network
+    depends_on:
+      - database
+
+  shopi.customer.api:
+    image: shopi.customer.api
+    build:
+      context: .
+      dockerfile: Shopi.Customer.API/Dockerfile
+    ports:
+      - "5118:8081"
+    networks:
+      - shopi-network
+    depends_on:
+      - database
 #
-#  shopi.identity.api:
-#    image: shopi.identity.api
-#    build:
-#      context: .
-#      dockerfile: Shopi.Identity.API/Dockerfile
+#  nginx:
+#    image: nginx:latest
+#    container_name: nginx
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx.conf:/etc/nginx/nginx.conf
 #    networks:
-#      shopi-network
-#
-#  shopi.bff:
-#    image: shopi.bff
-#    build:
-#      context: .
-#      dockerfile: Shopi.BFF/Dockerfile
-#    networks:
-#      shopi-network
-#
+#      - app-network
+
 networks:
   shopi-network:
 

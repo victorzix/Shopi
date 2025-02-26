@@ -1,0 +1,13 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Microservices": {
+    "AuthApi": "http://localhost:5143/auth/",
+    "CustomerApi": "http://localhost:5118/customer/"
+  }
+}

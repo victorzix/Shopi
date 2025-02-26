@@ -7,7 +7,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("core.appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"core.appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .Build();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

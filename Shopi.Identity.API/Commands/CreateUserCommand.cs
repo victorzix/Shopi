@@ -5,7 +5,7 @@ using Shopi.Identity.API.DTOs;
 
 namespace Shopi.Identity.API.Commands;
 
-public class CreateUserCommand : IRequest<ApiResponses<CreateCustomerDto>>
+public class CreateUserCommand : IRequest<ApiResponses<CreateCustomerResponseDto>>
 {
     public string Name { get; }
     public string Email { get; }

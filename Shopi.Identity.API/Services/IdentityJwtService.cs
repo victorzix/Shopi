@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -22,21 +23,32 @@ public class IdentityJwtService
     private readonly UserManager<IdentityUser> _userManager;
     private readonly JwtSettings _jwtSettings;
     private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IMapper _mapper;
 
     public IdentityJwtService(UserManager<IdentityUser> userManager, IOptions<JwtSettings> jwtSettings,
-        SignInManager<IdentityUser> signInManager)
+        SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, IMapper mapper)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _roleManager = roleManager;
+        _mapper = mapper;
         _jwtSettings = jwtSettings.Value;
     }
 
     public async Task<ApiResponses<RegisterUserResponseDto>> Register(RegisterUser registerUser)
     {
+        var roleExists = await _roleManager.FindByNameAsync(registerUser.Role);
+        if (roleExists == null)
+        {
+            throw new CustomApiException("Erro ao realizar o cadastro", StatusCodes.Status400BadRequest,
+                "Role informada não encontrada");
+        }
+
         var userExists = await _userManager.FindByEmailAsync(registerUser.Email);
         if (userExists != null)
         {
-            throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,"Email já cadastrado");
+            throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já cadastrado");
         }
 
         var validator = new RegisterUserValidator();
@@ -44,7 +56,7 @@ public class IdentityJwtService
         if (!validateRegisterUser.IsValid)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
-                validateRegisterUser.Errors.Select(e => e.ErrorMessage).ToList());
+                validateRegisterUser.Errors.Select(e => e.ErrorMessage));
         }
 
         var user = new IdentityUser
@@ -55,13 +67,13 @@ public class IdentityJwtService
 
         var result = await _userManager.CreateAsync(user, registerUser.Password);
 
-        await _userManager.AddToRoleAsync(user, registerUser.Role);
-
         if (!result.Succeeded)
         {
             throw new CustomApiException("Erro ao realizar o cadastro", StatusCodes.Status400BadRequest,
-                result.Errors.Select(e => e.Description));
+                result.Errors.Select(e => e.Description).ToList());
         }
+
+        await _userManager.AddToRoleAsync(user, registerUser.Role);
 
         return new ApiResponses<RegisterUserResponseDto>
         {
@@ -77,35 +89,81 @@ public class IdentityJwtService
         if (!validateRegisterUser.IsValid)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
-                validateRegisterUser.Errors.Select(e => e.ErrorMessage).ToList());
+                validateRegisterUser.Errors.Select(e => e.ErrorMessage));
         }
-        
+
         var user = await _userManager.FindByEmailAsync(loginUser.Email);
         if (user == null)
         {
-            throw new CustomApiException("Erro ao realizar login", StatusCodes.Status401Unauthorized, "Usuário ou senha inválidos");
+            throw new CustomApiException("Erro ao realizar login", StatusCodes.Status401Unauthorized,
+                "Usuário ou senha inválidos");
         }
 
 
         var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
         if (!result.Succeeded)
         {
-            throw new CustomApiException("Erro ao realizar login", StatusCodes.Status400BadRequest, "Usuário ou senha inválidos");
+            throw new CustomApiException("Erro ao realizar login", StatusCodes.Status400BadRequest,
+                "Usuário ou senha inválidos");
         }
 
         return new ApiResponses<LoginUserResponseDto>
-            { Data = new LoginUserResponseDto { Token = await GenerateJwt(user.Email) } };
+            { Data = new LoginUserResponseDto { Token = await GenerateJwt(user) } };
     }
 
-
-    public async Task<string> GenerateJwt(string email)
+    public async Task DeleteUser(Guid id)
     {
-        var user = await _userManager.FindByEmailAsync(email);
+        var user = await _userManager.FindByIdAsync(id.ToString());
         if (user == null)
         {
-            throw new CustomApiException("Dados inválidos", StatusCodes.Status401Unauthorized);
+            throw new CustomApiException("Erro de validação", StatusCodes.Status404NotFound, "Usuário não encontrado");
+        }
+        await _userManager.DeleteAsync(user);
+    }
+
+    public async Task UpdateUser(UpdateUserDto dto)
+    {
+        var userToUpdate = await _userManager.FindByIdAsync(dto.Id.ToString());
+        if (userToUpdate == null)
+        {
+            throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status404NotFound,
+                "Usuário não encontrado");
         }
 
+        if (!string.IsNullOrEmpty(dto.Email) && dto.Email != userToUpdate.Email)
+        {
+            var emailInUse = await _userManager.FindByEmailAsync(dto.Email);
+            if (emailInUse != null)
+            {
+                throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status400BadRequest,
+                    "Email já em uso");
+            }
+        }
+
+        _mapper.Map(dto, userToUpdate);
+
+        var updateResult = await _userManager.UpdateAsync(userToUpdate);
+        if (!updateResult.Succeeded)
+        {
+            throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status400BadRequest,
+                updateResult.Errors.Select(e => e.Description));
+        }
+
+        if (!string.IsNullOrEmpty(dto.Password))
+        {
+            var token = await _userManager.GeneratePasswordResetTokenAsync(userToUpdate);
+            var passwordResult = await _userManager.ResetPasswordAsync(userToUpdate, token, dto.Password);
+
+            if (!passwordResult.Succeeded)
+            {
+                throw new CustomApiException("Erro ao atualizar usuário", StatusCodes.Status400BadRequest,
+                    passwordResult.Errors.Select(e => e.Description));
+            }
+        }
+    }
+
+    private async Task<string> GenerateJwt(IdentityUser user)
+    {
         var claims = await _userManager.GetClaimsAsync(user);
         var userRoles = await _userManager.GetRolesAsync(user);
 

@@ -151,3 +151,9 @@ D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\refint\Shopi.Custome
 D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\Shopi.Customer.API.pdb
 D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\Shopi.Customer.API.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\ref\Shopi.Customer.API.dll
+D:\studies\csharp\Shopi\Shopi.Customer.API\obj\Debug\net8.0\Shopi.Customer.API.sourcelink.json
+D:\studies\csharp\Shopi\Shopi.Customer.API\bin\Debug\net8.0\core.appsettings.Development.json
+D:\studies\csharp\Shopi\Shopi.Customer.API\bin\Debug\net8.0\core.appsettings.json
+D:\studies\csharp\Shopi\Shopi.Customer.API\bin\Debug\net8.0\core.appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.Customer.API\bin\Debug\net8.0\appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.Customer.API\bin\Debug\net8.0\Dapper.dll

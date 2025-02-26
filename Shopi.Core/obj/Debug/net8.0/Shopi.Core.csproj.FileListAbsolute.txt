@@ -1,5 +1,3 @@
-D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\appsettings.Development.json
-D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\appsettings.json
 D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\Shopi.Core.exe
 D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\Shopi.Core.deps.json
 D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\Shopi.Core.runtimeconfig.json
@@ -31,3 +29,7 @@ D:\studies\csharp\Shopi\Shopi.Core\obj\Debug\net8.0\Shopi.Core.pdb
 D:\studies\csharp\Shopi\Shopi.Core\obj\Debug\net8.0\Shopi.Core.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Core\obj\Debug\net8.0\ref\Shopi.Core.dll
 D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\studies\csharp\Shopi\Shopi.Core\obj\Debug\net8.0\Shopi.Core.sourcelink.json
+D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\core.appsettings.Development.json
+D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\core.appsettings.json
+D:\studies\csharp\Shopi\Shopi.Core\bin\Debug\net8.0\core.appsettings.Production.json

@@ -3,6 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65375FAF-5751-4647-A29E-D9D7D3076E3F}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		nginx.conf = nginx.conf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92A9802A-2A7E-4EC4-8464-0F80FA394A80}"
@@ -24,6 +25,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopi.Core", "Shopi.Core\Shopi.Core.csproj", "{81265F8E-4856-4204-B210-2C598FA95862}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopi.Customer.API", "Shopi.Customer.API\Shopi.Customer.API.csproj", "{0D3D5C75-AF04-4E1C-80F3-3AE2E780E45A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{280E45BA-DD53-4714-AA7E-DD3062F5535B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShopiIdentityApiTests", "ShopiIdentityApiTests", "{288867B8-1538-4CFA-998E-211024D4F0A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopi.Identity.API.UnitTests", "Shopi.Identity.API.UnitTests\Shopi.Identity.API.UnitTests.csproj", "{FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +54,10 @@ Global
 		{0D3D5C75-AF04-4E1C-80F3-3AE2E780E45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D3D5C75-AF04-4E1C-80F3-3AE2E780E45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D3D5C75-AF04-4E1C-80F3-3AE2E780E45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{03AE1B3D-F2F9-4E89-9696-ACCFB002F147} = {92A9802A-2A7E-4EC4-8464-0F80FA394A80}
@@ -58,5 +69,7 @@ Global
 		{F0284F5C-6796-41A6-8D37-D1C9D6506CC5} = {025487F7-52CD-4C94-A739-A1B182EF24DD}
 		{81265F8E-4856-4204-B210-2C598FA95862} = {F0284F5C-6796-41A6-8D37-D1C9D6506CC5}
 		{0D3D5C75-AF04-4E1C-80F3-3AE2E780E45A} = {03AE1B3D-F2F9-4E89-9696-ACCFB002F147}
+		{288867B8-1538-4CFA-998E-211024D4F0A4} = {280E45BA-DD53-4714-AA7E-DD3062F5535B}
+		{FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A} = {288867B8-1538-4CFA-998E-211024D4F0A4}
 	EndGlobalSection
 EndGlobal

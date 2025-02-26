@@ -17,11 +17,11 @@ public static class IdentityConfig
                 options.Password.RequiredUniqueChars = 0;
             })
             .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<AppIdentityDbContext>();
-
+            .AddEntityFrameworkStores<AppIdentityDbContext>()
+            .AddDefaultTokenProviders();
         services.AddAuthorizationBuilder()
             .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator"))
-            .AddPolicy("ClientRights", policy => policy.RequireRole("Client", "Administrator"));
+            .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator"));
         
     }
     
@@ -30,7 +30,7 @@ public static class IdentityConfig
         var scope = app.ApplicationServices.CreateScope();
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        string[] roles = { "Administrator", "Client" };
+        string[] roles = { "Administrator", "Customer" };
 
         foreach (var role in roles)
         {

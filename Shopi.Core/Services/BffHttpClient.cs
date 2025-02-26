@@ -21,4 +21,13 @@ public class BffHttpClient : HttpClient
 
         return await _httpClient.PostAsync(requestUri, content);
     }
+    
+    public async Task<HttpResponseMessage> PatchJsonAsync<T>(Uri baseUrl, string url, T data)
+    {
+        var json = JsonConvert.SerializeObject(data);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var requestUri = new Uri(baseUrl, url);
+
+        return await _httpClient.PatchAsync(requestUri, content);
+    }
 }

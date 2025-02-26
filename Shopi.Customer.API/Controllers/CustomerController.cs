@@ -1,10 +1,13 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopi.Core.Exceptions;
 using Shopi.Customer.API.Commands;
 using Shopi.Customer.API.DTOs;
 using Shopi.Customer.API.Models;
+using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Repository;
 
 namespace Shopi.Customer.API.Controllers;
@@ -22,31 +25,34 @@ public class CustomerController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] CreateCustomerDto dto)
     {
         var customer = await _mediator.Send(_mapper.Map<CreateCustomerCommand>(dto));
-        if (!customer.Success)
-        {
-            return BadRequest(customer.Errors);
-        }
-
-        return Created(string.Empty, customer);
+        return Created(string.Empty, customer.Data);
     }
 
-    // [HttpGet("{id}")]
-    // public IActionResult GetUserById([FromRoute] Guid id)
-    // {
-    //     var customer = _repository.GetById(id);
-    //     return Ok(customer);
-    // }
-    //
-    // [HttpPatch]
-    // public IActionResult Update([FromBody] UpdateCustomerDto dto)
-    // {
-    //     var customerToUpdate = _repository.GetById(Guid.Parse("96265e8e-6f76-4355-a13c-57225d0a6353"));
-    //     var mappedDto = _mapper.Map<UpdateCustomerDto, AppCustomer>(dto, customerToUpdate);
-    //     var customer = _repository.Update(mappedDto);
-    //     return Ok(customer);
-    // }
+    
+    [Authorize("CustomerRights")]
+    [HttpPatch("update")]
+    public async Task<IActionResult> Update([FromBody] UpdateCustomerDto dto)
+    {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        var command = _mapper.Map<UpdateCustomerCommand>(dto);
+        command.Id = Guid.Parse(userId);
+        var customer = await _mediator.Send(command);
+        
+        return Ok(customer.Data);
+    }
+
+    [Authorize("CustomerRights")]
+    [HttpGet("get-customer")]
+    public async Task<IActionResult> GetUser([FromQuery] FilterCustomerQuery dto)
+    {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        dto.Id = Guid.Parse(userId);
+        var customer = await _mediator.Send(dto);
+        return Ok(customer.Data);
+    }
+    
 }

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Diagnostics;
+using Shopi.Core.Exceptions;
 using Shopi.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,12 +24,31 @@ builder.Services.AddCors(opt =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseExceptionHandler(builder =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    builder.Run(async context =>
+    {
+        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+        if (exception is CustomApiException apiException)
+        {
+            context.Response.StatusCode = apiException.StatusCode;
+            context.Response.ContentType = "application/json";
+
+            var problemDetails = apiException.ToProblemDetails();
+            await context.Response.WriteAsJsonAsync(problemDetails);
+        }
+        else
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsJsonAsync(new { message = "Erro interno no servidor" });
+        }
+    });
+});
+
+// Configure the HTTP request pipeline.
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

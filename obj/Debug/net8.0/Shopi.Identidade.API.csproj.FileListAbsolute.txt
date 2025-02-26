@@ -5,3 +5,4 @@ D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.AssemblyInfo.cs
 D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.csproj.CoreCompileInputs.cache
 D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.MvcApplicationPartsAssemblyInfo.cs
 D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.MvcApplicationPartsAssemblyInfo.cache
+D:\studies\csharp\Shopi\obj\Debug\net8.0\Shopi.Identidade.API.sourcelink.json
