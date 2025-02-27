@@ -33,13 +33,6 @@ public class IdentityController : ControllerBase
     [HttpPatch("update")]
     public async Task<IActionResult> UpdateCustomer([FromBody] UpdateUserDto dto)
     {
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine(dto.Id);
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
         var user = await _mediator.Send(_mapper.Map<UpdateUserCommand>(dto));
         return NoContent();
     }

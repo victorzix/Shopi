@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "yTsYKXL+5cK8tkao2808UqCJeFKdQcnUZmDolvxDSJs=",
+  "Source": "Shopi.Payment.API",
+  "BasePath": "_content/Shopi.Payment.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

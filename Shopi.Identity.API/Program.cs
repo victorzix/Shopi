@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Shopi.Core.Exceptions;
+using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 using Shopi.Identity.API.Configs;
 using Shopi.Identity.API.Data;
+using Shopi.Identity.API.Interfaces;
 using Shopi.Identity.API.Mappers;
 using Shopi.Identity.API.Services;
 
@@ -15,6 +17,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IIdentityJwtService, IdentityJwtService>();
+builder.Services.AddScoped<IBffHttpClient, BffHttpClient>();
 
 builder.Services.AddHttpClient<BffHttpClient>();
 builder.Services.AddScoped<IdentityJwtService>();
@@ -28,6 +33,7 @@ builder.Services.AddJwtConfiguration(builder.Configuration);
 
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
 
 builder.Services.AddCors(options =>
 {

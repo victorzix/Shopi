@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Shopi.Core;
 using Shopi.Core.Exceptions;
+using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 using Shopi.Core.Utils;
 using Shopi.Identity.API.Commands;
 using Shopi.Identity.API.DTOs;
+using Shopi.Identity.API.Interfaces;
 using Shopi.Identity.API.Models;
 using Shopi.Identity.API.Services;
 
@@ -15,11 +17,11 @@ namespace Shopi.Identity.API.CommandHandlers;
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<CreateCustomerResponseDto>>
 {
-    private readonly BffHttpClient _httpClient;
-    private readonly IdentityJwtService _identityJwtService;
+    private readonly IBffHttpClient _httpClient;
+    private readonly IIdentityJwtService _identityJwtService;
     private readonly IMapper _mapper;
 
-    public CreateUserCommandHandler(IdentityJwtService identityJwtService, IMapper mapper, BffHttpClient httpClient)
+    public CreateUserCommandHandler(IIdentityJwtService identityJwtService, IMapper mapper, IBffHttpClient httpClient)
     {
         _identityJwtService = identityJwtService;
         _mapper = mapper;
@@ -30,10 +32,10 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
         CancellationToken cancellationToken)
     {
         var userData = await _identityJwtService.Register(_mapper.Map<RegisterUser>(request));
-        
+
         var customerDto = _mapper.Map<CreateCustomerDto>(request);
         customerDto.UserId = userData.Data.UserId;
-        
+
         var customerResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.CustomerApiUrl, "create", customerDto);
         if (!customerResponse.IsSuccessStatusCode)
         {
@@ -43,8 +45,9 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
             throw new CustomApiException(deserializedErrorContent.Title, deserializedErrorContent.Status,
                 deserializedErrorContent.Errors);
         }
+
         var content = await customerResponse.Content.ReadAsStringAsync();
         var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
-        return new ApiResponses<CreateCustomerResponseDto> { Data = deserializedContent, Success = true};
+        return new ApiResponses<CreateCustomerResponseDto> { Data = deserializedContent, Success = true };
     }
 }

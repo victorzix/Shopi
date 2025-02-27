@@ -24,9 +24,6 @@ builder.Services.AddAutoMapper(typeof(AddressMappingProfile));
 builder.Services.AddDbContext<AppCustomerDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
-builder.Services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
-
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
 builder.Services.AddMediatR(config =>
