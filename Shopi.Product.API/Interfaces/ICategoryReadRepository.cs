@@ -6,8 +6,5 @@ namespace Shopi.Product.API.Interfaces;
 public interface ICategoryReadRepository
 {
     Task<Category?> Get(Guid id);
-    Task<IReadOnlyCollection<Category>> List();
-    Task<IReadOnlyCollection<Category>> FilterProducts(FilterCategoriesQuery query);
-
-    Task<IReadOnlyCollection<Category>> GetByParentId(Guid parentId);
+    Task<IReadOnlyCollection<Category>> FilterCategories(FilterCategoriesQuery query);
 }

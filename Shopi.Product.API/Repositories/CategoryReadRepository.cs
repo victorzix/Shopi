@@ -13,7 +13,8 @@ public class CategoryReadRepository : ICategoryReadRepository
 
     public CategoryReadRepository(IConfiguration configuration)
     {
-        _dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));;
+        _dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
+        ;
     }
 
     public async Task<Category?> Get(Guid id)
@@ -22,19 +23,13 @@ public class CategoryReadRepository : ICategoryReadRepository
         return await _dbConnection.QueryFirstOrDefaultAsync<Category>(sql, new { Id = id });
     }
 
-    public async Task<IReadOnlyCollection<Category>> List()
-    {
-        const string sql = "SELECT * FROM \"Categories\"";
-        return (await _dbConnection.QueryAsync<Category>(sql)).ToList();
-    }
-
-    public async Task<IReadOnlyCollection<Category>> FilterProducts(FilterCategoriesQuery query)
+    public async Task<IReadOnlyCollection<Category>> FilterCategories(FilterCategoriesQuery query)
     {
         const string sql = """
                            SELECT * 
                            FROM "Categories" c
                            WHERE
-                                (@Name IS nULL OR c."Name" ILIKE '%' || @Name || '%')
+                                (@Name IS NULL OR c."Name" ILIKE '%' || @Name || '%')
                                 AND (@ParentId iS NULL OR c."ParentId" = @ParentId)
                                 AND (@Visible IS NULL OR c."Visible" = @Visible)
                            """;
@@ -46,11 +41,5 @@ public class CategoryReadRepository : ICategoryReadRepository
         };
 
         return (await _dbConnection.QueryAsync<Category>(sql, parameters)).ToList();
-    }
-
-    public async Task<IReadOnlyCollection<Category>> GetByParentId(Guid parentId)
-    {
-        const string sql = "SELECT * FROM \"Categories\" WHERE \"ParentId\" = @Parent";
-        return (await _dbConnection.QueryAsync<Category>(sql)).ToList();
     }
 }

@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shopi.Product.API.Commands;
 using Shopi.Product.API.DTOs;
+using Shopi.Product.API.Queries;
 
 namespace Shopi.Product.API.Controllers;
 
@@ -24,5 +25,12 @@ public class CategoryController : ControllerBase
     {
         var category = await _mediator.Send(_mapper.Map<CreateCategoryCommand>(dto));
         return Created(string.Empty, category.Data);
+    }
+
+    [HttpGet("filter")]
+    public async Task<IActionResult> FilterCategories([FromQuery] FilterCategoriesDto query)
+    {
+        var categories = await _mediator.Send(_mapper.Map<FilterCategoriesQuery>(query));
+        return Ok(categories.Data);
     }
 }
