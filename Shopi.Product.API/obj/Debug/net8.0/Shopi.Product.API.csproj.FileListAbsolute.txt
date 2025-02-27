@@ -147,3 +147,12 @@ D:\studies\csharp\Shopi\Shopi.Product.API\obj\Debug\net8.0\refint\Shopi.Product.
 D:\studies\csharp\Shopi\Shopi.Product.API\obj\Debug\net8.0\Shopi.Product.API.pdb
 D:\studies\csharp\Shopi\Shopi.Product.API\obj\Debug\net8.0\Shopi.Product.API.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Product.API\obj\Debug\net8.0\ref\Shopi.Product.API.dll
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.deps.json
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.runtimeconfig.json
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\core.appsettings.Development.json
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\core.appsettings.json
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\core.appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.exe
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.dll
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.pdb
