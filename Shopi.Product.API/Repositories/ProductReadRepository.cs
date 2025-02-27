@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Dapper;
+using Npgsql;
 using Shopi.Product.API.Interfaces;
 using Shopi.Product.API.Models;
 using Shopi.Product.API.Queries;
@@ -10,9 +11,9 @@ public class ProductReadRepository : IProductReadRepository
 {
     private readonly IDbConnection _dbConnection;
 
-    public ProductReadRepository(IDbConnection dbConnection)
+    public ProductReadRepository(IConfiguration configuration)
     {
-        _dbConnection = dbConnection;
+        _dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));;
     }
 
     public async Task<AppProduct?> Get(Guid id)

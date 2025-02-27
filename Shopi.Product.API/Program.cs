@@ -5,6 +5,7 @@ using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 using Shopi.Product.API.Configs;
 using Shopi.Product.API.Data;
+using Shopi.Product.API.Mappers;
 using Shopi.Product.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerConfigs();
 
 builder.Services.AddScoped<IBffHttpClient, BffHttpClient>();
 builder.Services.AddHttpClient<BffHttpClient>();
+builder.Services.AddAutoMapper(typeof(CategoryMappingProfile));
 
 builder.Services.AddDbContext<AppProductDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -24,9 +27,12 @@ builder.Services.AddJwtConfiguration(builder.Configuration);
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
+
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ElevatedRights", policy => policy.RequireRole("Administrator").RequireAuthenticatedUser())
     .AddPolicy("CustomerRights", policy => policy.RequireRole("Customer", "Administrator").RequireAuthenticatedUser());
+
+builder.Services.AddRepositories();
 
 builder.Services.AddCors(options =>
 {

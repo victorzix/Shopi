@@ -39,10 +39,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="CommandHandlers\" />
-      <Folder Include="Commands\" />
-      <Folder Include="Controllers\" />
-      <Folder Include="Mappers\" />
       <Folder Include="QueryHandlers\" />
       <Folder Include="Validators\" />
     </ItemGroup>

@@ -16,16 +16,16 @@ public class ProductWriteRepository : IProductWriteRepository
 
     public async Task<AppProduct> Create(AppProduct appProduct)
     {
-        await _dbContext.AppProducts.AddAsync(appProduct);
+        var product = await _dbContext.AppProducts.AddAsync(appProduct);
         await _dbContext.SaveChangesAsync();
-        return appProduct;
+        return product.Entity;
     }
 
     public async Task<AppProduct> Update(AppProduct appProduct)
     {
-        _dbContext.AppProducts.Update(appProduct);
+        var product = _dbContext.AppProducts.Update(appProduct);
         await _dbContext.SaveChangesAsync();
-        return appProduct;
+        return product.Entity;
     }
 
     public async Task ChangeVisibility(AppProduct appProduct)

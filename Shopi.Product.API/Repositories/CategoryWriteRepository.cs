@@ -14,18 +14,18 @@ public class CategoryWriteRepository : ICategoryWriteRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Category> Create(Category category)
+    public async Task<Category> Create(Category dto)
     {
-        await _dbContext.Categories.AddAsync(category);
+        var category = await _dbContext.Categories.AddAsync(dto);
         await _dbContext.SaveChangesAsync();
-        return category;
+        return category.Entity;
     }
 
     public async Task<Category> Update(Category category)
     {
-        _dbContext.Categories.Update(category);
+        var updatedCategory = _dbContext.Categories.Update(category);
         await _dbContext.SaveChangesAsync();
-        return category;
+        return updatedCategory.Entity;
     }
 
     public async Task ChangeVisibility(Category category)
