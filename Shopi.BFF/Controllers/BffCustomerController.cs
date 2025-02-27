@@ -22,17 +22,6 @@ public class BffCustomerController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Create([FromBody] CreateUserDto dto)
     {
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine(MicroServicesUrls.AuthApiUrl);
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.WriteLine();
         var userResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.AuthApiUrl, "register-customer", dto);
         if (!userResponse.IsSuccessStatusCode)
         {

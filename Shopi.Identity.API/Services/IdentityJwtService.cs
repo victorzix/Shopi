@@ -12,13 +12,14 @@ using Microsoft.IdentityModel.Tokens;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
 using Shopi.Identity.API.DTOs;
+using Shopi.Identity.API.Interfaces;
 using Shopi.Identity.API.Models;
 using Shopi.Identity.API.Validators;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace Shopi.Identity.API.Services;
 
-public class IdentityJwtService
+public class IdentityJwtService : IIdentityJwtService
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly JwtSettings _jwtSettings;
@@ -98,7 +99,6 @@ public class IdentityJwtService
             throw new CustomApiException("Erro ao realizar login", StatusCodes.Status401Unauthorized,
                 "Usuário ou senha inválidos");
         }
-
 
         var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
         if (!result.Succeeded)

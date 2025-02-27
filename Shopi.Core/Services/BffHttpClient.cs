@@ -1,13 +1,14 @@
 ﻿using System.Text;
 using System.Text.Json;
 using Newtonsoft.Json;
+using Shopi.Core.Interfaces;
 
 namespace Shopi.Core.Services;
 
-public class BffHttpClient : HttpClient
+public class BffHttpClient : IBffHttpClient
 {
     private readonly HttpClient _httpClient;
-
+    
     public BffHttpClient(HttpClient httpClient)
     {
         _httpClient = httpClient;
