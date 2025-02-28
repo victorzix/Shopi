@@ -9,11 +9,11 @@ public class CreateUserCommand : IRequest<ApiResponses<CreateCustomerResponseDto
 {
     public string Name { get; }
     public string Email { get; }
-    public string Document { get; }
+    public string? Document { get; }
     public string Password { get; }
     public string Role { get; }
 
-    public CreateUserCommand(string name, string email, string document, string password, string role)
+    public CreateUserCommand(string name, string email, string? document, string password, string role)
     {
         Name = name;
         Email = email;

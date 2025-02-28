@@ -106,9 +106,11 @@ public class IdentityJwtService : IIdentityJwtService
             throw new CustomApiException("Erro ao realizar login", StatusCodes.Status400BadRequest,
                 "Usuário ou senha inválidos");
         }
+        
+        var userRoles = await _userManager.GetRolesAsync(user);
 
         return new ApiResponses<LoginUserResponseDto>
-            { Data = new LoginUserResponseDto { Token = await GenerateJwt(user) } };
+            { Data = new LoginUserResponseDto { Token = await GenerateJwt(user), Role = userRoles.FirstOrDefault() } };
     }
 
     public async Task DeleteUser(Guid id)

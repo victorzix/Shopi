@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shopi.Payment.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fb708554eda43859310ceaa4030488e105c8a20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f99bf5e4c26289a7524a92a6ba59bf0da690b7ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shopi.Payment.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shopi.Payment.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

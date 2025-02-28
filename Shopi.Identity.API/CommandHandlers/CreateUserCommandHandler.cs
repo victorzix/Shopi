@@ -31,12 +31,23 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
     public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(CreateUserCommand request,
         CancellationToken cancellationToken)
     {
+        if (request.Role == "Customer")
+        {
+            if (request.Document == null)
+            {
+                throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
+                    "Documento é obrigatório");
+            }
+        }
+
         var userData = await _identityJwtService.Register(_mapper.Map<RegisterUser>(request));
 
         var customerDto = _mapper.Map<CreateCustomerDto>(request);
         customerDto.UserId = userData.Data.UserId;
 
-        var customerResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.CustomerApiUrl, "create", customerDto);
+        var url = request.Role == "Customer" ? MicroServicesUrls.CustomerApiUrl : MicroServicesUrls.AdminApiUrl;
+
+        var customerResponse = await _httpClient.PostJsonAsync(url, "create", customerDto);
         if (!customerResponse.IsSuccessStatusCode)
         {
             var errorContent = await customerResponse.Content.ReadAsStringAsync();
