@@ -6,15 +6,15 @@ using Shopi.BFF.DTOs.User;
 using Shopi.Core.Services;
 using Shopi.Core.Utils;
 
-namespace Shopi.BFF.Controllers;
+namespace Shopi.BFF.Controllers.Users;
 
 [ApiController]
-[Route("/api/v1/customer")]
-public class BffCustomerController : ControllerBase
+[Route("/api/v1/admin")]
+public class BffAdminController : ControllerBase
 {
     private readonly BffHttpClient _httpClient;
 
-    public BffCustomerController(BffHttpClient httpClient)
+    public BffAdminController(BffHttpClient httpClient)
     {
         _httpClient = httpClient;
     }
@@ -22,7 +22,7 @@ public class BffCustomerController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Create([FromBody] CreateUserDto dto)
     {
-        var userResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.AuthApiUrl, "register-customer", dto);
+        var userResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.AuthApiUrl, "register-admin", dto);
         if (!userResponse.IsSuccessStatusCode)
         {
             var errorContent = await userResponse.Content.ReadAsStringAsync();
@@ -31,7 +31,6 @@ public class BffCustomerController : ControllerBase
         }
 
         var content = await userResponse.Content.ReadAsStringAsync();
-        var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
-        return Ok(deserializedContent);
+        return Ok(new { Token = content });
     }
 }

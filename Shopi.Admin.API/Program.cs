@@ -22,6 +22,8 @@ builder.Services.AddAutoMapper(typeof(AdminMappingProfile));
 builder.Services.AddDbContext<AppAdminDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddJwtConfiguration(builder.Configuration);
+
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 

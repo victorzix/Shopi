@@ -36,7 +36,7 @@ public class IdentityController : ControllerBase
     public async Task<IActionResult> CreateAdmin([FromBody] CreateUserDto dto)
     {
         var user = await _mediator.Send(_mapper.Map<CreateUserCommand>(dto));
-        return Created(string.Empty, user.Data);
+        return Created(string.Empty, user.Data.Token);
     }
 
     [HttpPatch("update")]
@@ -65,7 +65,7 @@ public class IdentityController : ControllerBase
     public async Task<IActionResult> LoginAdmin([FromBody] LoginUserDto dto)
     {
         var user = await _mediator.Send(_mapper.Map<LoginUserCommand>(dto));
-        if (user.Data.Role == "Administrator")
+        if (user.Data.Role == "Customer")
             throw new CustomApiException("Erro ao realizar Login", StatusCodes.Status403Forbidden,
                 "Clientes não podem acessar esta área");
         if (!user.Success)

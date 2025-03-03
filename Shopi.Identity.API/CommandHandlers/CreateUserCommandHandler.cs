@@ -15,7 +15,7 @@ using Shopi.Identity.API.Services;
 
 namespace Shopi.Identity.API.CommandHandlers;
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<CreateCustomerResponseDto>>
+public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<LoginUserResponseDto>>
 {
     private readonly IBffHttpClient _httpClient;
     private readonly IIdentityJwtService _identityJwtService;
@@ -28,7 +28,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(CreateUserCommand request,
+    public async Task<ApiResponses<LoginUserResponseDto>> Handle(CreateUserCommand request,
         CancellationToken cancellationToken)
     {
         if (request.Role == "Customer")
@@ -52,13 +52,14 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
         {
             var errorContent = await customerResponse.Content.ReadAsStringAsync();
             var deserializedErrorContent = JsonConvert.DeserializeObject<ErrorModel>(errorContent);
+            Console.WriteLine(deserializedErrorContent);
             await _identityJwtService.DeleteUser(userData.Data.UserId);
             throw new CustomApiException(deserializedErrorContent.Title, deserializedErrorContent.Status,
                 deserializedErrorContent.Errors);
         }
 
-        var content = await customerResponse.Content.ReadAsStringAsync();
-        var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
-        return new ApiResponses<CreateCustomerResponseDto> { Data = deserializedContent, Success = true };
+        var loginData = await _identityJwtService.Login(new LoginUser
+            { Email = request.Email, Password = request.Password });
+        return new ApiResponses<LoginUserResponseDto> { Data = loginData.Data, Success = true };
     }
 }
