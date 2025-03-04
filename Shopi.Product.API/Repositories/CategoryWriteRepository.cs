@@ -35,5 +35,6 @@ public class CategoryWriteRepository : ICategoryWriteRepository
             .ExecuteUpdateAsync(setters =>
                 setters.SetProperty(p => p.Visible, p => !p.Visible)
             );
+        await _dbContext.SaveChangesAsync();
     }
 }

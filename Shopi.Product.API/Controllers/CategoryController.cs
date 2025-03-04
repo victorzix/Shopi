@@ -42,4 +42,11 @@ public class CategoryController : ControllerBase
         var category = await _mediator.Send(updateCategory);
         return Ok(category.Data);
     }
+
+    [HttpPost("change-visibility/{id}")]
+    public async Task<IActionResult> ChangeCategoryVisibility(Guid id)
+    {
+        var category = await _mediator.Send(new ChangeVisibilityCommand(id));
+        return Ok(category.Data);
+    }
 }
