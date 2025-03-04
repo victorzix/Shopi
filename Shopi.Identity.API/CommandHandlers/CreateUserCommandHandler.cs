@@ -52,7 +52,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
         {
             var errorContent = await customerResponse.Content.ReadAsStringAsync();
             var deserializedErrorContent = JsonConvert.DeserializeObject<ErrorModel>(errorContent);
-            Console.WriteLine(deserializedErrorContent);
             await _identityJwtService.DeleteUser(userData.Data.UserId);
             throw new CustomApiException(deserializedErrorContent.Title, deserializedErrorContent.Status,
                 deserializedErrorContent.Errors);

@@ -42,7 +42,7 @@ public class AdminController : ControllerBase
 
     [Authorize("ElevatedRights")]
     [HttpGet("get-admin")]
-    public async Task<IActionResult> GetUser([FromQuery] FilterAdminQuery dto)
+    public async Task<IActionResult> GetUser([FromQuery] FilterAdminQuery? dto)
     {
         var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
         dto.Id = Guid.Parse(userId);

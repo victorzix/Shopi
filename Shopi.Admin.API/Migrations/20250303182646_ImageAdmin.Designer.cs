@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Shopi.Admin.API.Data;
@@ -11,9 +12,11 @@ using Shopi.Admin.API.Data;
 namespace Shopi.Admin.API.Migrations
 {
     [DbContext(typeof(AppAdminDbContext))]
-    partial class AppAdminDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250303182646_ImageAdmin")]
+    partial class ImageAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
