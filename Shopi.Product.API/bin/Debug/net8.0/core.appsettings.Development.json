@@ -8,6 +8,7 @@
   "AllowedHosts": "*",
   "Microservices": {
     "AuthApi": "http://localhost:5143/auth/",
-    "CustomerApi": "http://localhost:5118/customer/"
+    "CustomerApi": "http://localhost:5118/customer/",
+    "AdminApi": "http://localhost:5129/admin/"
   }
 }

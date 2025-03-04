@@ -13,6 +13,17 @@ public class CategoryMappingProfile : Profile
         CreateMap<CreateCategoryCommand, Category>();
         CreateMap<CreateCategoryDto, CreateCategoryCommand>();
         CreateMap<Category, CreateCategoryResponseDto>();
+
+        CreateMap<UpdateCategoryCommand, Category>().ForMember(dest =>
+            dest.Id, opt => opt.Ignore()).ForAllMembers(
+            o =>
+                o.Condition((src, dest, value) => value != null));
+        ;
+        CreateMap<UpdateCategoryDto, UpdateCategoryCommand>().ForAllMembers(
+            o =>
+                o.Condition((src, dest, value) => value != null));
+        ;
+
         CreateMap<FilterCategoriesDto, FilterCategoriesQuery>();
     }
 }
