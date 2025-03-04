@@ -15,17 +15,17 @@
     networks:
       - shopi-network
 
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    container_name: "shopi-rabbitmq"
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    networks:
-      - shopi-network
+#  rabbitmq:
+#    image: "rabbitmq:3-management"
+#    container_name: "shopi-rabbitmq"
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
+#    environment:
+#      RABBITMQ_DEFAULT_USER: guest
+#      RABBITMQ_DEFAULT_PASS: guest
+#    networks:
+#      - shopi-network
 
   shopi.identity.api:
     image: shopi.identity.api
@@ -62,6 +62,19 @@
       - shopi-network
     depends_on:
       - database
+        
+  shopi.admin.api:
+    image: shopi.admin.api
+    build:
+      context: .
+      dockerfile: Shopi.Admin.API/Dockerfile
+    ports:
+      - "5129:8083"
+    networks:
+      - shopi-network
+    depends_on:
+      - database
+  
 #
 #  nginx:
 #    image: nginx:latest

@@ -14,6 +14,7 @@ public class UserMappingProfile : Profile
         CreateMap<CreateUserCommand, RegisterUser>();
         CreateMap<CreateUserCommand, CreateUserDto>();
         CreateMap<CreateUserCommand, CreateCustomerDto>().ForMember(dest => dest.UserId, opt => opt.Ignore());
+        CreateMap<CreateUserCommand, CreateAdminDto>().ForMember(dest => dest.UserId, opt => opt.Ignore());
         CreateMap<LoginUserDto, LoginUserCommand>();
         CreateMap<LoginUserCommand, LoginUserDto>();
         CreateMap<LoginUserCommand, LoginUser>();

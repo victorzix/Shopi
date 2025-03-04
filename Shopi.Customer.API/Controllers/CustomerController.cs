@@ -31,7 +31,6 @@ public class CustomerController : ControllerBase
         var customer = await _mediator.Send(_mapper.Map<CreateCustomerCommand>(dto));
         return Created(string.Empty, customer.Data);
     }
-
     
     [Authorize("CustomerRights")]
     [HttpPatch("update")]
@@ -54,5 +53,4 @@ public class CustomerController : ControllerBase
         var customer = await _mediator.Send(dto);
         return Ok(customer.Data);
     }
-    
 }

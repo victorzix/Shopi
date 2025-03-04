@@ -7,7 +7,6 @@ using Shopi.Customer.API.DTOs;
 using Shopi.Customer.API.Interfaces;
 using Shopi.Customer.API.Models;
 using Shopi.Customer.API.Queries;
-using Shopi.Customer.API.Repository;
 using Shopi.Customer.API.Validators;
 
 namespace Shopi.Customer.API.CommandHandlers;

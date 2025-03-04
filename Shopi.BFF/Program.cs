@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Shopi.Core.Exceptions;
+using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IBffHttpClient, BffHttpClient>();
 builder.Services.AddHttpClient<BffHttpClient>();
 builder.Services.AddCors(opt =>
 {

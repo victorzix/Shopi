@@ -15,7 +15,7 @@ using Shopi.Identity.API.Services;
 
 namespace Shopi.Identity.API.CommandHandlers;
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<CreateCustomerResponseDto>>
+public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<LoginUserResponseDto>>
 {
     private readonly IBffHttpClient _httpClient;
     private readonly IIdentityJwtService _identityJwtService;
@@ -28,15 +28,26 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponses<CreateCustomerResponseDto>> Handle(CreateUserCommand request,
+    public async Task<ApiResponses<LoginUserResponseDto>> Handle(CreateUserCommand request,
         CancellationToken cancellationToken)
     {
+        if (request.Role == "Customer")
+        {
+            if (request.Document == null)
+            {
+                throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
+                    "Documento é obrigatório");
+            }
+        }
+
         var userData = await _identityJwtService.Register(_mapper.Map<RegisterUser>(request));
 
         var customerDto = _mapper.Map<CreateCustomerDto>(request);
         customerDto.UserId = userData.Data.UserId;
 
-        var customerResponse = await _httpClient.PostJsonAsync(MicroServicesUrls.CustomerApiUrl, "create", customerDto);
+        var url = request.Role == "Customer" ? MicroServicesUrls.CustomerApiUrl : MicroServicesUrls.AdminApiUrl;
+
+        var customerResponse = await _httpClient.PostJsonAsync(url, "create", customerDto);
         if (!customerResponse.IsSuccessStatusCode)
         {
             var errorContent = await customerResponse.Content.ReadAsStringAsync();
@@ -46,8 +57,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
                 deserializedErrorContent.Errors);
         }
 
-        var content = await customerResponse.Content.ReadAsStringAsync();
-        var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
-        return new ApiResponses<CreateCustomerResponseDto> { Data = deserializedContent, Success = true };
+        var loginData = await _identityJwtService.Login(new LoginUser
+            { Email = request.Email, Password = request.Password });
+        return new ApiResponses<LoginUserResponseDto> { Data = loginData.Data, Success = true };
     }
 }
