@@ -7,4 +7,5 @@ public interface ICategoryReadRepository
 {
     Task<Category?> Get(Guid id);
     Task<IReadOnlyCollection<Category>> FilterCategories(FilterCategoriesQuery query);
+    Task<List<Category>> GetMany(List<Guid> categoryIds);
 }

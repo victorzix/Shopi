@@ -1,6 +1,6 @@
-﻿namespace Shopi.Product.API.Models;
+﻿namespace Shopi.Product.API.DTOs;
 
-public class AppProduct
+public class CreateProductResponseDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -10,7 +10,4 @@ public class AppProduct
     public string Description { get; set; }
     public string Manufacturer { get; set; }
     public bool Visible { get; set; } = true;
-
-    public List<AppProductCategory>? ProductCategories { get; set; }
-    public List<Review>? Reviews { get; set; }
 }

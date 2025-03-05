@@ -42,4 +42,15 @@ public class CategoryReadRepository : ICategoryReadRepository
 
         return (await _dbConnection.QueryAsync<Category>(sql, parameters)).ToList();
     }
+
+    public async Task<List<Category>> GetMany(List<Guid> categoryIds)
+    {
+        const string sql = """
+                           SELECT * 
+                           FROM "Categories" 
+                           WHERE "Id" = ANY(@CategoryIds)
+                           """;
+
+        return (await _dbConnection.QueryAsync<Category>(sql, new { CategoryIds = categoryIds.ToArray() })).ToList();
+    }
 }

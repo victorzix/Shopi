@@ -13,13 +13,20 @@ public class ProductReadRepository : IProductReadRepository
 
     public ProductReadRepository(IConfiguration configuration)
     {
-        _dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));;
+        _dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"));
+        ;
     }
 
     public async Task<AppProduct?> Get(Guid id)
     {
         var query = "SELECT * FROM \"AppProducts\" WHERE \"Id\" = @Id";
         return await _dbConnection.QueryFirstOrDefaultAsync<AppProduct>(query, new { Id = id });
+    }
+
+    public async Task<AppProduct?> GetBySku(string sku)
+    {
+        var query = "SELECT * FROM \"AppProducts\" WHERE \"Sku\" = @Sku";
+        return await _dbConnection.QueryFirstOrDefaultAsync<AppProduct>(query, new { Sku = sku });
     }
 
     public async Task<IReadOnlyCollection<AppProduct>> FilterProducts(FilterProductsQuery query)
@@ -32,6 +39,7 @@ public class ProductReadRepository : IProductReadRepository
                                    WHERE 
                                        (@CategoryIds IS NULL OR pc.CategoryId IN @CategoryIds)
                                        AND (@Name IS NULL OR p.Name ILIKE '%' || @Name || '%')
+                                       AND (@Sku IS NULL OR p.Name ILIKE '%' || @Sku || '%')
                                        AND (@MinPrice IS NULL OR p.Price >= @MinPrice)
                                        AND (@MaxPrice IS NULL OR p.Price <= @MaxPrice)
                                        AND (@Visible IS NULL OR p.Visible = @Visible)
@@ -52,6 +60,7 @@ public class ProductReadRepository : IProductReadRepository
         {
             CategoryIds = query.CategoryIds?.Count > 0 ? query.CategoryIds : null,
             Name = string.IsNullOrWhiteSpace(query.Name) ? null : "%" + query.Name + "%",
+            Sku = string.IsNullOrWhiteSpace(query.Sku) ? null : query.Sku + "%",
             MinPrice = query.MinPrice,
             MaxPrice = query.MaxPrice,
             Visible = query.Visible,

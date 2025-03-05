@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Shopi.Product.API.Data;
 using Shopi.Product.API.Interfaces;
 using Shopi.Product.API.Models;
@@ -16,15 +17,13 @@ public class ProductCategoryWriteRepository : IProductCategoryWriteRepository
 
     public async Task AssociateCategoryToProduct(AppProduct product, List<Category> categories)
     {
-        foreach (var category in categories)
+        var associations = categories.Select(category => new AppProductCategory
         {
-            product.ProductCategories.Add(new AppProductCategory
-            {
-                ProductId = product.Id,
-                CategoryId = category.Id
-            });
-        }
+            ProductId = product.Id,
+            CategoryId = category.Id
+        }).ToList();
 
+        await _dbContext.AppProductCategories.AddRangeAsync(associations);
         await _dbContext.SaveChangesAsync();
     }
 

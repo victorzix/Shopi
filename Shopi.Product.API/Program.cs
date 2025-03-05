@@ -18,6 +18,7 @@ builder.Services.AddSwaggerConfigs();
 builder.Services.AddScoped<IBffHttpClient, BffHttpClient>();
 builder.Services.AddHttpClient<BffHttpClient>();
 builder.Services.AddAutoMapper(typeof(CategoryMappingProfile));
+builder.Services.AddAutoMapper(typeof(ProductMappingProfile));
 
 builder.Services.AddDbContext<AppProductDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));

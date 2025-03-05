@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Shopi.Product.API.Data;
 using Shopi.Product.API.Interfaces;
 using Shopi.Product.API.Models;
