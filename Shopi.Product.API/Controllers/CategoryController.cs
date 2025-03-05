@@ -20,18 +20,25 @@ public class CategoryController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpPost("create")]
-    public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto dto)
+    [HttpGet("get-category/{id}")]
+    public async Task<IActionResult> GetCategory(Guid id)
     {
-        var category = await _mediator.Send(_mapper.Map<CreateCategoryCommand>(dto));
-        return Created(string.Empty, category.Data);
+        var category = await _mediator.Send(new GetCategoryQuery(id));
+        return Ok(category.Data);
     }
-
+    
     [HttpGet("filter")]
     public async Task<IActionResult> FilterCategories([FromQuery] FilterCategoriesDto query)
     {
         var categories = await _mediator.Send(_mapper.Map<FilterCategoriesQuery>(query));
         return Ok(categories.Data);
+    }
+
+    [HttpPost("create")]
+    public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto dto)
+    {
+        var category = await _mediator.Send(_mapper.Map<CreateCategoryCommand>(dto));
+        return Created(string.Empty, category.Data);
     }
 
     [HttpPatch("update/{id}")]
