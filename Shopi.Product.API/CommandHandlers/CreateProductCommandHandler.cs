@@ -44,27 +44,11 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
         }
 
         var appProduct = await _productWriteRepository.Create(_mapper.Map<AppProduct>(request));
-        if (request.CategoriesIds != null && request.CategoriesIds.Count != 0)
-        {
-            var categories = await CheckCategories(request.CategoriesIds);
-            await _productCategoryWriteRepository.AssociateCategoryToProduct(appProduct, categories);
-        }
-        
+
         return new ApiResponses<CreateProductResponseDto>
         {
             Data = _mapper.Map<CreateProductResponseDto>(appProduct),
             Success = true
         };
-    }
-
-    private async Task<List<Category>> CheckCategories(List<Guid> categoriesIds)
-    {
-        var categories = await _categoryReadRepository.GetMany(categoriesIds);
-
-        if (categories.Count != categoriesIds.Count)
-            throw new CustomApiException("Erro ao criar produto", StatusCodes.Status400BadRequest,
-                "Alguma categoria não foi encontrada.");
-
-        return categories;
     }
 }

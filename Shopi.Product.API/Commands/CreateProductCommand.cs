@@ -14,14 +14,12 @@ public class CreateProductCommand : IRequest<ApiResponses<CreateProductResponseD
     public string Description { get; set; }
     public string Manufacturer { get; set; }
 
-    public List<Guid>? CategoriesIds { get; set; }
-
     public CreateProductCommand()
     {
     }
 
     public CreateProductCommand(string name, string? sku, int price, int quantity, string description,
-        string manufacturer, List<Guid>? categoriesIds)
+        string manufacturer)
     {
         Name = name;
         Sku = sku;
@@ -29,6 +27,5 @@ public class CreateProductCommand : IRequest<ApiResponses<CreateProductResponseD
         Quantity = quantity;
         Description = description;
         Manufacturer = manufacturer;
-        CategoriesIds = categoriesIds;
     }
 }
