@@ -38,8 +38,4 @@
       <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Validators\" />
-    </ItemGroup>
-
 </Project>

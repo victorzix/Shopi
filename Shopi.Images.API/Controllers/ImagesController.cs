@@ -16,12 +16,10 @@ namespace Shopi.Images.API.Controllers;
 public class ImagesController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
 
-    public ImagesController(IMediator mediator, IMapper mapper)
+    public ImagesController(IMediator mediator)
     {
-        _mediator = mediator;
-        _mapper = mapper;
+        _mediator = mediator; 
     }
 
     [HttpPost("add")]

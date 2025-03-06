@@ -6,6 +6,7 @@ using Shopi.Product.API.Commands;
 using Shopi.Product.API.DTOs;
 using Shopi.Product.API.Interfaces;
 using Shopi.Product.API.Models;
+using Shopi.Product.API.Validators;
 
 namespace Shopi.Product.API.CommandHandlers;
 
@@ -27,6 +28,14 @@ public class
     public async Task<ApiResponses<CreateCategoryResponseDto>> Handle(CreateCategoryCommand request,
         CancellationToken cancellationToken)
     {
+        var validator = new CreateCategoryCommandValidator();
+        var validate = await validator.ValidateAsync(request, cancellationToken);
+        if (!validate.IsValid)
+        {
+            throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
+                validate.Errors.Select(e => e.ErrorMessage));
+        }
+
         if (request.ParentId.HasValue)
         {
             var parentCategory = await _readRepository.Get(request.ParentId.Value);

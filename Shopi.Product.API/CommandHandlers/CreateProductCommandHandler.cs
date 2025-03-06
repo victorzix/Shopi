@@ -8,6 +8,7 @@ using Shopi.Product.API.DTOs;
 using Shopi.Product.API.Interfaces;
 using Shopi.Product.API.Models;
 using Shopi.Product.API.Queries;
+using Shopi.Product.API.Validators;
 
 namespace Shopi.Product.API.CommandHandlers;
 
@@ -15,24 +16,29 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
 {
     private IProductWriteRepository _productWriteRepository;
     private IProductReadRepository _productReadRepository;
-    private IProductCategoryWriteRepository _productCategoryWriteRepository;
-    private ICategoryReadRepository _categoryReadRepository;
     private IMapper _mapper;
 
-    public CreateProductCommandHandler(IProductWriteRepository productWriteRepository,
-        IProductCategoryWriteRepository productCategoryWriteRepository, IMapper mapper,
-        ICategoryReadRepository categoryReadRepository, IProductReadRepository productReadRepository)
+    public CreateProductCommandHandler(
+        IProductWriteRepository productWriteRepository,
+        IMapper mapper,
+        IProductReadRepository productReadRepository)
     {
         _productWriteRepository = productWriteRepository;
-        _productCategoryWriteRepository = productCategoryWriteRepository;
         _mapper = mapper;
-        _categoryReadRepository = categoryReadRepository;
         _productReadRepository = productReadRepository;
     }
 
     public async Task<ApiResponses<CreateProductResponseDto>> Handle(CreateProductCommand request,
         CancellationToken cancellationToken)
     {
+        var validator = new CreateProductCommandValidator();
+        var validate = await validator.ValidateAsync(request, cancellationToken);
+        if (!validate.IsValid)
+        {
+            throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
+                validate.Errors.Select(e => e.ErrorMessage));
+        }
+
         if (!string.IsNullOrEmpty(request.Sku))
         {
             var checkSku = await _productReadRepository.GetBySku(request.Sku);

@@ -10,7 +10,7 @@ public class CreateProductCommand : IRequest<ApiResponses<CreateProductResponseD
     public string Name { get; set; }
     public string? Sku { get; set; }
     public int Price { get; set; }
-    public int Quantity { get; set; }
+    public int Quantity { get; set; } = 0;
     public string Description { get; set; }
     public string Manufacturer { get; set; }
 

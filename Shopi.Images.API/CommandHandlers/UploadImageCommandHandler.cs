@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CloudinaryDotNet.Actions;
+using FluentValidation;
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
@@ -7,6 +8,7 @@ using Shopi.Images.API.Commands;
 using Shopi.Images.API.DTOs;
 using Shopi.Images.API.Interfaces;
 using Shopi.Images.API.Models;
+using Shopi.Images.API.Validators;
 
 namespace Shopi.Images.API.CommandHandlers;
 
@@ -26,6 +28,15 @@ public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand, Api
     public async Task<ApiResponses<Image>> Handle(UploadImageCommand request,
         CancellationToken cancellationToken)
     {
+        var validator = new UploadImageCommandValidator();
+        var validate = await validator.ValidateAsync(request, cancellationToken);
+
+        if (!validate.IsValid)
+        {
+            throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
+                validate.Errors.Select(e => e.ErrorMessage));
+        }
+
         var cloudinaryImage = await _cloudinary.UploadImage(_mapper.Map<UploadImageDto>(request));
         if (cloudinaryImage.Error != null)
         {
