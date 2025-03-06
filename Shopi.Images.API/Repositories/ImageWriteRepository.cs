@@ -19,4 +19,9 @@ public class ImageWriteRepository : IImageWriteRepository
         await _images.InsertOneAsync(image);
         return image;
     }
+
+    public async Task DeleateImage(string id)
+    {
+        await _images.DeleteOneAsync(Builders<Image>.Filter.Eq(i => i.Id, id));
+    }
 }

@@ -11,5 +11,7 @@ public class Image
 
     public string FileName { get; set; }
     public string Url { get; set; }
-    public string ProductId { get; set; }
+    
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
+    public Guid ProductId { get; set; }
 }

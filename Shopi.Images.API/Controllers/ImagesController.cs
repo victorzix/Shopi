@@ -1,5 +1,8 @@
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using Shopi.Images.API.Commands;
 using Shopi.Images.API.Data;
 using Shopi.Images.API.DTOs;
 using Shopi.Images.API.Models;
@@ -11,40 +14,45 @@ namespace Shopi.Images.API.Controllers;
 [Route("[controller]")]
 public class ImagesController : ControllerBase
 {
-    private readonly IMongoCollection<Image> _images;
-    private readonly CloudinaryService _cloudinary;
+    private readonly IMediator _mediator;
+    private readonly IMapper _mapper;
 
-    public ImagesController(MongoDbService mongoDbService, CloudinaryService cloudinary)
+    public ImagesController(IMediator mediator, IMapper mapper)
     {
-        if (mongoDbService.Database == null)
-            throw new Exception("Banco de dados não inicializado!");
-        _cloudinary = cloudinary;
-        _images = mongoDbService.Database?.GetCollection<Image>("images");
+        _mediator = mediator;
+        _mapper = mapper;
     }
 
     [HttpPost("add")]
     public async Task<IActionResult> AddImage(IFormFile file, [FromQuery] Guid productId)
     {
         await using var stream = file.OpenReadStream();
-        var imageUrl = await _cloudinary.UploadImage(new UploadImageDto
+        var image = await _mediator.Send(new UploadImageCommand
         {
             FileStream = stream, FileName = file.FileName, ProductId = productId
         });
 
-        return Created(string.Empty, imageUrl);
+        return Created(string.Empty, image.Data);
     }
 
-    [HttpGet("get-images/{productId}")]
-    public async Task<IActionResult> ListProductImages(Guid productId)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteImage(string id)
     {
-        var imagesUrls = await _cloudinary.GetImagesByProductId(productId);
-        return Ok(imagesUrls);
-    }
-
-    [HttpDelete("{productId}/{fileName}")]
-    public async Task<IActionResult> Delete(string fileName, Guid productId)
-    {
-        await _cloudinary.DeleteImageByAssetId(fileName, productId);
+        await _mediator.Send(new DeleteImageCommand(id));
         return NoContent();
     }
+
+    // [HttpGet("get-images/{productId}")]
+    // public async Task<IActionResult> ListProductImages(Guid productId)
+    // {
+    //     var imagesUrls = await _cloudinary.GetImagesByProductId(productId);
+    //     return Ok(imagesUrls);
+    // }
+    //
+    // [HttpDelete("{productId}/{fileName}")]
+    // public async Task<IActionResult> Delete(string fileName, Guid productId)
+    // {
+    //     await _cloudinary.DeleteImageByAssetId(fileName, productId);
+    //     return NoContent();
+    // }
 }

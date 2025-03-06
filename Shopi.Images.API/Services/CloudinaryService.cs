@@ -3,10 +3,11 @@ using CloudinaryDotNet.Actions;
 using Newtonsoft.Json;
 using Shopi.Core.Exceptions;
 using Shopi.Images.API.DTOs;
+using Shopi.Images.API.Interfaces;
 
 namespace Shopi.Images.API.Services;
 
-public class CloudinaryService
+public class CloudinaryService : ICloudinaryService
 {
     private readonly Cloudinary _cloudinary;
 
@@ -23,6 +24,7 @@ public class CloudinaryService
         {
             File = new FileDescription(dto.FileName, dto.FileStream),
             UniqueFilename = false,
+            PublicId = dto.FileName,
             Folder = $"products/{dto.ProductId}",
         };
         var uploadResult = await _cloudinary.UploadAsync(uploadParams);
@@ -37,20 +39,21 @@ public class CloudinaryService
         {
             Type = "upload",
             ResourceType = ResourceType.Image,
-            Prefix = folderPath
+            Prefix = folderPath,
         };
 
         var results = await _cloudinary.ListResourcesAsync(searchParams);
         return results.Resources.Select(res => res.SecureUrl);
     }
 
-    public async Task DeleteImageByAssetId(string fileName, Guid productId)
+    public async Task DeleteImageByFileNameAndProductId(string fileName, Guid productId)
     {
         var publicId = $"products/{productId}/{fileName}";
-
         await _cloudinary.DeleteResourcesAsync(new DelResParams
         {
-            PublicIds = [publicId]
+            PublicIds = new List<string> { publicId },
+            Type = "upload",
+            ResourceType = ResourceType.Image
         });
     }
 }

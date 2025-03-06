@@ -5,4 +5,5 @@ namespace Shopi.Images.API.Interfaces;
 public interface IImageWriteRepository
 {
     Task<Image> CreateImage(Image image);
+    Task DeleateImage(string id);
 }

@@ -20,7 +20,7 @@ public class ImageReadRepository : IImageReadRepository
         return await _images.Find(filter).FirstOrDefaultAsync();
     }
 
-    public async Task<List<Image>> ListImages(string productId)
+    public async Task<List<Image>> ListImages(Guid productId)
     {
         var filter = Builders<Image>.Filter.Eq(i => i.ProductId, productId);
         return await _images.Find(filter).ToListAsync();
