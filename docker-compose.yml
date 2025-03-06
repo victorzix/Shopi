@@ -15,17 +15,17 @@
     networks:
       - shopi-network
 
-#  rabbitmq:
-#    image: "rabbitmq:3-management"
-#    container_name: "shopi-rabbitmq"
-#    ports:
-#      - "5672:5672"
-#      - "15672:15672"
-#    environment:
-#      RABBITMQ_DEFAULT_USER: guest
-#      RABBITMQ_DEFAULT_PASS: guest
-#    networks:
-#      - shopi-network
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "shopi-rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - shopi-network
 
   shopi.identity.api:
     image: shopi.identity.api
@@ -62,7 +62,7 @@
       - shopi-network
     depends_on:
       - database
-        
+
   shopi.admin.api:
     image: shopi.admin.api
     build:
@@ -75,6 +75,19 @@
     depends_on:
       - database
   
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - shopi-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_DATABASE=shopi_db
+    volumes:
+      - mongo-data:/data/db
 #
 #  nginx:
 #    image: nginx:latest
@@ -91,3 +104,4 @@ networks:
 
 volumes:
   postgres_data:
+  mongo-data:
