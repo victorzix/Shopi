@@ -2,6 +2,7 @@
 using Shopi.Images.API.Data;
 using Shopi.Images.API.Interfaces;
 using Shopi.Images.API.Models;
+using Shopi.Images.API.Queries;
 
 namespace Shopi.Images.API.Repositories;
 
@@ -20,9 +21,14 @@ public class ImageReadRepository : IImageReadRepository
         return await _images.Find(filter).FirstOrDefaultAsync();
     }
 
-    public async Task<List<Image>> ListImages(Guid productId)
+    public async Task<IReadOnlyCollection<Image>> ListImages(ListImagesQuery query)
     {
-        var filter = Builders<Image>.Filter.Eq(i => i.ProductId, productId);
-        return await _images.Find(filter).ToListAsync();
+        var filter = Builders<Image>.Filter.Eq(i => i.ProductId, query.ProductId);
+        var images = await _images
+            .Find(filter)
+            .Skip((query.PageNumber - 1) * query.Limit)
+            .Limit(query.Limit)
+            .ToListAsync();
+        return images;
     }
 }
