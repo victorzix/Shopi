@@ -32,12 +32,19 @@ public class CategoryReadRepository : ICategoryReadRepository
                                 (@Name IS NULL OR c."Name" ILIKE '%' || @Name || '%')
                                 AND (@ParentId iS NULL OR c."ParentId" = @ParentId)
                                 AND (@Visible IS NULL OR c."Visible" = @Visible)
+                           ORDER BY 
+                                CASE WHEN @NameOrder = 'asc' THEN c."Name" END ASC,
+                                CASE WHEN @NameOrder = 'desc' THEN c."Name" END DESC
+                           lIMIT @Limit OFFSET @Offset
                            """;
         var parameters = new
         {
             Name = string.IsNullOrEmpty(query.Name) ? null : "%" + query.Name + "%",
             ParentId = query.ParentId,
             Visible = query.Visible,
+            NameOrder = query.NameOrder,
+            Limit = query.Limit,
+            Offset = query.Offset
         };
 
         return (await _dbConnection.QueryAsync<Category>(sql, parameters)).ToList();
@@ -52,5 +59,24 @@ public class CategoryReadRepository : ICategoryReadRepository
                            """;
 
         return (await _dbConnection.QueryAsync<Category>(sql, new { CategoryIds = categoryIds.ToArray() })).ToList();
+    }
+
+    public async Task<int> GetCount(FilterCategoriesQuery query)
+    {
+        const string sql = """
+                           SELECT COUNT(*) 
+                           FROM "Categories" c
+                           WHERE
+                                (@Name IS NULL OR c."Name" ILIKE '%' || @Name || '%')
+                                AND (@ParentId iS NULL OR c."ParentId" = @ParentId)
+                                AND (@Visible IS NULL OR c."Visible" = @Visible)
+                           """;
+        var parameters = new
+        {
+            Name = string.IsNullOrEmpty(query.Name) ? null : "%" + query.Name + "%",
+            ParentId = query.ParentId,
+            Visible = query.Visible,
+        };
+        return (await _dbConnection.QuerySingleAsync<int>(sql, parameters));
     }
 }

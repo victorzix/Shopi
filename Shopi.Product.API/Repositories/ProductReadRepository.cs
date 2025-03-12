@@ -32,7 +32,7 @@ public class ProductReadRepository : IProductReadRepository
     public async Task<IReadOnlyCollection<AppProduct>> FilterProducts(FilterProductsQuery query)
     {
         const string sql = """
-                                   SELECT DISTINCT p.* 
+                                   SELECT *
                                    FROM AppProducts p
                                    LEFT JOIN AppProductCategories pc ON p.Id = pc.ProductId
                                    LEFT JOIN Reviews r ON p.Id = r.AppProductId
@@ -52,7 +52,7 @@ public class ProductReadRepository : IProductReadRepository
                                        CASE WHEN @PriceOrder = 'price desc' THEN p.Price END DESC,
                                        CASE WHEN @ReviewOrder = 'review asc' THEN COALESCE(AVG(r.Rating), 0) END ASC,
                                        CASE WHEN @ReviewOrder = 'review desc' THEN COALESCE(AVG(r.Rating), 0) END DESC
-                                 LIMIT @Limit OFFSET @Offset
+                                LIMIT @Limit OFFSET @Offset
                            """;
 
 
@@ -68,8 +68,8 @@ public class ProductReadRepository : IProductReadRepository
             NameOrder = query.NameOrder,
             PriceOrder = query.PriceOrder,
             ReviewOrder = query.ReviewOrder,
-            Limit = query.PaginationFilter.Limit,
-            Offset = (query.PaginationFilter.Page - 1) * query.PaginationFilter.Limit
+            Limit = query.Limit,
+            Offset = query.Offset
         };
 
         return (await _dbConnection.QueryAsync<AppProduct>(sql, parameters)).ToList();

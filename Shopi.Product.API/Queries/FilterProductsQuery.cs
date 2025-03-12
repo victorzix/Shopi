@@ -17,25 +17,18 @@ public class FilterProductsQuery : IRequest<ApiResponses<IReadOnlyCollection<App
     public string? NameOrder { get; set; }
     public string? PriceOrder { get; set; }
     public string? ReviewOrder { get; set; }
-    public PaginationFilterDto PaginationFilter { get; set; }
+    public int Limit { get; set; }
+    public int Offset { get; set; }
 
     public FilterProductsQuery()
     {
     }
 
-    public FilterProductsQuery(PaginationFilterDto paginationFilter)
+    public FilterProductsQuery(List<string?>? categoryIds, string? name, string? sku, int? minPrice, int? maxPrice, bool visible, string manufacturer, string? nameOrder, string? priceOrder, string? reviewOrder, int limit, int offset)
     {
-        PaginationFilter = paginationFilter;
-    }
-
-    public FilterProductsQuery(string? sku, List<string?>? categoryIds, string? name, int? minPrice, int? maxPrice,
-        bool visible,
-        string manufacturer, string? nameOrder, string? priceOrder, string? reviewOrder,
-        PaginationFilterDto paginationFilter)
-    {
-        Sku = sku;
         CategoryIds = categoryIds;
         Name = name;
+        Sku = sku;
         MinPrice = minPrice;
         MaxPrice = maxPrice;
         Visible = visible;
@@ -43,6 +36,7 @@ public class FilterProductsQuery : IRequest<ApiResponses<IReadOnlyCollection<App
         NameOrder = nameOrder;
         PriceOrder = priceOrder;
         ReviewOrder = reviewOrder;
-        PaginationFilter = paginationFilter;
+        Limit = limit;
+        Offset = offset;
     }
 }

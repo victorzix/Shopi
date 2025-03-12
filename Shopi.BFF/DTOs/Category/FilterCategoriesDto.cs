@@ -1,4 +1,4 @@
-﻿namespace Shopi.Product.API.DTOs;
+﻿namespace Shopi.BFF.DTOs.Category;
 
 public class FilterCategoriesDto
 {

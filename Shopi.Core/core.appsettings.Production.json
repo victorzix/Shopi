@@ -9,6 +9,8 @@
   "Microservices": {
     "AuthApi": "http://shopi.identity.api:8082/auth/",
     "CustomerApi": "http://shopi.customer.api:8081/customer/",
-    "AdminApi": "http://shopi.admin.api:8083/admin/"
+    "AdminApi": "http://shopi.admin.api:8083/admin/",
+    "ProductApi": "http://shopi.product.api:8084/product/",
+    "CategoryApi": "http://shopi.product.api:8084/category/"
   }
 }
