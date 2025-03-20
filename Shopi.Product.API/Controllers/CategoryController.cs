@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shopi.Product.API.Commands;
-using Shopi.Product.API.DTOs;
-using Shopi.Product.API.Queries;
+using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.Queries;
+
 
 namespace Shopi.Product.API.Controllers;
 
@@ -50,10 +51,17 @@ public class CategoryController : ControllerBase
         return Ok(category.Data);
     }
 
-    [HttpPost("change-visibility/{id}")]
+    [HttpPatch("change-visibility/{id}")]
     public async Task<IActionResult> ChangeCategoryVisibility(Guid id)
     {
         var category = await _mediator.Send(new ChangeVisibilityCommand(id));
         return Ok(category.Data);
+    }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteCategory(Guid id)
+    {
+        await _mediator.Send(new DeleteCategoryCommand(id));
+        return NoContent();
     }
 }

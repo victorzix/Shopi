@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shopi.Core.Utils;
-using Shopi.Product.API.DTOs;
-using Shopi.Product.API.Interfaces;
-using Shopi.Product.API.Models;
-using Shopi.Product.API.Queries;
+using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.Queries;
+using Shopi.Product.Domain.Interfaces;
+using Shopi.Product.Domain.Queries;
 
 namespace Shopi.Product.API.QueryHandlers;
 
@@ -23,8 +23,9 @@ public class
     public async Task<ApiResponses<FilterCategoriesResponseDto>> Handle(FilterCategoriesQuery request,
         CancellationToken cancellationToken)
     {
-        var categories = await _readRepository.FilterCategories(request);
-        var categoriesCount = await _readRepository.GetCount(request);
+        var query = _mapper.Map<CategoriesQuery>(request);
+        var categories = await _readRepository.FilterCategories(query);
+        var categoriesCount = await _readRepository.GetCount(query);
         var response = new FilterCategoriesResponseDto { Categories = categories, Total = categoriesCount };
         return new ApiResponses<FilterCategoriesResponseDto>
         {

@@ -1,5 +1,5 @@
-﻿using Shopi.Product.API.Interfaces;
-using Shopi.Product.API.Repositories;
+﻿using Shopi.Product.Domain.Interfaces;
+using Shopi.Product.Infrastructure.Repositories;
 
 namespace Shopi.Product.API.Configs;
 

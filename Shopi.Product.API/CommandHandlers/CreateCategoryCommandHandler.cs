@@ -2,11 +2,11 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Product.API.Commands;
-using Shopi.Product.API.DTOs;
-using Shopi.Product.API.Interfaces;
-using Shopi.Product.API.Models;
-using Shopi.Product.API.Validators;
+using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.Validators;
+using Shopi.Product.Domain.Entities;
+using Shopi.Product.Domain.Interfaces;
 
 namespace Shopi.Product.API.CommandHandlers;
 

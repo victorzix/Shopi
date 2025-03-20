@@ -156,3 +156,9 @@ D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.exe
 D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\appsettings.Production.json
 D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.dll
 D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Core.pdb
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Application.dll
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Infrastructure.dll
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Application.pdb
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Infrastructure.pdb
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Domain.pdb

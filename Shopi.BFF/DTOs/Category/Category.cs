@@ -6,5 +6,5 @@ public class Category
     public string Name { get; set; }
     public Guid? ParentId { get; set; }
     public string? Description { get; set; }
-    public bool Visible { get; set; } = true;
+    public bool Visible { get; set; }
 }

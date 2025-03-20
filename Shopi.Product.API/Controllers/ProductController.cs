@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shopi.Product.API.Commands;
+using Shopi.Product.Application.Commands;
 
 namespace Shopi.Product.API.Controllers;
 

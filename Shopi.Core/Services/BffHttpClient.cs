@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Newtonsoft.Json;
 using Shopi.Core.Interfaces;
+using StringContent = System.Net.Http.StringContent;
 
 namespace Shopi.Core.Services;
 
@@ -32,6 +33,13 @@ public class BffHttpClient : IBffHttpClient
         return await _httpClient.PatchAsync(requestUri, content);
     }
 
+    public async Task<HttpResponseMessage> PatchAsyncWithoutData(Uri baseUrl, string url)
+    {
+        var requestUri = new Uri(baseUrl, url);
+
+        return await _httpClient.PatchAsync(requestUri, null);
+    } 
+        
     public async Task<HttpResponseMessage> Get<T>(Uri baseUrl, string url,
         IDictionary<string, string>? queryParams = null, IDictionary<string, string>? headers = null)
     {
@@ -52,7 +60,13 @@ public class BffHttpClient : IBffHttpClient
                 request.Headers.Add(header.Key, header.Value);
             }
         }
-        
+
         return await _httpClient.SendAsync(request);
+    }
+
+    public async Task<HttpResponseMessage> Delete(Uri baseUrl, string url)
+    {
+        var requestUri = new Uri(baseUrl, url);
+        return await _httpClient.DeleteAsync(requestUri);
     }
 }

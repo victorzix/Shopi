@@ -4,9 +4,9 @@ using Shopi.Core.Exceptions;
 using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 using Shopi.Product.API.Configs;
-using Shopi.Product.API.Data;
-using Shopi.Product.API.Mappers;
 using Shopi.Product.API.Middlewares;
+using Shopi.Product.Infrastructure.Data;
+using Shopi.Product.Infrastructure.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
