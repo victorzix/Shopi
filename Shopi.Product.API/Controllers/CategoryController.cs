@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shopi.Product.API.Commands;
-using Shopi.Product.API.DTOs;
-using Shopi.Product.API.Queries;
+using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.Queries;
+
 
 namespace Shopi.Product.API.Controllers;
 
@@ -20,6 +21,20 @@ public class CategoryController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet("get-category/{id}")]
+    public async Task<IActionResult> GetCategory(Guid id)
+    {
+        var category = await _mediator.Send(new GetCategoryQuery(id));
+        return Ok(category.Data);
+    }
+    
+    [HttpGet("filter")]
+    public async Task<IActionResult> FilterCategories([FromQuery] FilterCategoriesDto query)
+    {
+        var categories = await _mediator.Send(_mapper.Map<FilterCategoriesQuery>(query));
+        return Ok(categories.Data);
+    }
+
     [HttpPost("create")]
     public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto dto)
     {
@@ -27,10 +42,26 @@ public class CategoryController : ControllerBase
         return Created(string.Empty, category.Data);
     }
 
-    [HttpGet("filter")]
-    public async Task<IActionResult> FilterCategories([FromQuery] FilterCategoriesDto query)
+    [HttpPatch("update/{id}")]
+    public async Task<IActionResult> UpdateCategory(Guid id, [FromBody] UpdateCategoryDto dto)
     {
-        var categories = await _mediator.Send(_mapper.Map<FilterCategoriesQuery>(query));
-        return Ok(categories.Data);
+        var updateCategory = _mapper.Map<UpdateCategoryCommand>(dto);
+        updateCategory.Id = id;
+        var category = await _mediator.Send(updateCategory);
+        return Ok(category.Data);
+    }
+
+    [HttpPatch("change-visibility/{id}")]
+    public async Task<IActionResult> ChangeCategoryVisibility(Guid id)
+    {
+        var category = await _mediator.Send(new ChangeVisibilityCommand(id));
+        return Ok(category.Data);
+    }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteCategory(Guid id)
+    {
+        await _mediator.Send(new DeleteCategoryCommand(id));
+        return NoContent();
     }
 }

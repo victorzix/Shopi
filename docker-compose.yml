@@ -62,7 +62,7 @@
       - shopi-network
     depends_on:
       - database
-        
+
   shopi.admin.api:
     image: shopi.admin.api
     build:
@@ -74,7 +74,32 @@
       - shopi-network
     depends_on:
       - database
+        
+  shopi.product.api:
+    image: shopi.product.api
+    build:
+      context: .
+      dockerfile: Shopi.Product.API/Dockerfile
+    ports:
+      - "5186:8084"
+    networks:
+      - shopi-network
+    depends_on:
+      - database
   
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - shopi-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_DATABASE=shopi_db
+    volumes:
+      - mongo-data:/data/db
 #
 #  nginx:
 #    image: nginx:latest
@@ -91,3 +116,4 @@ networks:
 
 volumes:
   postgres_data:
+  mongo-data:

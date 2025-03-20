@@ -39,7 +39,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigins",
         builder =>
         {
-            builder.WithOrigins(["http://shopi.bff:8080", "http://shopi.auth.api:8082"])
+            builder.WithOrigins(["http://shopi.bff:8080"])
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

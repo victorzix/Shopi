@@ -36,10 +36,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Validators\" />
+      <ProjectReference Include="..\Shopi.Product.Application\Shopi.Product.Application.csproj" />
+      <ProjectReference Include="..\Shopi.Product.Infrastructure\Shopi.Product.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
