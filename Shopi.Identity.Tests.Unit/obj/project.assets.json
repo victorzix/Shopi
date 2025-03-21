@@ -2969,6 +2969,8 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
           "RabbitMQ.Client": "7.0.0",
           "Shopi.Core": "1.0.0",
+          "Shopi.Identity.Application": "1.0.0",
+          "Shopi.Identity.Infrastructure": "1.0.0",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "compile": {
@@ -2980,6 +2982,54 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Shopi.Identity.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "FluentValidation": "11.11.0",
+          "MediatR": "12.4.1",
+          "Shopi.Core": "1.0.0",
+          "Shopi.Identity.Domain": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Identity.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Identity.Application.dll": {}
+        }
+      },
+      "Shopi.Identity.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Shopi.Identity.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Identity.Domain.dll": {}
+        }
+      },
+      "Shopi.Identity.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "14.0.0",
+          "Microsoft.AspNetCore.Identity": "2.3.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.13",
+          "Microsoft.EntityFrameworkCore": "9.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
+          "Shopi.Identity.Application": "1.0.0",
+          "Shopi.Identity.Domain": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Identity.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Identity.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -8628,6 +8678,21 @@
       "type": "project",
       "path": "../Shopi.Identity.API/Shopi.Identity.API.csproj",
       "msbuildProject": "../Shopi.Identity.API/Shopi.Identity.API.csproj"
+    },
+    "Shopi.Identity.Application/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Identity.Application/Shopi.Identity.Application.csproj",
+      "msbuildProject": "../Shopi.Identity.Application/Shopi.Identity.Application.csproj"
+    },
+    "Shopi.Identity.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Identity.Domain/Shopi.Identity.Domain.csproj",
+      "msbuildProject": "../Shopi.Identity.Domain/Shopi.Identity.Domain.csproj"
+    },
+    "Shopi.Identity.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Identity.Infrastructure/Shopi.Identity.Infrastructure.csproj",
+      "msbuildProject": "../Shopi.Identity.Infrastructure/Shopi.Identity.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {

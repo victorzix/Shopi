@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Shopi.Core.Exceptions;
-using Shopi.Core.Services;
-using Shopi.Core.Utils;
-using Shopi.Identity.API.CommandHandlers;
-using Shopi.Identity.API.Commands;
-using Shopi.Identity.API.DTOs;
+using Shopi.Identity.Application.Commands;
+using Shopi.Identity.Application.DTOs;
 
 namespace Shopi.Identity.API.Controllers;
 

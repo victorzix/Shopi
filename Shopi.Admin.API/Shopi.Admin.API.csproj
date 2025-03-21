@@ -8,34 +8,36 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper" Version="2.1.66" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+        <PackageReference Include="Dapper" Version="2.1.66"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="AutoMapper" Version="14.0.0" />
-        <PackageReference Include="FluentValidation" Version="11.11.0" />
-        <PackageReference Include="MediatR" Version="12.4.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.2" />
+        <PackageReference Include="AutoMapper" Version="14.0.0"/>
+        <PackageReference Include="FluentValidation" Version="11.11.0"/>
+        <PackageReference Include="MediatR" Version="12.4.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
+        <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj"/>
+        <ProjectReference Include="..\Shopi.Admin.Application\Shopi.Admin.Application.csproj"/>
+        <ProjectReference Include="..\Shopi.Admin.Infrastructure\Shopi.Admin.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

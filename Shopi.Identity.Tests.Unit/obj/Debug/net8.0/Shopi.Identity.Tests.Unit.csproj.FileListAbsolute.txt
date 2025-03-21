@@ -162,3 +162,9 @@ D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\obj\Debug\net8.0\refint\Shopi.
 D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\obj\Debug\net8.0\Shopi.Identity.Tests.Unit.pdb
 D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\obj\Debug\net8.0\Shopi.Identity.Tests.Unit.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\obj\Debug\net8.0\ref\Shopi.Identity.Tests.Unit.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\bin\Debug\net8.0\Shopi.Identity.Application.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\bin\Debug\net8.0\Shopi.Identity.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\bin\Debug\net8.0\Shopi.Identity.Infrastructure.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\bin\Debug\net8.0\Shopi.Identity.Application.pdb
+D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\bin\Debug\net8.0\Shopi.Identity.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit\bin\Debug\net8.0\Shopi.Identity.Infrastructure.pdb

@@ -2,19 +2,15 @@
 using System.Security.Claims;
 using System.Text;
 using AutoMapper;
-using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Identity.API.DTOs;
-using Shopi.Identity.API.Interfaces;
-using Shopi.Identity.API.Models;
-using Shopi.Identity.API.Validators;
+using Shopi.Identity.Application.DTOs;
+using Shopi.Identity.Application.Validators;
+using Shopi.Identity.Domain.Entities;
+using Shopi.Identity.Infrastructure.Interfaces;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace Shopi.Identity.API.Services;

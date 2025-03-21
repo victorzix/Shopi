@@ -41,6 +41,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
+      <ProjectReference Include="..\Shopi.Identity.Application\Shopi.Identity.Application.csproj" />
+      <ProjectReference Include="..\Shopi.Identity.Infrastructure\Shopi.Identity.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

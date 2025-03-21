@@ -1,9 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\lekvi\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_Shopi.834894340\Snapshot\snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2d6ebe81_002D63ca_002D4231_002Db91d_002D651bec3edf19/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreateUserCommandHandlerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::FDBA44D6-9E34-4FA9-A7EF-906EF48B9D0A::net8.0::Shopi.Identity.API.UnitTests.CommandHandlers.CreateUserCommandHandlerTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="D:\studies\csharp\Shopi\Shopi.Identity.Tests.Unit" Presentation="&amp;lt;src&amp;gt;\&amp;lt;services&amp;gt;\&amp;lt;Identity&amp;gt;\&amp;lt;Shopi.Identity.Tests.Unit&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	

@@ -156,3 +156,9 @@ D:\studies\csharp\Shopi\Shopi.Admin.API\obj\Debug\net8.0\Shopi.Admin.API.pdb
 D:\studies\csharp\Shopi\Shopi.Admin.API\obj\Debug\net8.0\Shopi.Admin.API.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Admin.API\obj\Debug\net8.0\ref\Shopi.Admin.API.dll
 D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\appsettings.Production.json
+D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\Shopi.Admin.Application.dll
+D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\Shopi.Admin.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\Shopi.Admin.Infrastructure.dll
+D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\Shopi.Admin.Application.pdb
+D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\Shopi.Admin.Infrastructure.pdb
+D:\studies\csharp\Shopi\Shopi.Admin.API\bin\Debug\net8.0\Shopi.Admin.Domain.pdb

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
+using Shopi.Admin.Application.Commands;
+using Shopi.Admin.Application.DTOs;
+using Shopi.Admin.Application.Validators;
+using Shopi.Admin.Domain.Entities;
+using Shopi.Admin.Domain.Interfaces;
+using Shopi.Admin.Domain.Queries;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Admin.API.Commands;
-using Shopi.Admin.API.DTOs;
-using Shopi.Admin.API.Interfaces;
-using Shopi.Admin.API.Models;
-using Shopi.Admin.API.Queries;
-using Shopi.Admin.API.Validators;
 
 namespace Shopi.Admin.API.CommandHandlers;
 
@@ -46,7 +46,7 @@ public class CreateAdminCommandHandler : IRequestHandler<CreateAdminCommand, Api
 
     private async Task CheckEmailAndDocument(CreateAdminCommand request)
     {
-        var emailInUse = await _readRepository.FilterAdmin(new FilterAdminQuery(
+        var emailInUse = await _readRepository.FilterAdmin(new QueryAdmin(
             request.Email,
             null));
 
@@ -55,7 +55,7 @@ public class CreateAdminCommandHandler : IRequestHandler<CreateAdminCommand, Api
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já em uso");
         }
 
-        var documentInUse = await _readRepository.FilterAdmin(new FilterAdminQuery(
+        var documentInUse = await _readRepository.FilterAdmin(new QueryAdmin(
             null,
             null));
 

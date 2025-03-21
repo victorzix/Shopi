@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Shopi.Admin.API.Configs;
-using Shopi.Admin.API.Data;
-using Shopi.Admin.API.Mappers;
+using Shopi.Admin.Infrastructure.Data;
+using Shopi.Admin.Infrastructure.Mappers;
 using Shopi.Admin.API.Middlewares;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Interfaces;

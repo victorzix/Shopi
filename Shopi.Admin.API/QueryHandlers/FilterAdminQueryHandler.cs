@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Shopi.Admin.API.Interfaces;
-using Shopi.Admin.API.Models;
-using Shopi.Admin.API.Queries;
+using Shopi.Admin.Application.Queries;
+using Shopi.Admin.Domain.Entities;
+using Shopi.Admin.Domain.Interfaces;
+using Shopi.Admin.Domain.Queries;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
 
@@ -22,7 +23,8 @@ public class FilterAdminQueryHandler : IRequestHandler<FilterAdminQuery, ApiResp
     public async Task<ApiResponses<AppAdmin>> Handle(FilterAdminQuery request,
         CancellationToken cancellationToken)
     {
-        var customer = await _readRepository.FilterAdmin(request);
+        var query = _mapper.Map<QueryAdmin>(request);
+        var customer = await _readRepository.FilterAdmin(query);
         if (customer == null)
         {
             throw new CustomApiException("Erro de pesquisa", StatusCodes.Status404NotFound,

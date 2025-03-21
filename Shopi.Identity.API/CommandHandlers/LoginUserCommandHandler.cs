@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shopi.Core.Utils;
-using Shopi.Identity.API.Commands;
-using Shopi.Identity.API.DTOs;
-using Shopi.Identity.API.Models;
 using Shopi.Identity.API.Services;
+using Shopi.Identity.Application.Commands;
+using Shopi.Identity.Application.DTOs;
+using Shopi.Identity.Domain.Entities;
 
 namespace Shopi.Identity.API.CommandHandlers;
 

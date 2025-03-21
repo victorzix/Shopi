@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using MediatR;
 using Newtonsoft.Json;
+using Shopi.Admin.Application.Commands;
+using Shopi.Admin.Application.DTOs;
+using Shopi.Admin.Application.Validators;
+using Shopi.Admin.Domain.Entities;
+using Shopi.Admin.Domain.Interfaces;
+using Shopi.Admin.Domain.Queries;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Services;
 using Shopi.Core.Utils;
-using Shopi.Admin.API.Commands;
-using Shopi.Admin.API.DTOs;
-using Shopi.Admin.API.Interfaces;
-using Shopi.Admin.API.Models;
-using Shopi.Admin.API.Queries;
-using Shopi.Admin.API.Validators;
 
 namespace Shopi.Admin.API.CommandHandlers;
 
@@ -41,7 +41,7 @@ public class
                 validate.Errors.Select(e => e.ErrorMessage));
         }
 
-        var adminToUpdate = await _readRepository.FilterAdmin(new FilterAdminQuery(null, request.Id));
+        var adminToUpdate = await _readRepository.FilterAdmin(new QueryAdmin(null, request.Id));
         if (adminToUpdate == null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status404NotFound, "Usuário não encontrado");

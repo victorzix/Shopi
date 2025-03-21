@@ -19,6 +19,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "9.0.2",
           "Newtonsoft.Json": "13.0.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
+          "Shopi.Admin.Application": "1.0.0",
+          "Shopi.Admin.Infrastructure": "1.0.0",
           "Shopi.Core": "1.0.0",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
@@ -853,6 +855,52 @@
         }
       },
       "System.Threading.Channels/7.0.0": {},
+      "Shopi.Admin.Application/1.0.0": {
+        "dependencies": {
+          "FluentValidation": "11.11.0",
+          "MediatR": "12.4.1",
+          "Shopi.Admin.Domain": "1.0.0",
+          "Shopi.Core": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "runtime": {
+          "Shopi.Admin.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Shopi.Admin.Domain/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.1.66",
+          "Microsoft.EntityFrameworkCore": "9.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "runtime": {
+          "Shopi.Admin.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Shopi.Admin.Infrastructure/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "14.0.0",
+          "Microsoft.EntityFrameworkCore": "9.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
+          "Shopi.Admin.Application": "1.0.0",
+          "Shopi.Admin.Domain": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "runtime": {
+          "Shopi.Admin.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Shopi.Core/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
@@ -1320,6 +1368,21 @@
       "sha512": "sha512-qmeeYNROMsONF6ndEZcIQ+VxR4Q/TX/7uIVLJqtwIWL7dDWeh0l1UIqgo4wYyjG//5lUNhwkLDSFl+pAWO6oiA==",
       "path": "system.threading.channels/7.0.0",
       "hashPath": "system.threading.channels.7.0.0.nupkg.sha512"
+    },
+    "Shopi.Admin.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shopi.Admin.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shopi.Admin.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Shopi.Core/1.0.0": {
       "type": "project",

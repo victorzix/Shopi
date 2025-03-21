@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Shopi.Identity.API.Data;
+using Shopi.Identity.Infrastructure.Data;
 
 namespace Shopi.Identity.API.Configs;
 

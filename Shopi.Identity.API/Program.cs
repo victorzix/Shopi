@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 using Shopi.Identity.API.Configs;
-using Shopi.Identity.API.Data;
-using Shopi.Identity.API.Interfaces;
-using Shopi.Identity.API.Mappers;
 using Shopi.Identity.API.Services;
+using Shopi.Identity.Infrastructure.Data;
+using Shopi.Identity.Infrastructure.Interfaces;
+using Shopi.Identity.Infrastructure.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 

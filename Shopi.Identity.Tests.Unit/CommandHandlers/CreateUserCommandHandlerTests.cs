@@ -5,15 +5,13 @@ using Moq;
 using Newtonsoft.Json;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Interfaces;
-using Shopi.Core.Services;
 using Shopi.Core.Utils;
 using Shopi.Identity.API.CommandHandlers;
-using Shopi.Identity.API.Commands;
-using Shopi.Identity.API.DTOs;
-using Shopi.Identity.API.Interfaces;
-using Shopi.Identity.API.Mappers;
-using Shopi.Identity.API.Models;
-using Shopi.Identity.API.Services;
+using Shopi.Identity.Application.Commands;
+using Shopi.Identity.Application.DTOs;
+using Shopi.Identity.Domain.Entities;
+using Shopi.Identity.Infrastructure.Interfaces;
+using Shopi.Identity.Infrastructure.Mappers;
 
 namespace Shopi.Identity.API.UnitTests.CommandHandlers;
 

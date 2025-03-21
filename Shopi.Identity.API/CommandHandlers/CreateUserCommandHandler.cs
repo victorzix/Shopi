@@ -1,17 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using Shopi.Core;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Interfaces;
-using Shopi.Core.Services;
 using Shopi.Core.Utils;
-using Shopi.Identity.API.Commands;
-using Shopi.Identity.API.DTOs;
-using Shopi.Identity.API.Interfaces;
-using Shopi.Identity.API.Models;
-using Shopi.Identity.API.Services;
+using Shopi.Identity.Application.Commands;
+using Shopi.Identity.Application.DTOs;
+using Shopi.Identity.Domain.Entities;
+using Shopi.Identity.Infrastructure.Interfaces;
 
 namespace Shopi.Identity.API.CommandHandlers;
 

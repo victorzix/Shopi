@@ -1,8 +1,5 @@
-﻿// using Shopi.Admin.API.Interfaces;
-// using Shopi.Admin.API.Repositories;
-
-using Shopi.Admin.API.Interfaces;
-using Shopi.Admin.API.Repositories;
+﻿using Shopi.Admin.Domain.Interfaces;
+using Shopi.Admin.Infrastructure.Repositories;
 
 namespace Shopi.Admin.API.Configs;
 

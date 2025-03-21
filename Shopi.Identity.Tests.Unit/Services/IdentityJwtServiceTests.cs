@@ -6,8 +6,8 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Identity.API.DTOs;
-using Shopi.Identity.API.Models;
+using Shopi.Identity.Domain.Entities;
+using Shopi.Identity.Application.DTOs;
 using Shopi.Identity.API.Services;
 
 namespace Shopi.Identity.API.UnitTests.Services;
