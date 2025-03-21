@@ -4,11 +4,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopi.Core.Exceptions;
-using Shopi.Customer.API.Commands;
-using Shopi.Customer.API.DTOs;
-using Shopi.Customer.API.Models;
-using Shopi.Customer.API.Queries;
-using Shopi.Customer.API.Repository;
+using Shopi.Customer.Application.Commands;
+using Shopi.Customer.Application.DTOs;
+using Shopi.Customer.Domain.Entities;
+using Shopi.Customer.Application.Queries;
+using Shopi.Customer.Infrastructure.Repository;
 
 namespace Shopi.Customer.API.Controllers;
 

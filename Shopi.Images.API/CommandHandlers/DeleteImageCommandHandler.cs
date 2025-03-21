@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Shopi.Core.Exceptions;
-using Shopi.Images.API.Commands;
-using Shopi.Images.API.Interfaces;
+using Shopi.Images.Application.Commands;
+using Shopi.Images.Application.Interfaces;
+using Shopi.Images.Domain.Interfaces;
 
 namespace Shopi.Images.API.CommandHandlers;
 

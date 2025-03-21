@@ -26,6 +26,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
+      <ProjectReference Include="..\Shopi.Images.Application\Shopi.Images.Application.csproj" />
+      <ProjectReference Include="..\Shopi.Images.Domain\Shopi.Images.Domain.csproj" />
+      <ProjectReference Include="..\Shopi.Images.Infrastructure\Shopi.Images.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

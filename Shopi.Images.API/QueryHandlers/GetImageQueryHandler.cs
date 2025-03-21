@@ -1,17 +1,16 @@
 ﻿using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Images.API.Interfaces;
-using Shopi.Images.API.Models;
-using Shopi.Images.API.Queries;
-using Shopi.Images.API.Validators;
+using Shopi.Images.Domain.Interfaces;
+using Shopi.Images.Domain.Entities;
+using Shopi.Images.Application.Queries;
+using Shopi.Images.Application.Validators;
 
 namespace Shopi.Images.API.QueryHandlers;
 
 public class GetImageQueryHandler : IRequestHandler<GetImageQuery, ApiResponses<Image>>
 {
     private readonly IImageReadRepository _repository;
-
     public GetImageQueryHandler(IImageReadRepository repository)
     {
         _repository = repository;

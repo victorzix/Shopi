@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Tests.Unit\\Shopi.Customer.Tests.Unit.csproj": {}
+  },
+  "projects": {
+    "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Tests.Unit\\Shopi.Customer.Tests.Unit.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Tests.Unit\\Shopi.Customer.Tests.Unit.csproj",
+        "projectName": "Shopi.Customer.Tests.Unit",
+        "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Tests.Unit\\Shopi.Customer.Tests.Unit.csproj",
+        "packagesPath": "C:\\Users\\lekvi\\.nuget\\packages\\",
+        "outputPath": "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Tests.Unit\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lekvi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\8.0.405/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -60,3 +60,9 @@ D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Core.exe
 D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\CloudinaryDotNet.dll
 D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Core.dll
 D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Core.pdb
+D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Images.Application.dll
+D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Images.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Images.Infrastructure.dll
+D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Images.Application.pdb
+D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Images.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Images.API\bin\Debug\net8.0\Shopi.Images.Infrastructure.pdb

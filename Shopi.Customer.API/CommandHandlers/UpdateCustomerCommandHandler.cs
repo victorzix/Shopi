@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Services;
 using Shopi.Core.Utils;
-using Shopi.Customer.API.Commands;
-using Shopi.Customer.API.DTOs;
-using Shopi.Customer.API.Interfaces;
-using Shopi.Customer.API.Models;
-using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Validators;
+using Shopi.Customer.Application.Commands;
+using Shopi.Customer.Application.DTOs;
+using Shopi.Customer.Application.Queries;
+using Shopi.Customer.Domain.Interfaces;
+using Shopi.Customer.Domain.Queries;
 
 namespace Shopi.Customer.API.CommandHandlers;
 
@@ -41,7 +41,9 @@ public class
                 validate.Errors.Select(e => e.ErrorMessage));
         }
 
-        var customerToUpdate = await _readRepository.FilterClient(new FilterCustomerQuery(null, null, request.Id));
+        var query = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(null, null, request.Id));
+
+        var customerToUpdate = await _readRepository.FilterClient(query);
         if (customerToUpdate == null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status404NotFound, "Usuário não encontrado");
@@ -58,7 +60,7 @@ public class
                 deserializedErrorContent.Errors);
         }
 
-        var mappedCustomer = _mapper.Map<UpdateCustomerCommand, AppCustomer>(request, customerToUpdate);
+        var mappedCustomer = _mapper.Map(request, customerToUpdate);
         var updatedCustomer = await _writeRepository.Update(mappedCustomer);
 
         return new ApiResponses<CreateCustomerResponseDto>

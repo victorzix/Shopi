@@ -1397,6 +1397,52 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Shopi.Images.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "CloudinaryDotNet": "1.27.4",
+          "FluentValidation": "11.11.0",
+          "MediatR": "12.4.1",
+          "Shopi.Core": "1.0.0",
+          "Shopi.Images.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Images.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Images.Application.dll": {}
+        }
+      },
+      "Shopi.Images.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MongoDB.Driver": "3.2.1"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Images.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Images.Domain.dll": {}
+        }
+      },
+      "Shopi.Images.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "14.0.0",
+          "MongoDB.Driver": "3.2.1",
+          "Shopi.Images.Application": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Images.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Images.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -4665,6 +4711,21 @@
       "type": "project",
       "path": "../Shopi.Core/Shopi.Core.csproj",
       "msbuildProject": "../Shopi.Core/Shopi.Core.csproj"
+    },
+    "Shopi.Images.Application/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Images.Application/Shopi.Images.Application.csproj",
+      "msbuildProject": "../Shopi.Images.Application/Shopi.Images.Application.csproj"
+    },
+    "Shopi.Images.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Images.Domain/Shopi.Images.Domain.csproj",
+      "msbuildProject": "../Shopi.Images.Domain/Shopi.Images.Domain.csproj"
+    },
+    "Shopi.Images.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Images.Infrastructure/Shopi.Images.Infrastructure.csproj",
+      "msbuildProject": "../Shopi.Images.Infrastructure/Shopi.Images.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4677,6 +4738,9 @@
       "MongoDB.Driver >= 3.2.1",
       "Newtonsoft.Json >= 13.0.3",
       "Shopi.Core >= 1.0.0",
+      "Shopi.Images.Application >= 1.0.0",
+      "Shopi.Images.Domain >= 1.0.0",
+      "Shopi.Images.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -4707,6 +4771,15 @@
           "projectReferences": {
             "D:\\studies\\csharp\\Shopi\\Shopi.Core\\Shopi.Core.csproj": {
               "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Core\\Shopi.Core.csproj"
+            },
+            "D:\\studies\\csharp\\Shopi\\Shopi.Images.Application\\Shopi.Images.Application.csproj": {
+              "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Images.Application\\Shopi.Images.Application.csproj"
+            },
+            "D:\\studies\\csharp\\Shopi\\Shopi.Images.Domain\\Shopi.Images.Domain.csproj": {
+              "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Images.Domain\\Shopi.Images.Domain.csproj"
+            },
+            "D:\\studies\\csharp\\Shopi\\Shopi.Images.Infrastructure\\Shopi.Images.Infrastructure.csproj": {
+              "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Images.Infrastructure\\Shopi.Images.Infrastructure.csproj"
             }
           }
         }

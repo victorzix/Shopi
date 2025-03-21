@@ -1306,12 +1306,6 @@
         }
       },
       "Shopi.Product.Domain/1.0.0": {
-        "dependencies": {
-          "Dapper": "2.1.66",
-          "Microsoft.EntityFrameworkCore": "9.0.2",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
-          "Swashbuckle.AspNetCore": "6.6.2"
-        },
         "runtime": {
           "Shopi.Product.Domain.dll": {
             "assemblyVersion": "1.0.0",
@@ -1322,6 +1316,7 @@
       "Shopi.Product.Infrastructure/1.0.0": {
         "dependencies": {
           "AutoMapper": "14.0.0",
+          "Dapper": "2.1.66",
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",

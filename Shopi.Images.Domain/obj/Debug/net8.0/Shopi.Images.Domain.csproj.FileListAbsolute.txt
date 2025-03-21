@@ -1,0 +1,13 @@
+D:\studies\csharp\Shopi\Shopi.Images.Domain\bin\Debug\net8.0\Shopi.Images.Domain.deps.json
+D:\studies\csharp\Shopi\Shopi.Images.Domain\bin\Debug\net8.0\Shopi.Images.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Images.Domain\bin\Debug\net8.0\Shopi.Images.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.AssemblyInfoInputs.cache
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.AssemblyInfo.cs
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.csproj.CoreCompileInputs.cache
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.sourcelink.json
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\refint\Shopi.Images.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\ref\Shopi.Images.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Images.Domain\obj\Debug\net8.0\Shopi.Images.Domain.csproj.AssemblyReference.cache

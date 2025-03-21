@@ -2,12 +2,14 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Customer.API.Commands;
-using Shopi.Customer.API.DTOs;
-using Shopi.Customer.API.Interfaces;
-using Shopi.Customer.API.Models;
-using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Validators;
+using Shopi.Customer.Application.Commands;
+using Shopi.Customer.Application.DTOs;
+using Shopi.Customer.Application.Queries;
+using Shopi.Customer.Domain.Entities;
+using Shopi.Customer.Domain.Interfaces;
+using Shopi.Customer.Domain.Queries;
+
 
 namespace Shopi.Customer.API.CommandHandlers;
 
@@ -36,8 +38,10 @@ public class CreateAddressCommandHandler : IRequestHandler<CreateAddressCommand,
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest,
                 validate.Errors.Select(e => e.ErrorMessage));
         }
+
+        var query = _mapper.Map<QueryCustomer>(new FilterCustomerQuery() { Id = request.CustomerId });
         
-        var customer = await _customerRepository.FilterClient(new FilterCustomerQuery { Id = request.CustomerId });
+        var customer = await _customerRepository.FilterClient(query);
 
         request.CustomerId = customer.Id;
         

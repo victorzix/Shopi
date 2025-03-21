@@ -1,0 +1,12 @@
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\bin\Debug\net8.0\Shopi.Identity.Domain.deps.json
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\bin\Debug\net8.0\Shopi.Identity.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\bin\Debug\net8.0\Shopi.Identity.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.AssemblyInfoInputs.cache
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.AssemblyInfo.cs
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.csproj.CoreCompileInputs.cache
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.sourcelink.json
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\refint\Shopi.Identity.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\Shopi.Identity.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Identity.Domain\obj\Debug\net8.0\ref\Shopi.Identity.Domain.dll

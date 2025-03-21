@@ -1,6 +1,7 @@
-﻿using Shopi.Images.API.Interfaces;
-using Shopi.Images.API.Repositories;
+﻿using Shopi.Images.Domain.Interfaces;
+using Shopi.Images.Infrastructure.Repositories;
 using Shopi.Images.API.Services;
+using Shopi.Images.Application.Interfaces;
 
 namespace Shopi.Images.API.Configs;
 

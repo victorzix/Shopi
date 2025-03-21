@@ -1,13 +1,7 @@
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
-using Shopi.Images.API.Commands;
-using Shopi.Images.API.Data;
-using Shopi.Images.API.DTOs;
-using Shopi.Images.API.Models;
-using Shopi.Images.API.Queries;
-using Shopi.Images.API.Services;
+using Shopi.Images.Application.Commands;
+using Shopi.Images.Application.Queries;
 
 namespace Shopi.Images.API.Controllers;
 

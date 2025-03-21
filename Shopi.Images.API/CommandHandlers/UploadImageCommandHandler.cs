@@ -4,11 +4,12 @@ using FluentValidation;
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Images.API.Commands;
-using Shopi.Images.API.DTOs;
-using Shopi.Images.API.Interfaces;
-using Shopi.Images.API.Models;
-using Shopi.Images.API.Validators;
+using Shopi.Images.Application.Commands;
+using Shopi.Images.Application.DTOs;
+using Shopi.Images.Application.Interfaces;
+using Shopi.Images.Domain.Interfaces;
+using Shopi.Images.Domain.Entities;
+using Shopi.Images.Application.Validators;
 
 namespace Shopi.Images.API.CommandHandlers;
 

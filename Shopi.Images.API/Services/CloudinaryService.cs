@@ -2,8 +2,8 @@
 using CloudinaryDotNet.Actions;
 using Newtonsoft.Json;
 using Shopi.Core.Exceptions;
-using Shopi.Images.API.DTOs;
-using Shopi.Images.API.Interfaces;
+using Shopi.Images.Application.DTOs;
+using Shopi.Images.Application.Interfaces;
 
 namespace Shopi.Images.API.Services;
 

@@ -3,11 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Services;
 using Shopi.Customer.API.Configs;
-using Shopi.Customer.API.Data;
-using Shopi.Customer.API.Interfaces;
-using Shopi.Customer.API.Mappers;
+using Shopi.Customer.Infrastructure.Data;
+using Shopi.Customer.Infrastructure.Mappers;
 using Shopi.Customer.API.Middlewares;
-using Shopi.Customer.API.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

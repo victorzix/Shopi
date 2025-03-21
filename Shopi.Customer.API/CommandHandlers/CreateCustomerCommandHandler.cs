@@ -2,12 +2,13 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Customer.API.Commands;
-using Shopi.Customer.API.DTOs;
-using Shopi.Customer.API.Interfaces;
-using Shopi.Customer.API.Models;
-using Shopi.Customer.API.Queries;
 using Shopi.Customer.API.Validators;
+using Shopi.Customer.Application.Commands;
+using Shopi.Customer.Application.DTOs;
+using Shopi.Customer.Application.Queries;
+using Shopi.Customer.Domain.Entities;
+using Shopi.Customer.Domain.Interfaces;
+using Shopi.Customer.Domain.Queries;
 
 namespace Shopi.Customer.API.CommandHandlers;
 
@@ -47,7 +48,7 @@ public class
 
     private async Task CheckEmailAndDocument(CreateCustomerCommand request)
     {
-        var emailInUse = await _readRepository.FilterClient(new FilterCustomerQuery(
+        var emailInUse = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(
             request.Email,
             null, null));
 
@@ -56,7 +57,7 @@ public class
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já em uso");
         }
 
-        var documentInUse = await _readRepository.FilterClient(new FilterCustomerQuery(
+        var documentInUse = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(
             null,
             request.Document,
             null));

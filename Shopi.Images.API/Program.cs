@@ -3,8 +3,8 @@ using Shopi.Core.Exceptions;
 using Shopi.Core.Interfaces;
 using Shopi.Core.Services;
 using Shopi.Images.API.Configs;
-using Shopi.Images.API.Data;
-using Shopi.Images.API.Mappers;
+using Shopi.Images.Infrastructure.Data;
+using Shopi.Images.Infrastructure.Mappers;
 using Shopi.Images.API.Middlewares;
 using Shopi.Images.API.Services;
 

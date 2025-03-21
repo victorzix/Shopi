@@ -3,9 +3,9 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shopi.Customer.API.Commands;
-using Shopi.Customer.API.DTOs;
-using Shopi.Customer.API.Queries;
+using Shopi.Customer.Application.Commands;
+using Shopi.Customer.Application.DTOs;
+using Shopi.Customer.Application.Queries;
 
 namespace Shopi.Customer.API.Controllers;
 

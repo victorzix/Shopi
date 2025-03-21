@@ -1324,6 +1324,53 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Shopi.Customer.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "FluentValidation": "11.11.0",
+          "MediatR": "12.4.1",
+          "Shopi.Core": "1.0.0",
+          "Shopi.Customer.Domain": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Customer.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Customer.Application.dll": {}
+        }
+      },
+      "Shopi.Customer.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Shopi.Customer.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Customer.Domain.dll": {}
+        }
+      },
+      "Shopi.Customer.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "14.0.0",
+          "Dapper": "2.1.66",
+          "Microsoft.EntityFrameworkCore": "9.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
+          "Shopi.Customer.Application": "1.0.0",
+          "Shopi.Customer.Domain": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.6.2"
+        },
+        "compile": {
+          "bin/placeholder/Shopi.Customer.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shopi.Customer.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -3971,6 +4018,21 @@
       "type": "project",
       "path": "../Shopi.Core/Shopi.Core.csproj",
       "msbuildProject": "../Shopi.Core/Shopi.Core.csproj"
+    },
+    "Shopi.Customer.Application/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Customer.Application/Shopi.Customer.Application.csproj",
+      "msbuildProject": "../Shopi.Customer.Application/Shopi.Customer.Application.csproj"
+    },
+    "Shopi.Customer.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Customer.Domain/Shopi.Customer.Domain.csproj",
+      "msbuildProject": "../Shopi.Customer.Domain/Shopi.Customer.Domain.csproj"
+    },
+    "Shopi.Customer.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Shopi.Customer.Infrastructure/Shopi.Customer.Infrastructure.csproj",
+      "msbuildProject": "../Shopi.Customer.Infrastructure/Shopi.Customer.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3988,6 +4050,8 @@
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3",
       "RabbitMQ.Client >= 7.0.0",
       "Shopi.Core >= 1.0.0",
+      "Shopi.Customer.Application >= 1.0.0",
+      "Shopi.Customer.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -4018,6 +4082,12 @@
           "projectReferences": {
             "D:\\studies\\csharp\\Shopi\\Shopi.Core\\Shopi.Core.csproj": {
               "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Core\\Shopi.Core.csproj"
+            },
+            "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Application\\Shopi.Customer.Application.csproj": {
+              "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Application\\Shopi.Customer.Application.csproj"
+            },
+            "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Infrastructure\\Shopi.Customer.Infrastructure.csproj": {
+              "projectPath": "D:\\studies\\csharp\\Shopi\\Shopi.Customer.Infrastructure\\Shopi.Customer.Infrastructure.csproj"
             }
           }
         }

@@ -1,0 +1,15 @@
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\bin\Debug\net8.0\Shopi.Admin.Domain.deps.json
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\bin\Debug\net8.0\Shopi.Admin.Domain.runtimeconfig.json
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\bin\Debug\net8.0\Shopi.Admin.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\bin\Debug\net8.0\Shopi.Admin.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.csproj.AssemblyReference.cache
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.AssemblyInfoInputs.cache
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.AssemblyInfo.cs
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.csproj.CoreCompileInputs.cache
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.sourcelink.json
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\refint\Shopi.Admin.Domain.dll
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\Shopi.Admin.Domain.genruntimeconfig.cache
+D:\studies\csharp\Shopi\Shopi.Admin.Domain\obj\Debug\net8.0\ref\Shopi.Admin.Domain.dll
