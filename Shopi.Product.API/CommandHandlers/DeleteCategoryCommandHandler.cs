@@ -6,7 +6,7 @@ using Shopi.Product.Domain.Queries;
 
 namespace Shopi.Product.API.CommandHandlers;
 
-public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
+public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCommand>
 {
     private ICategoryReadRepository _readRepository;
     private ICategoryWriteRepository _writeRepository;
@@ -17,7 +17,7 @@ public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComman
         _writeRepository = writeRepository;
     }
 
-    public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
         var category = await _readRepository.Get(request.Id);
         if (category == null)

@@ -35,9 +35,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj" />
-      <ProjectReference Include="..\Shopi.Product.Application\Shopi.Product.Application.csproj" />
-      <ProjectReference Include="..\Shopi.Product.Infrastructure\Shopi.Product.Infrastructure.csproj" />
+        <ProjectReference Include="..\Shopi.Core\Shopi.Core.csproj"/>
+        <ProjectReference Include="..\Shopi.Product.Application\Shopi.Product.Application.csproj"/>
+        <ProjectReference Include="..\Shopi.Product.Infrastructure\Shopi.Product.Infrastructure.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="Shopi.Product.Tests.Integration"/>
+    </ItemGroup>
 </Project>

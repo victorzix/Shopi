@@ -15,6 +15,8 @@ D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Tests.Unit.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Tests.Unit.pdb
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\AutoMapper.dll
+D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Bogus.dll
+D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Castle.Core.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Dapper.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\FluentValidation.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\MediatR.dll
@@ -40,6 +42,7 @@ D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Microsoft.Test
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Microsoft.TestPlatform.CrossPlatEngine.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Microsoft.TestPlatform.Utilities.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.Common.dll
+D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Moq.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Npgsql.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
@@ -121,10 +124,10 @@ D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Core.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Application.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Domain.dll
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Infrastructure.dll
-D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Application.pdb
-D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Domain.pdb
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Infrastructure.pdb
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Core.pdb
+D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Application.pdb
+D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Shopi.Product.Domain.pdb
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\Shopi.Product.Tests.Unit.csproj.AssemblyReference.cache
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\Shopi.Product.Tests.Unit.GeneratedMSBuildEditorConfig.editorconfig
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\Shopi.Product.Tests.Unit.AssemblyInfoInputs.cache
@@ -137,3 +140,4 @@ D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\refint\Shopi.P
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\Shopi.Product.Tests.Unit.pdb
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\Shopi.Product.Tests.Unit.genruntimeconfig.cache
 D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\obj\Debug\net8.0\ref\Shopi.Product.Tests.Unit.dll
+D:\studies\csharp\Shopi\Shopi.Product.Tests.Unit\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3BS6c1rCmoUN5JBvvej7yA/W/joVQfkKVrBlsVzfEtY=",
+  "Hash": "B0vjynXZupnuYTGMQQCs3wg5+3IaE65TuUq7EfcyIqI=",
   "Source": "Shopi.Customer.API",
   "BasePath": "_content/Shopi.Customer.API",
   "Mode": "Default",
@@ -11,10 +11,10 @@
       "Version": 2,
       "Source": "Shopi.Core",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishProperties": "",
       "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildProperties": "",
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
     }
   ],

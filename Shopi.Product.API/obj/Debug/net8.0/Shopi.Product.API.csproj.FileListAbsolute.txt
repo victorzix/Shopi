@@ -162,3 +162,4 @@ D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Infrast
 D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Application.pdb
 D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Infrastructure.pdb
 D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Shopi.Product.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Product.API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll

@@ -37,9 +37,12 @@ public class ProductWriteRepository : IProductWriteRepository
             );
     }
 
-    public async Task Delete(AppProduct appProduct)
+    public async Task Deactivate(AppProduct appProduct)
     {
-        _dbContext.AppProducts.Remove(appProduct);
+        _dbContext.AppProducts
+            .Where(p => p.Id == appProduct.Id)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(p => p.IsActive, false));
         await _dbContext.SaveChangesAsync();
     }
 }

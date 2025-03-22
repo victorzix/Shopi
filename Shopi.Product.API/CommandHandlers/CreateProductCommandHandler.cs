@@ -3,7 +3,7 @@ using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
 using Shopi.Product.Application.Commands;
-using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.DTOs.Responses;
 using Shopi.Product.Application.Validators;
 using Shopi.Product.Domain.Entities;
 using Shopi.Product.Domain.Interfaces;

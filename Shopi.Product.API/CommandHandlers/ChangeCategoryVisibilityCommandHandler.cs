@@ -9,8 +9,7 @@ using Shopi.Product.Domain.Interfaces;
 namespace Shopi.Product.API.CommandHandlers;
 
 public class
-    ChangeCategoryVisibilityCommandHandler : IRequestHandler<ChangeVisibilityCommand,
-    ApiResponses<CreateCategoryResponseDto>>
+    ChangeCategoryVisibilityCommandHandler : IRequestHandler<ChangeVisibilityCommand>
 {
     private readonly ICategoryReadRepository _readRepository;
     private readonly ICategoryWriteRepository _writeRepository;
@@ -24,7 +23,7 @@ public class
         _mapper = mapper;
     }
 
-    public async Task<ApiResponses<CreateCategoryResponseDto>> Handle(ChangeVisibilityCommand request,
+    public async Task Handle(ChangeVisibilityCommand request,
         CancellationToken cancellationToken)
     {
         var category = await _readRepository.Get(request.Id);
@@ -37,10 +36,6 @@ public class
         await _writeRepository.ChangeVisibility(category);
 
         category.Visible = !category.Visible;
-        return new ApiResponses<CreateCategoryResponseDto>
-        {
-            Data = _mapper.Map<CreateCategoryResponseDto>(category),
-            Success = true
-        };
+        return;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shopi.Core.Utils;
-using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.DTOs.Responses;
 using Shopi.Product.Application.Queries;
 using Shopi.Product.Domain.Interfaces;
 using Shopi.Product.Domain.Queries;

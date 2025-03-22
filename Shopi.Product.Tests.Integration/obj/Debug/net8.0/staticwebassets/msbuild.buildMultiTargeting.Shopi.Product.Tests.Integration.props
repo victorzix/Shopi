@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Shopi.Product.Tests.Integration.props" />
+</Project>

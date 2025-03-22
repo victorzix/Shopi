@@ -4,7 +4,7 @@ using Shopi.Product.Application.DTOs;
 
 namespace Shopi.Product.Application.Commands;
 
-public class ChangeVisibilityCommand : IRequest<ApiResponses<CreateCategoryResponseDto>>
+public class ChangeVisibilityCommand : IRequest
 {
     public Guid Id { get; set; }
 

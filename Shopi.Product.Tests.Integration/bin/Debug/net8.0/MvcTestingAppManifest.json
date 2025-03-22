@@ -1,0 +1,7 @@
+{
+  "Shopi.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\studies\\csharp\\Shopi\\Shopi.Core",
+  "Shopi.Product.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\studies\\csharp\\Shopi\\Shopi.Product.API",
+  "Shopi.Product.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\studies\\csharp\\Shopi\\Shopi.Product.Application",
+  "Shopi.Product.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\studies\\csharp\\Shopi\\Shopi.Product.Domain",
+  "Shopi.Product.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\studies\\csharp\\Shopi\\Shopi.Product.Infrastructure"
+}
