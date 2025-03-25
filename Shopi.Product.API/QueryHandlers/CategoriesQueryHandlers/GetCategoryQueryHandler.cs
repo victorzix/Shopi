@@ -3,12 +3,12 @@ using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
 using Shopi.Product.Application.DTOs.Responses;
-using Shopi.Product.Application.Queries;
+using Shopi.Product.Application.Queries.CategoriesQueries;
 using Shopi.Product.Domain.Interfaces;
 
-namespace Shopi.Product.API.QueryHandlers;
+namespace Shopi.Product.API.QueryHandlers.CategoriesQueryHandlers;
 
-public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, ApiResponses<CreateCategoryResponseDto>>
+public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, ApiResponses<CategoryResponseDto>>
 {
     private ICategoryReadRepository _readRepository;
     private IMapper _mapper;
@@ -19,7 +19,7 @@ public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, ApiResp
         _mapper = mapper;
     }
 
-    public async Task<ApiResponses<CreateCategoryResponseDto>> Handle(GetCategoryQuery request,
+    public async Task<ApiResponses<CategoryResponseDto>> Handle(GetCategoryQuery request,
         CancellationToken cancellationToken)
     {
         var category = await _readRepository.Get(request.Id);
@@ -29,9 +29,9 @@ public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, ApiResp
                 "Categoria não encontrada");
         }
 
-        return new ApiResponses<CreateCategoryResponseDto>
+        return new ApiResponses<CategoryResponseDto>
         {
-            Data = _mapper.Map<CreateCategoryResponseDto>(category),
+            Data = _mapper.Map<CategoryResponseDto>(category),
             Success = true,
         };
     }

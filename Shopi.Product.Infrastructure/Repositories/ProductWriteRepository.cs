@@ -42,7 +42,8 @@ public class ProductWriteRepository : IProductWriteRepository
         _dbContext.AppProducts
             .Where(p => p.Id == appProduct.Id)
             .ExecuteUpdateAsync(setters =>
-                setters.SetProperty(p => p.IsActive, false));
+                setters.SetProperty(p => p.IsActive, false).SetProperty(p => p.Visible, false)
+            );
         await _dbContext.SaveChangesAsync();
     }
 }

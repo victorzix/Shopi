@@ -9,4 +9,4 @@ public class CreateProductDto
     public string Description { get; set; }
     public string Manufacturer { get; set; }
     public List<Guid>? CategoriesIds { get; set; }
-}
+}           

@@ -34,25 +34,26 @@ public class ProductReadRepository : IProductReadRepository
     {
         const string sql = """
                                    SELECT *
-                                   FROM AppProducts p
-                                   LEFT JOIN AppProductCategories pc ON p.Id = pc.ProductId
-                                   LEFT JOIN Reviews r ON p.Id = r.AppProductId
+                                   FROM "AppProducts" p
+                                   LEFT JOIN "AppProductCategories" pc ON p."Id" = pc."ProductId"
+                                   LEFT JOIN "Reviews" r ON p."Id" = r."AppProductId"
                                    WHERE 
-                                       (@CategoryIds IS NULL OR pc.CategoryId IN @CategoryIds)
-                                       AND (@Name IS NULL OR p.Name ILIKE '%' || @Name || '%')
-                                       AND (@Sku IS NULL OR p.Name ILIKE '%' || @Sku || '%')
-                                       AND (@MinPrice IS NULL OR p.Price >= @MinPrice)
-                                       AND (@MaxPrice IS NULL OR p.Price <= @MaxPrice)
-                                       AND (@Visible IS NULL OR p.Visible = @Visible)
-                                       AND (@Manufacturer IS NULL OR p.Manufacturer IN @Manufacturer)
-                                   GROUP BY p.Id
-                                   ORDER BY 
-                                       CASE WHEN @NameOrder = 'name asc' THEN p.Name END ASC,
-                                       CASE WHEN @NameOrder = 'name desc' THEN p.Name END DESC,
-                                       CASE WHEN @PriceOrder = 'price asc' THEN p.Price END ASC,
-                                       CASE WHEN @PriceOrder = 'price desc' THEN p.Price END DESC,
-                                       CASE WHEN @ReviewOrder = 'review asc' THEN COALESCE(AVG(r.Rating), 0) END ASC,
-                                       CASE WHEN @ReviewOrder = 'review desc' THEN COALESCE(AVG(r.Rating), 0) END DESC
+                                       (@CategoryIds IS NULL OR pc."CategoryId" IN @CategoryIds)
+                                       AND p."IsActive" = TRUE
+                                       AND (@Name IS NULL OR p."Name" ILIKE '%' || @Name || '%')
+                                       AND (@Sku IS NULL OR p."Name" ILIKE '%' || @Sku || '%')
+                                       AND (@MinPrice IS NULL OR p."Price" >= @MinPrice)
+                                       AND (@MaxPrice IS NULL OR p."Price" <= @MaxPrice)
+                                       AND (@Visible IS NULL OR p."Visible" = @Visible)
+                                       AND (@Manufacturer IS NULL OR p."Manufacturer" IN @Manufacturer)
+                                   GROUP BY p."Id"
+                                   ORDER BY
+                                       CASE WHEN @NameOrder = 'name asc' THEN p."Name" END ASC NULLS LAST,
+                                       CASE WHEN @NameOrder = 'name desc' THEN p."Name" END DESC NULLS LAST,
+                                       CASE WHEN @PriceOrder = 'price asc' THEN p."Price" END ASC NULLS LAST,
+                                       CASE WHEN @PriceOrder = 'price desc' THEN p."Price" END DESC NULLS LAST,
+                                       CASE WHEN @ReviewOrder = 'review asc' THEN COALESCE(AVG(r."Rating"), 0) END ASC NULLS LAST,
+                                       CASE WHEN @ReviewOrder = 'review desc' THEN COALESCE(AVG(r."Rating"), 0) END DESC NULLS LAST
                                 LIMIT @Limit OFFSET @Offset
                            """;
 
@@ -74,5 +75,50 @@ public class ProductReadRepository : IProductReadRepository
         };
 
         return (await _dbConnection.QueryAsync<AppProduct>(sql, parameters)).ToList();
+    }
+
+    public async Task<int> GetCount(ProductsQuery query)
+    {
+        const string sql = """
+                                   SELECT COUNT(*)
+                                   FROM "AppProducts" p
+                                   LEFT JOIN "AppProductCategories" pc ON p."Id" = pc."ProductId"
+                                   LEFT JOIN "Reviews" r ON p."Id" = r."AppProductId"
+                                   WHERE 
+                                       (@CategoryIds IS NULL OR pc."CategoryId" IN @CategoryIds)
+                                       AND p."IsActive" = TRUE
+                                       AND (@Name IS NULL OR p."Name" ILIKE '%' || @Name || '%')
+                                       AND (@Sku IS NULL OR p."Name" ILIKE '%' || @Sku || '%')
+                                       AND (@MinPrice IS NULL OR p."Price" >= @MinPrice)
+                                       AND (@MaxPrice IS NULL OR p."Price" <= @MaxPrice)
+                                       AND (@Visible IS NULL OR p."Visible" = @Visible)
+                                       AND (@Manufacturer IS NULL OR p."Manufacturer" IN @Manufacturer)
+                                   GROUP BY p."Id"
+                                   ORDER BY
+                                       CASE WHEN @NameOrder = 'name asc' THEN p."Name" END ASC NULLS LAST,
+                                       CASE WHEN @NameOrder = 'name desc' THEN p."Name" END DESC NULLS LAST,
+                                       CASE WHEN @PriceOrder = 'price asc' THEN p."Price" END ASC NULLS LAST,
+                                       CASE WHEN @PriceOrder = 'price desc' THEN p."Price" END DESC NULLS LAST,
+                                       CASE WHEN @ReviewOrder = 'review asc' THEN COALESCE(AVG(r."Rating"), 0) END ASC NULLS LAST,
+                                       CASE WHEN @ReviewOrder = 'review desc' THEN COALESCE(AVG(r."Rating"), 0) END DESC NULLS LAST
+                                LIMIT @Limit OFFSET @Offset
+                           """;
+        var parameters = new
+        {
+            CategoryIds = query.CategoryIds?.Count > 0 ? query.CategoryIds : null,
+            Name = string.IsNullOrWhiteSpace(query.Name) ? null : "%" + query.Name + "%",
+            Sku = string.IsNullOrWhiteSpace(query.Sku) ? null : query.Sku + "%",
+            MinPrice = query.MinPrice,
+            MaxPrice = query.MaxPrice,
+            Visible = query.Visible,
+            Manufacturer = string.IsNullOrEmpty(query.Manufacturer) ? null : query.Manufacturer,
+            NameOrder = query.NameOrder,
+            PriceOrder = query.PriceOrder,
+            ReviewOrder = query.ReviewOrder,
+            Limit = query.Limit,
+            Offset = query.Offset
+        };
+
+        return (await _dbConnection.QuerySingleAsync<int>(sql, parameters));
     }
 }

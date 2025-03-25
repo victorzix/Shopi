@@ -2,7 +2,7 @@
 using Shopi.Core.Utils;
 using Shopi.Product.Application.DTOs.Responses;
 
-namespace Shopi.Product.Application.Queries;
+namespace Shopi.Product.Application.Queries.CategoriesQueries;
 
 public class FilterCategoriesQuery : IRequest<ApiResponses<FilterCategoriesResponseDto>>
 {

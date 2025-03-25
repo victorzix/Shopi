@@ -2,16 +2,16 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.CategoriesCommands;
 using Shopi.Product.Application.DTOs.Responses;
 using Shopi.Product.Application.Validators;
 using Shopi.Product.Domain.Entities;
 using Shopi.Product.Domain.Interfaces;
 
-namespace Shopi.Product.API.CommandHandlers;
+namespace Shopi.Product.API.CommandHandlers.CategoriesCommandHandllers;
 
 public class
-    CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, ApiResponses<CreateCategoryResponseDto>>
+    CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, ApiResponses<CategoryResponseDto>>
 {
     private readonly ICategoryReadRepository _readRepository;
     private readonly ICategoryWriteRepository _writeRepository;
@@ -25,7 +25,7 @@ public class
         _mapper = mapper;
     }
 
-    public async Task<ApiResponses<CreateCategoryResponseDto>> Handle(CreateCategoryCommand request,
+    public async Task<ApiResponses<CategoryResponseDto>> Handle(CreateCategoryCommand request,
         CancellationToken cancellationToken)
     {
         var validator = new CreateCategoryCommandValidator();
@@ -49,9 +49,9 @@ public class
 
         var category = await _writeRepository.Create(_mapper.Map<Category>(request));
 
-        return new ApiResponses<CreateCategoryResponseDto>
+        return new ApiResponses<CategoryResponseDto>
         {
-            Data = _mapper.Map<CreateCategoryResponseDto>(category),
+            Data = _mapper.Map<CategoryResponseDto>(category),
             Success = true,
         };
     }

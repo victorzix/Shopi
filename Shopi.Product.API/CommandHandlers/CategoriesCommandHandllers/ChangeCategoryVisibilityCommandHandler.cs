@@ -1,29 +1,25 @@
 ﻿using AutoMapper;
 using MediatR;
 using Shopi.Core.Exceptions;
-using Shopi.Core.Utils;
-using Shopi.Product.Application.Commands;
-using Shopi.Product.Application.DTOs;
+using Shopi.Product.Application.Commands.CategoriesCommands;
 using Shopi.Product.Domain.Interfaces;
 
-namespace Shopi.Product.API.CommandHandlers;
+namespace Shopi.Product.API.CommandHandlers.CategoriesCommandHandllers;
 
 public class
-    ChangeCategoryVisibilityCommandHandler : IRequestHandler<ChangeVisibilityCommand>
+    ChangeCategoryVisibilityCommandHandler : IRequestHandler<ChangeCategoryVisibilityCommand>
 {
     private readonly ICategoryReadRepository _readRepository;
     private readonly ICategoryWriteRepository _writeRepository;
-    private readonly IMapper _mapper;
 
     public ChangeCategoryVisibilityCommandHandler(ICategoryReadRepository readRepository,
-        ICategoryWriteRepository writeRepository, IMapper mapper)
+        ICategoryWriteRepository writeRepository)
     {
         _readRepository = readRepository;
         _writeRepository = writeRepository;
-        _mapper = mapper;
     }
 
-    public async Task Handle(ChangeVisibilityCommand request,
+    public async Task Handle(ChangeCategoryVisibilityCommand request,
         CancellationToken cancellationToken)
     {
         var category = await _readRepository.Get(request.Id);
@@ -36,6 +32,5 @@ public class
         await _writeRepository.ChangeVisibility(category);
 
         category.Visible = !category.Visible;
-        return;
     }
 }

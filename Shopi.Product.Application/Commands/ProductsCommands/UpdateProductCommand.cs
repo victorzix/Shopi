@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Shopi.Core.Utils;
-using Shopi.Product.Domain.Entities;
+using Shopi.Product.Application.DTOs.Responses;
 
-namespace Shopi.Product.Application.Commands;
+namespace Shopi.Product.Application.Commands.ProductsCommands;
 
-public class UpdateProductCommand : IRequest<ApiResponses<AppProduct>>
+public class UpdateProductCommand : IRequest<ApiResponses<ProductResponseDto>>
 {
     public Guid Id { get; set; }
     public string? Name { get; set; }

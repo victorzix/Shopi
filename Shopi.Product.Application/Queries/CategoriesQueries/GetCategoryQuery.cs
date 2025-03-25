@@ -2,9 +2,9 @@
 using Shopi.Core.Utils;
 using Shopi.Product.Application.DTOs.Responses;
 
-namespace Shopi.Product.Application.Queries;
+namespace Shopi.Product.Application.Queries.CategoriesQueries;
 
-public class GetCategoryQuery : IRequest<ApiResponses<CreateCategoryResponseDto>>
+public class GetCategoryQuery : IRequest<ApiResponses<CategoryResponseDto>>
 {
     public Guid Id { get; set; }
 

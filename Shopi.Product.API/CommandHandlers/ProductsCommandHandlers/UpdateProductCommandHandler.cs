@@ -2,14 +2,15 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.ProductsCommands;
+using Shopi.Product.Application.DTOs.Responses;
 using Shopi.Product.Application.Validators;
 using Shopi.Product.Domain.Entities;
 using Shopi.Product.Domain.Interfaces;
 
-namespace Shopi.Product.API.CommandHandlers;
+namespace Shopi.Product.API.CommandHandlers.ProductsCommandHandlers;
 
-public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, ApiResponses<AppProduct>>
+public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, ApiResponses<ProductResponseDto>>
 {
     private readonly IProductReadRepository _readRepository;
     private readonly IProductWriteRepository _writeRepository;
@@ -23,7 +24,7 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
         _mapper = mapper;
     }
 
-    public async Task<ApiResponses<AppProduct>> Handle(UpdateProductCommand request,
+    public async Task<ApiResponses<ProductResponseDto>> Handle(UpdateProductCommand request,
         CancellationToken cancellationToken)
     {
         var product = await _readRepository.Get(request.Id);
@@ -42,9 +43,9 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
         
         var updatedProduct = await _writeRepository.Update(_mapper.Map(request, product));
 
-        return new ApiResponses<AppProduct>
+        return new ApiResponses<ProductResponseDto>
         {
-            Data = updatedProduct,
+            Data = _mapper.Map<ProductResponseDto>(updatedProduct),
             Success = true
         };
     }

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.CategoriesCommands;
 using Shopi.Product.Application.DTOs.Requests;
-using Shopi.Product.Application.Queries;
+using Shopi.Product.Application.Queries.CategoriesQueries;
 
 
 namespace Shopi.Product.API.Controllers;
@@ -27,7 +27,7 @@ public class CategoryController : ControllerBase
         var category = await _mediator.Send(new GetCategoryQuery(id));
         return Ok(category.Data);
     }
-    
+
     [HttpGet("filter")]
     public async Task<IActionResult> FilterCategories([FromQuery] FilterCategoriesDto query)
     {
@@ -54,14 +54,14 @@ public class CategoryController : ControllerBase
     [HttpPatch("change-visibility/{id}")]
     public async Task<IActionResult> ChangeCategoryVisibility(Guid id)
     {
-        await _mediator.Send(new ChangeVisibilityCommand(id));
+        await _mediator.Send(new ChangeCategoryVisibilityCommand { Id = id });
         return NoContent();
     }
 
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteCategory(Guid id)
     {
-        await _mediator.Send(new DeleteCommand(id));
+        await _mediator.Send(new DeleteCategoryCommand { Id = id });
         return NoContent();
     }
 }

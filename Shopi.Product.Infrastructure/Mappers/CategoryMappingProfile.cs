@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.CategoriesCommands;
 using Shopi.Product.Application.DTOs.Requests;
 using Shopi.Product.Application.DTOs.Responses;
-using Shopi.Product.Application.Queries;
+using Shopi.Product.Application.Queries.CategoriesQueries;
 using Shopi.Product.Domain.Entities;
 using Shopi.Product.Domain.Queries;
 
@@ -18,7 +18,7 @@ public class CategoryMappingProfile : Profile
             d.Visible = true;
         });
         CreateMap<CreateCategoryDto, CreateCategoryCommand>();
-        CreateMap<Category, CreateCategoryResponseDto>();
+        CreateMap<Category, CategoryResponseDto>();
 
         CreateMap<UpdateCategoryCommand, Category>().ForMember(dest =>
             dest.Id, opt => opt.Ignore()).ForAllMembers(

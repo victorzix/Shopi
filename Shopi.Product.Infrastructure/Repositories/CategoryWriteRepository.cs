@@ -45,7 +45,7 @@ public class CategoryWriteRepository : ICategoryWriteRepository
         await _dbContext.Categories
             .Where(c => c.Id == category.Id || c.ParentId == category.Id)
             .ExecuteUpdateAsync(setters =>
-                setters.SetProperty(c => c.IsActive, false));
+                setters.SetProperty(c => c.IsActive, false).SetProperty(c => c.Visible, false));
 
         await transaction.CommitAsync();
     }

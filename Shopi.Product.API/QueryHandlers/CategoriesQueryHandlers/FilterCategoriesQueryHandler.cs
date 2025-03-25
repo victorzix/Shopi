@@ -2,11 +2,11 @@
 using MediatR;
 using Shopi.Core.Utils;
 using Shopi.Product.Application.DTOs.Responses;
-using Shopi.Product.Application.Queries;
+using Shopi.Product.Application.Queries.CategoriesQueries;
 using Shopi.Product.Domain.Interfaces;
 using Shopi.Product.Domain.Queries;
 
-namespace Shopi.Product.API.QueryHandlers;
+namespace Shopi.Product.API.QueryHandlers.CategoriesQueryHandlers;
 
 public class
     FilterCategoriesQueryHandler : IRequestHandler<FilterCategoriesQuery, ApiResponses<FilterCategoriesResponseDto>>

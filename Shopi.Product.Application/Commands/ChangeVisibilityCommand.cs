@@ -8,6 +8,10 @@ public class ChangeVisibilityCommand : IRequest
 {
     public Guid Id { get; set; }
 
+    public ChangeVisibilityCommand()
+    {
+    }
+
     public ChangeVisibilityCommand(Guid id)
     {
         Id = id;

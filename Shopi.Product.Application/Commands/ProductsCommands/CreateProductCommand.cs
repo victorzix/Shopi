@@ -2,9 +2,9 @@
 using Shopi.Core.Utils;
 using Shopi.Product.Application.DTOs.Responses;
 
-namespace Shopi.Product.Application.Commands;
+namespace Shopi.Product.Application.Commands.ProductsCommands;
 
-public class CreateProductCommand : IRequest<ApiResponses<CreateProductResponseDto>>
+public class CreateProductCommand : IRequest<ApiResponses<ProductResponseDto>>
 {
     public string Name { get; set; }
     public string? Sku { get; set; }

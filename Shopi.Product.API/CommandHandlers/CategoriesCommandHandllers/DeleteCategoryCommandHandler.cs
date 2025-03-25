@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Shopi.Core.Exceptions;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.CategoriesCommands;
 using Shopi.Product.Domain.Interfaces;
 using Shopi.Product.Domain.Queries;
 
-namespace Shopi.Product.API.CommandHandlers;
+namespace Shopi.Product.API.CommandHandlers.CategoriesCommandHandllers;
 
-public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCommand>
+public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
 {
     private ICategoryReadRepository _readRepository;
     private ICategoryWriteRepository _writeRepository;
@@ -17,7 +17,7 @@ public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCommand>
         _writeRepository = writeRepository;
     }
 
-    public async Task Handle(DeleteCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
         var category = await _readRepository.Get(request.Id);
         if (category == null)

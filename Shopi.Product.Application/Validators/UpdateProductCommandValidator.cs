@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.ProductsCommands;
 
 namespace Shopi.Product.Application.Validators;
 

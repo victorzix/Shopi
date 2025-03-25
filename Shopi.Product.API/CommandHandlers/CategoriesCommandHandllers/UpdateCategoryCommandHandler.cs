@@ -2,15 +2,15 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.CategoriesCommands;
 using Shopi.Product.Application.DTOs.Responses;
 using Shopi.Product.Domain.Interfaces;
 
 
-namespace Shopi.Product.API.CommandHandlers;
+namespace Shopi.Product.API.CommandHandlers.CategoriesCommandHandllers;
 
 public class
-    UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, ApiResponses<CreateCategoryResponseDto>>
+    UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, ApiResponses<CategoryResponseDto>>
 {
     private readonly ICategoryReadRepository _readRepository;
     private readonly ICategoryWriteRepository _writeRepository;
@@ -24,7 +24,7 @@ public class
         _mapper = mapper;
     }
 
-    public async Task<ApiResponses<CreateCategoryResponseDto>> Handle(UpdateCategoryCommand request,
+    public async Task<ApiResponses<CategoryResponseDto>> Handle(UpdateCategoryCommand request,
         CancellationToken cancellationToken)
     {
         var categoryToUpdate = await _readRepository.Get(request.Id);
@@ -48,9 +48,9 @@ public class
 
         var category = await _writeRepository.Update(_mapper.Map(request, categoryToUpdate));
 
-        return new ApiResponses<CreateCategoryResponseDto>
+        return new ApiResponses<CategoryResponseDto>
         {
-            Data = _mapper.Map<CreateCategoryResponseDto>(category),
+            Data = _mapper.Map<CategoryResponseDto>(category),
             Success = true,
         };
     }

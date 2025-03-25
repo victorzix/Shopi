@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.ProductsCommands;
 using Shopi.Product.Application.DTOs.Requests;
 using Shopi.Product.Application.DTOs.Responses;
-using Shopi.Product.Application.Queries;
+using Shopi.Product.Application.Queries.ProductsQueries;
 using Shopi.Product.Domain.Entities;
 using Shopi.Product.Domain.Queries;
 
@@ -20,13 +20,14 @@ public class ProductMappingProfile : Profile
 
         CreateMap<AppProduct, CreateProductCommand>();
 
-        CreateMap<AppProduct, CreateProductResponseDto>();
+        CreateMap<AppProduct, ProductResponseDto>();
+        
+        CreateMap<FilterProductsDto, FilterProductsQuery>();
 
         CreateMap<FilterProductsQuery, ProductsQuery>();
         CreateMap<UpdateProductDto, UpdateProductCommand>().ForAllMembers(
             o =>
                 o.Condition((src, dest, value) => value != null));
-        
 
         CreateMap<UpdateProductCommand, AppProduct>().ForMember(dest =>
             dest.Id, opt => opt.Ignore()).ForAllMembers(

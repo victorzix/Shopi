@@ -2,15 +2,15 @@
 using MediatR;
 using Shopi.Core.Exceptions;
 using Shopi.Core.Utils;
-using Shopi.Product.Application.Commands;
+using Shopi.Product.Application.Commands.ProductsCommands;
 using Shopi.Product.Application.DTOs.Responses;
 using Shopi.Product.Application.Validators;
 using Shopi.Product.Domain.Entities;
 using Shopi.Product.Domain.Interfaces;
 
-namespace Shopi.Product.API.CommandHandlers;
+namespace Shopi.Product.API.CommandHandlers.ProductsCommandHandlers;
 
-public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ApiResponses<CreateProductResponseDto>>
+public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ApiResponses<ProductResponseDto>>
 {
     private IProductWriteRepository _productWriteRepository;
     private IProductReadRepository _productReadRepository;
@@ -26,7 +26,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
         _productReadRepository = productReadRepository;
     }
 
-    public async Task<ApiResponses<CreateProductResponseDto>> Handle(CreateProductCommand request,
+    public async Task<ApiResponses<ProductResponseDto>> Handle(CreateProductCommand request,
         CancellationToken cancellationToken)
     {
         var validator = new CreateProductCommandValidator();
@@ -49,9 +49,9 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
 
         var appProduct = await _productWriteRepository.Create(_mapper.Map<AppProduct>(request));
 
-        return new ApiResponses<CreateProductResponseDto>
+        return new ApiResponses<ProductResponseDto>
         {
-            Data = _mapper.Map<CreateProductResponseDto>(appProduct),
+            Data = _mapper.Map<ProductResponseDto>(appProduct),
             Success = true
         };
     }

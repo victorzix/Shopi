@@ -1,6 +1,6 @@
 ﻿namespace Shopi.Product.Application.DTOs.Responses;
 
-public class CreateCategoryResponseDto
+public class CategoryResponseDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
