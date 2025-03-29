@@ -10,4 +10,5 @@ public class ProductResponseDto
     public string Description { get; set; }
     public string Manufacturer { get; set; }
     public bool Visible { get; set; }
+    public bool IsActive { get; set; }
 }

@@ -29,9 +29,15 @@ public class ProductMappingProfile : Profile
             o =>
                 o.Condition((src, dest, value) => value != null));
 
+        CreateMap<CreateProductDto, CreateProductCommand>();
+        CreateMap<AppProduct, ProductResponseDto>();
+        
         CreateMap<UpdateProductCommand, AppProduct>().ForMember(dest =>
             dest.Id, opt => opt.Ignore()).ForAllMembers(
             o =>
                 o.Condition((src, dest, value) => value != null));
+        
+        CreateMap<FilterProductsDto, FilterProductsQuery>();
+        CreateMap<FilterProductsQuery, ProductsQuery>();
     }
 }

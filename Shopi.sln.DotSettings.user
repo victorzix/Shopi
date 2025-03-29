@@ -3,9 +3,7 @@
 	
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b12f4205_002Dd779_002D462e_002D9a24_002Dde15b0f87849/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="FilterCategories_ShouldReturnFilteredResults #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::426EDADB-747B-4E98-862E-42BE4EC080D5::net8.0::Shopi.Product.Tests.Unit.Infrastructure.Repositories.CategoryWriteRepositoryTests.Create_ShouldReturnACategory_WhenCreationSucceed&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	

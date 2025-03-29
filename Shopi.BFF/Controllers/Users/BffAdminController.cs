@@ -12,6 +12,7 @@ namespace Shopi.BFF.Controllers.Users;
 
 [ApiController]
 [Route("/api/v1/admin")]
+[Tags("Admins")]
 public class BffAdminController : ControllerBase
 {
     private readonly IBffHttpClient _httpClient;

@@ -10,6 +10,7 @@ namespace Shopi.BFF.Controllers.Users;
 
 [ApiController]
 [Route("/api/v1/customer")]
+[Tags("Customers")]
 public class BffCustomerController : ControllerBase
 {
     private readonly BffHttpClient _httpClient;

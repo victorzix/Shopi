@@ -35,9 +35,9 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand dto)
+    public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto dto)
     {
-        var product = await _mediator.Send(dto);
+        var product = await _mediator.Send(_mapper.Map<CreateProductCommand>(dto));
         return Created(string.Empty, product.Data);
     }
 

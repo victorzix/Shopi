@@ -8,6 +8,7 @@ namespace Shopi.BFF.Controllers.Users;
 
 [ApiController]
 [Route("/api/v1/auth")]
+[Tags("Authentication")]
 public class BffAuthController : ControllerBase
 {
     private readonly BffHttpClient _httpClient;

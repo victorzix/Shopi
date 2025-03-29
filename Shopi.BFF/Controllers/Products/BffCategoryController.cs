@@ -8,6 +8,7 @@ namespace Shopi.BFF.Controllers.Products;
 
 [ApiController]
 [Route("/api/v1/category")]
+[Tags("Categories")]
 public class BffCategoryController : ControllerBase
 {
     private readonly IBffHttpClient _httpClient;
