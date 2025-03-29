@@ -12,14 +12,18 @@ public class CustomerMappingProfile : Profile
     public CustomerMappingProfile()
     {
         CreateMap<CreateCustomerDto, CreateCustomerCommand>();
-        CreateMap<CreateCustomerDto, AppCustomer>();
-        CreateMap<CreateCustomerCommand, AppCustomer>();
+        CreateMap<CreateCustomerCommand, AppCustomer>().BeforeMap((s, d) =>
+        {
+            d.IsActive = true;
+            d.CreatedAt = DateTime.Now;
+            d.UpdatedAt = DateTime.Now;
+        });
         CreateMap<UpdateCustomerDto, UpdateCustomerCommand>();
         CreateMap<UpdateCustomerCommand, UpdateUserDto>().ForAllMembers(
             o =>
                 o.Condition((src, dest, value) => value != null));
         ;
-        CreateMap<UpdateCustomerCommand, AppCustomer>()
+        CreateMap<UpdateCustomerCommand, AppCustomer>().BeforeMap((s, d) => { d.UpdatedAt = DateTime.Now; })
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForAllMembers(
                 o =>

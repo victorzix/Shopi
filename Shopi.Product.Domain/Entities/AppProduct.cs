@@ -11,6 +11,8 @@ public class AppProduct
     public string Manufacturer { get; set; }
     public bool Visible { get; set; }
     public bool IsActive { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
 
     public List<AppProductCategory>? ProductCategories { get; set; }
     public List<Review>? Reviews { get; set; }

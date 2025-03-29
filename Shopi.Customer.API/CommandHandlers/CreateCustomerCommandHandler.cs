@@ -31,7 +31,7 @@ public class
         CancellationToken cancellationToken)
     {
         var validator = new CreateCustomerValidator();
-        var validateCreateCustomer = validator.Validate(request);
+        var validateCreateCustomer = await validator.ValidateAsync(request, cancellationToken);
 
         if (!validateCreateCustomer.IsValid)
         {
@@ -48,19 +48,23 @@ public class
 
     private async Task CheckEmailAndDocument(CreateCustomerCommand request)
     {
-        var emailInUse = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(
+        var emailInUseQuery = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(
             request.Email,
             null, null));
+
+        var emailInUse = await _readRepository.FilterClient(emailInUseQuery);
 
         if (emailInUse != null)
         {
             throw new CustomApiException("Erro de validação", StatusCodes.Status400BadRequest, "Email já em uso");
         }
 
-        var documentInUse = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(
+        var documentInUseQuery = _mapper.Map<QueryCustomer>(new FilterCustomerQuery(
             null,
             request.Document,
             null));
+
+        var documentInUse = await _readRepository.FilterClient(documentInUseQuery);
 
         if (documentInUse != null)
         {

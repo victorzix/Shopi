@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shopi.Admin.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d47e8d1fd17b20cc99511d5cd10d0d071f5a956b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bad133173605184fa470dd668caa99c07d770822")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shopi.Admin.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shopi.Admin.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

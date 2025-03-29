@@ -28,6 +28,9 @@ namespace Shopi.Product.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -37,11 +40,11 @@ namespace Shopi.Product.Infrastructure.Migrations
 
                     b.Property<string>("Manufacturer")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(60)");
 
                     b.Property<int>("Price")
                         .HasColumnType("integer");
@@ -50,12 +53,18 @@ namespace Shopi.Product.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Sku")
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(18)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Visible")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Sku")
+                        .IsUnique();
 
                     b.ToTable("AppProducts");
                 });
@@ -67,6 +76,12 @@ namespace Shopi.Product.Infrastructure.Migrations
 
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ProductId", "CategoryId");
 
@@ -81,6 +96,9 @@ namespace Shopi.Product.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -89,10 +107,13 @@ namespace Shopi.Product.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(60)");
 
                     b.Property<Guid?>("ParentId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Visible")
                         .HasColumnType("boolean");
@@ -114,6 +135,9 @@ namespace Shopi.Product.Infrastructure.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
@@ -124,7 +148,10 @@ namespace Shopi.Product.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(45)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Visible")
                         .HasColumnType("boolean");
@@ -149,6 +176,9 @@ namespace Shopi.Product.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid>("ParentId")
                         .HasColumnType("uuid");
 
@@ -157,6 +187,9 @@ namespace Shopi.Product.Infrastructure.Migrations
 
                     b.Property<Guid>("ReviewId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("Visible")
                         .HasColumnType("boolean");

@@ -20,7 +20,7 @@ public class CustomerReadRepository : ICustomerReadRepository
     public async Task<AppCustomer?> FilterClient(QueryCustomer query)
     {
         const string sql =
-            "SELECT * FROM \"AppCustomer\" WHERE \"Email\" = @Email OR \"Document\" = @Document OR \"Id\" = @Id OR \"UserId\" = @UserId";
+            "SELECT * FROM \"AppCustomer\" WHERE \"IsActive\" = TRUE AND \"Email\" = @Email OR \"Document\" = @Document OR \"Id\" = @Id OR \"UserId\" = @UserId";
         return await _dbConnection.QueryFirstOrDefaultAsync<AppCustomer>(sql,
             new { query.Email, query.Document, query.Id, UserId = query.Id });
     }

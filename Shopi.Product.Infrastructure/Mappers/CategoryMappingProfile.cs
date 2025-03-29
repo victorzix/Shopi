@@ -16,14 +16,18 @@ public class CategoryMappingProfile : Profile
         {
             d.IsActive = true;
             d.Visible = true;
+            d.CreatedAt = DateTime.Now;
+            d.UpdatedAt = DateTime.Now;
         });
         CreateMap<CreateCategoryDto, CreateCategoryCommand>();
         CreateMap<Category, CategoryResponseDto>();
 
-        CreateMap<UpdateCategoryCommand, Category>().ForMember(dest =>
-            dest.Id, opt => opt.Ignore()).ForAllMembers(
-            o =>
-                o.Condition((src, dest, value) => value != null));
+        CreateMap<UpdateCategoryCommand, Category>()
+            .BeforeMap((s, d) => { d.UpdatedAt = DateTime.Now; })
+            .ForMember(dest =>
+                dest.Id, opt => opt.Ignore()).ForAllMembers(
+                o =>
+                    o.Condition((src, dest, value) => value != null));
 
         CreateMap<UpdateCategoryDto, UpdateCategoryCommand>().ForAllMembers(
             o =>
