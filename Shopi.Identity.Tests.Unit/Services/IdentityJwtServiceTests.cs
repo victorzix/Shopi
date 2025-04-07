@@ -10,6 +10,7 @@ using Shopi.Identity.Domain.Entities;
 using Shopi.Identity.Application.DTOs;
 using Shopi.Identity.API.Services;
 using Shopi.Identity.Application.Interfaces;
+using Shopi.Identity.Infrastructure.Data;
 using Shopi.Identity.Infrastructure.Services;
 
 namespace Shopi.Identity.API.UnitTests.Services;
@@ -22,6 +23,8 @@ public class IdentityJwtServiceTests
     private readonly IdentityJwtService _identityJwtService;
     private readonly IMapper _mapper;
     private readonly Mock<IEmailService> _emailService;
+    private readonly Mock<CachingContext> _cachingContext;
+
 
     public IdentityJwtServiceTests()
     {
@@ -49,7 +52,8 @@ public class IdentityJwtServiceTests
         _mapper = new Mock<IMapper>().Object;
 
         _identityJwtService = new IdentityJwtService(
-            _userManagerMock.Object, jwtSettings, _signInManagerMock.Object, _roleManagerMock.Object, _mapper, _emailService.Object);
+            _userManagerMock.Object, jwtSettings, _signInManagerMock.Object, _roleManagerMock.Object, _mapper,
+            _emailService.Object, _cachingContext.Object);
     }
 
     [Fact]
