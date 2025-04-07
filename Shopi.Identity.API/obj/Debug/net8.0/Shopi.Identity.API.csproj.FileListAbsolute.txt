@@ -174,3 +174,8 @@ D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Shopi.Identity.Infra
 D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Shopi.Identity.Application.pdb
 D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Shopi.Identity.Infrastructure.pdb
 D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Shopi.Identity.Domain.pdb
+D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\SendGrid.dll
+D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\StarkbankEcdsa.dll
+D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+D:\studies\csharp\Shopi\Shopi.Identity.API\bin\Debug\net8.0\StackExchange.Redis.dll

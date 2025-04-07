@@ -16,8 +16,8 @@ public class ProductMappingProfile : Profile
         {
             d.IsActive = true;
             d.Visible = true;
-            d.CreatedAt = DateTime.Now;
-            d.UpdatedAt = DateTime.Now;
+            d.CreatedAt = DateTime.Now.ToUniversalTime();
+            d.UpdatedAt = DateTime.Now.ToUniversalTime();
         });
 
         CreateMap<AppProduct, CreateProductCommand>();
@@ -35,7 +35,7 @@ public class ProductMappingProfile : Profile
         CreateMap<AppProduct, ProductResponseDto>();
 
         CreateMap<UpdateProductCommand, AppProduct>()
-            .BeforeMap((s, d) => { d.UpdatedAt = DateTime.Now; })
+            .BeforeMap((s, d) => { d.UpdatedAt = DateTime.Now.ToUniversalTime(); })
             .ForMember(dest =>
                 dest.Id, opt => opt.Ignore()).ForAllMembers(
                 o =>

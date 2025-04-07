@@ -18,6 +18,7 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.2",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
           "RabbitMQ.Client": "7.0.0",
           "Shopi.Core": "1.0.0",
@@ -605,6 +606,20 @@
           }
         }
       },
+      "Microsoft.Extensions.Caching.StackExchangeRedis/9.0.2": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "9.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
+          "Microsoft.Extensions.Options": "9.0.2",
+          "StackExchange.Redis": "2.7.27"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "assemblyVersion": "9.0.2.0",
+            "fileVersion": "9.0.225.6704"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.2"
@@ -899,6 +914,17 @@
           }
         }
       },
+      "Pipelines.Sockets.Unofficial/2.2.8": {
+        "dependencies": {
+          "System.IO.Pipelines": "9.0.2"
+        },
+        "runtime": {
+          "lib/net5.0/Pipelines.Sockets.Unofficial.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.2.8.1080"
+          }
+        }
+      },
       "RabbitMQ.Client/7.0.0": {
         "dependencies": {
           "System.IO.Pipelines": "9.0.2",
@@ -908,6 +934,38 @@
           "lib/net8.0/RabbitMQ.Client.dll": {
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.0.0"
+          }
+        }
+      },
+      "SendGrid/9.29.3": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "starkbank-ecdsa": "1.3.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {
+            "assemblyVersion": "9.29.3.0",
+            "fileVersion": "9.29.3.0"
+          }
+        }
+      },
+      "StackExchange.Redis/2.7.27": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
+          "Pipelines.Sockets.Unofficial": "2.2.8"
+        },
+        "runtime": {
+          "lib/net6.0/StackExchange.Redis.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.7.27.49176"
+          }
+        }
+      },
+      "starkbank-ecdsa/1.3.3": {
+        "runtime": {
+          "lib/netstandard2.1/StarkbankEcdsa.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -1159,7 +1217,9 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.13",
           "Microsoft.EntityFrameworkCore": "9.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.3",
+          "SendGrid": "9.29.3",
           "Shopi.Identity.Application": "1.0.0",
           "Shopi.Identity.Domain": "1.0.0",
           "Swashbuckle.AspNetCore": "6.6.2"
@@ -1466,6 +1526,13 @@
       "path": "microsoft.extensions.caching.memory/9.0.2",
       "hashPath": "microsoft.extensions.caching.memory.9.0.2.nupkg.sha512"
     },
+    "Microsoft.Extensions.Caching.StackExchangeRedis/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DVIRRhNlSPOcOh01ZjtByHk4PxgQnMEBn+Sy9Nr29Z1NLw0OR7egXqHA/jSGDGs2HOwONhDlTKl7OGZl6wDWsg==",
+      "path": "microsoft.extensions.caching.stackexchangeredis/9.0.2",
+      "hashPath": "microsoft.extensions.caching.stackexchangeredis.9.0.2.nupkg.sha512"
+    },
     "Microsoft.Extensions.Configuration.Abstractions/9.0.2": {
       "type": "package",
       "serviceable": true,
@@ -1669,12 +1736,40 @@
       "path": "npgsql.entityframeworkcore.postgresql/9.0.3",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.3.nupkg.sha512"
     },
+    "Pipelines.Sockets.Unofficial/2.2.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zG2FApP5zxSx6OcdJQLbZDk2AVlN2BNQD6MorwIfV6gVj0RRxWPEp2LXAxqDGZqeNV1Zp0BNPcNaey/GXmTdvQ==",
+      "path": "pipelines.sockets.unofficial/2.2.8",
+      "hashPath": "pipelines.sockets.unofficial.2.2.8.nupkg.sha512"
+    },
     "RabbitMQ.Client/7.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-8YJz22mOSMtkbIVuVSz2HbJwbpKwRoXQ1uqbczDUt1w1Ds8dxFs6dkV/oZ8AlTmkErZjtQelHv+oBu52ud00WA==",
       "path": "rabbitmq.client/7.0.0",
       "hashPath": "rabbitmq.client.7.0.0.nupkg.sha512"
+    },
+    "SendGrid/9.29.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nb/zHePecN9U4/Bmct+O+lpgK994JklbCCNMIgGPOone/DngjQoMCHeTvkl+m0Nglvm0dqMEshmvB4fO8eF3dA==",
+      "path": "sendgrid/9.29.3",
+      "hashPath": "sendgrid.9.29.3.nupkg.sha512"
+    },
+    "StackExchange.Redis/2.7.27": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Uqc2OQHglqj9/FfGQ6RkKFkZfHySfZlfmbCl+hc+u2I/IqunfelQ7QJi7ZhvAJxUtu80pildVX6NPLdDaUffOw==",
+      "path": "stackexchange.redis/2.7.27",
+      "hashPath": "stackexchange.redis.2.7.27.nupkg.sha512"
+    },
+    "starkbank-ecdsa/1.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OblOaKb1enXn+dSp7tsx9yjwV+/BEKM9jFhshIkZTwCk7LuTFTp+wSon6rFzuPiIiTGtvVWQNUw2slHjGktJog==",
+      "path": "starkbank-ecdsa/1.3.3",
+      "hashPath": "starkbank-ecdsa.1.3.3.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",

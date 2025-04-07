@@ -30,9 +30,6 @@ public class BffCustomerController : ControllerBase
             var deserializedErrorContent = JsonConvert.DeserializeObject<ErrorModel>(errorContent);
             return StatusCode(deserializedErrorContent.Status, deserializedErrorContent);
         }
-
-        var content = await userResponse.Content.ReadAsStringAsync();
-        var deserializedContent = JsonConvert.DeserializeObject<CreateCustomerResponseDto>(content);
-        return Ok(deserializedContent);
+        return NoContent();
     }
 }

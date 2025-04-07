@@ -7,11 +7,11 @@ using Shopi.Core.Utils;
 using Shopi.Identity.Application.Commands;
 using Shopi.Identity.Application.DTOs;
 using Shopi.Identity.Domain.Entities;
-using Shopi.Identity.Infrastructure.Interfaces;
+using Shopi.Identity.Application.Interfaces;
 
 namespace Shopi.Identity.API.CommandHandlers;
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<LoginUserResponseDto>>
+public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponses<RegisterUserResponseDto>>
 {
     private readonly IBffHttpClient _httpClient;
     private readonly IIdentityJwtService _identityJwtService;
@@ -24,7 +24,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponses<LoginUserResponseDto>> Handle(CreateUserCommand request,
+    public async Task<ApiResponses<RegisterUserResponseDto>> Handle(CreateUserCommand request,
         CancellationToken cancellationToken)
     {
         if (request.Role == "Customer")
@@ -53,8 +53,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiRe
                 deserializedErrorContent.Errors);
         }
 
-        var loginData = await _identityJwtService.Login(new LoginUser
-            { Email = request.Email, Password = request.Password });
-        return new ApiResponses<LoginUserResponseDto> { Data = loginData.Data, Success = true };
+        return new ApiResponses<RegisterUserResponseDto> { Data = userData.Data, Success = true };
     }
 }

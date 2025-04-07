@@ -14,8 +14,8 @@ public class AdminMappingProfile : Profile
         CreateMap<CreateAdminDto, CreateAdminCommand>();
         CreateMap<CreateAdminCommand, AppAdmin>().BeforeMap((s, d) =>
         {
-            d.CreatedAt = DateTime.Now;
-            d.UpdatedAt = DateTime.Now;
+            d.CreatedAt = DateTime.Now.ToUniversalTime();
+            d.UpdatedAt = DateTime.Now.ToUniversalTime();
         });
         CreateMap<UpdateAdminDto, UpdateAdminCommand>();
         CreateMap<UpdateAdminCommand, UpdateUserDto>().ForAllMembers(
@@ -23,7 +23,7 @@ public class AdminMappingProfile : Profile
                 o.Condition((src, dest, value) => value != null));
         ;
         CreateMap<UpdateAdminCommand, AppAdmin>()
-            .BeforeMap((s, d) => { d.UpdatedAt = DateTime.Now; })
+            .BeforeMap((s, d) => { d.UpdatedAt = DateTime.Now.ToUniversalTime(); })
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForAllMembers(
                 o =>

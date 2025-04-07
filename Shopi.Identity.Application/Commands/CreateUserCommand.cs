@@ -4,7 +4,7 @@ using Shopi.Identity.Application.DTOs;
 
 namespace Shopi.Identity.Application.Commands;
 
-public class CreateUserCommand : IRequest<ApiResponses<LoginUserResponseDto>>
+public class CreateUserCommand : IRequest<ApiResponses<RegisterUserResponseDto>>
 {
     public string Name { get; }
     public string Email { get; }

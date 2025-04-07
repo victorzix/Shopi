@@ -32,9 +32,7 @@ public class BffAdminController : ControllerBase
             var deserializedErrorContent = JsonConvert.DeserializeObject<ErrorModel>(errorContent);
             return StatusCode(deserializedErrorContent.Status, deserializedErrorContent);
         }
-
-        var content = await adminResponse.Content.ReadAsStringAsync();
-        return Ok(new { Token = content });
+        return NoContent();
     }
 
     [HttpGet("get-data")]

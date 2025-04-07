@@ -32,7 +32,21 @@ public class IdentityController : ControllerBase
     public async Task<IActionResult> CreateAdmin([FromBody] CreateUserDto dto)
     {
         var user = await _mediator.Send(_mapper.Map<CreateUserCommand>(dto));
-        return Created(string.Empty, user.Data.Token);
+        return Created(string.Empty, user.Data);
+    }
+
+    [HttpPost("confirm-email")]
+    public async Task<IActionResult> ConfirmEmail([FromQuery] string token)
+    {
+        var accessToken = await _mediator.Send(new ConfirmEmailCommand(token));
+        return Ok(accessToken.Data.Token);
+    }
+    
+    [HttpPost("resend-confirmation-email")]
+    public async Task<IActionResult> ResendEmailConfirmation([FromQuery] string token)
+    {
+        await _mediator.Send(new ResendEmailConfirmationCommand(token));
+        return NoContent();
     }
 
     [HttpPatch("update")]
