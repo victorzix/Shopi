@@ -14,18 +14,31 @@
       - postgres_data:/var/lib/postgresql/data
     networks:
       - shopi-network
-
-#  rabbitmq:
-#    image: "rabbitmq:3-management"
-#    container_name: "shopi-rabbitmq"
-#    ports:
-#      - "5672:5672"
-#      - "15672:15672"
-#    environment:
-#      RABBITMQ_DEFAULT_USER: guest
-#      RABBITMQ_DEFAULT_PASS: guest
-#    networks:
-#      - shopi-network
+  
+  
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    command: redis-server --requirepass RedisPass!=@
+    ports:
+      - "6379:6379"
+    networks:
+      - shopi-network
+    volumes:
+      - redis_data:/data
+  
+  #  rabbitmq:
+  #    image: "rabbitmq:3-management"
+  #    container_name: "shopi-rabbitmq"
+  #    ports:
+  #      - "5672:5672"
+  #      - "15672:15672"
+  #    environment:
+  #      RABBITMQ_DEFAULT_USER: guest
+  #      RABBITMQ_DEFAULT_PASS: guest
+  #    networks:
+  #      - shopi-network
 
   shopi.identity.api:
     image: shopi.identity.api
@@ -74,7 +87,7 @@
       - shopi-network
     depends_on:
       - database
-        
+  
   shopi.product.api:
     image: shopi.product.api
     build:
@@ -117,3 +130,4 @@ networks:
 volumes:
   postgres_data:
   mongo-data:
+  redis_data:

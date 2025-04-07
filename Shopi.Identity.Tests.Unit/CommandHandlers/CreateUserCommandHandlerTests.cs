@@ -10,7 +10,7 @@ using Shopi.Identity.API.CommandHandlers;
 using Shopi.Identity.Application.Commands;
 using Shopi.Identity.Application.DTOs;
 using Shopi.Identity.Domain.Entities;
-using Shopi.Identity.Infrastructure.Interfaces;
+using Shopi.Identity.Application.Interfaces;
 using Shopi.Identity.Infrastructure.Mappers;
 
 namespace Shopi.Identity.API.UnitTests.CommandHandlers;

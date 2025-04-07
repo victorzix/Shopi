@@ -6,16 +6,27 @@ using Shopi.Core.Services;
 using Shopi.Identity.API.Configs;
 using Shopi.Identity.API.Services;
 using Shopi.Identity.Infrastructure.Data;
-using Shopi.Identity.Infrastructure.Interfaces;
+using Shopi.Identity.Application.Interfaces;
+using Shopi.Identity.Domain.Interfaces;
 using Shopi.Identity.Infrastructure.Mappers;
+using Shopi.Identity.Infrastructure.Services;
+using Shopi.Identity.Infrastructure.Strategies.Email;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IEmailStrategy, SendGridStrategy>();
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection")));
+
+builder.Services.AddTransient<CachingContext>();
 
 builder.Services.AddScoped<IIdentityJwtService, IdentityJwtService>();
 builder.Services.AddScoped<IBffHttpClient, BffHttpClient>();
